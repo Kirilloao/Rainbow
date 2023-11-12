@@ -9,19 +9,27 @@
 /* Begin PBXBuildFile section */
 		3CADAD1A2B01346E00D39C6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD192B01346E00D39C6A /* AppDelegate.swift */; };
 		3CADAD1C2B01346E00D39C6A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD1B2B01346E00D39C6A /* SceneDelegate.swift */; };
-		3CADAD1E2B01346E00D39C6A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD1D2B01346E00D39C6A /* ViewController.swift */; };
+		3CADAD1E2B01346E00D39C6A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD1D2B01346E00D39C6A /* MainViewController.swift */; };
 		3CADAD232B01346F00D39C6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CADAD222B01346F00D39C6A /* Assets.xcassets */; };
 		3CADAD262B01346F00D39C6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CADAD242B01346F00D39C6A /* LaunchScreen.storyboard */; };
+		3CADAD332B01377100D39C6A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD322B01377100D39C6A /* GameViewController.swift */; };
+		3CADAD362B01378500D39C6A /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD352B01378500D39C6A /* RulesViewController.swift */; };
+		3CADAD392B01379B00D39C6A /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD382B01379B00D39C6A /* ResultsViewController.swift */; };
+		3CADAD3C2B0137CE00D39C6A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD3B2B0137CE00D39C6A /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3CADAD162B01346E00D39C6A /* Rainbow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rainbow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CADAD192B01346E00D39C6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CADAD1B2B01346E00D39C6A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3CADAD1D2B01346E00D39C6A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3CADAD1D2B01346E00D39C6A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3CADAD222B01346F00D39C6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3CADAD252B01346F00D39C6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3CADAD272B01346F00D39C6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CADAD322B01377100D39C6A /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		3CADAD352B01378500D39C6A /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
+		3CADAD382B01379B00D39C6A /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		3CADAD3B2B0137CE00D39C6A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,210 @@
 		3CADAD182B01346E00D39C6A /* Rainbow */ = {
 			isa = PBXGroup;
 			children = (
-				3CADAD192B01346E00D39C6A /* AppDelegate.swift */,
-				3CADAD1B2B01346E00D39C6A /* SceneDelegate.swift */,
-				3CADAD1D2B01346E00D39C6A /* ViewController.swift */,
-				3CADAD222B01346F00D39C6A /* Assets.xcassets */,
-				3CADAD242B01346F00D39C6A /* LaunchScreen.storyboard */,
+				3CADAD2D2B0136A000D39C6A /* App */,
+				3CADAD4C2B01390500D39C6A /* Extension */,
+				3CADAD2F2B01371500D39C6A /* Modules */,
+				3CADAD2E2B0136AC00D39C6A /* SupportingFiles */,
 				3CADAD272B01346F00D39C6A /* Info.plist */,
 			);
 			path = Rainbow;
+			sourceTree = "<group>";
+		};
+		3CADAD2D2B0136A000D39C6A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				3CADAD192B01346E00D39C6A /* AppDelegate.swift */,
+				3CADAD1B2B01346E00D39C6A /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		3CADAD2E2B0136AC00D39C6A /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				3CADAD222B01346F00D39C6A /* Assets.xcassets */,
+				3CADAD242B01346F00D39C6A /* LaunchScreen.storyboard */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		3CADAD2F2B01371500D39C6A /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				3CADAD302B01373500D39C6A /* Main */,
+				3CADAD312B01375B00D39C6A /* Game */,
+				3CADAD342B01377500D39C6A /* Rules */,
+				3CADAD372B01378E00D39C6A /* Results */,
+				3CADAD3A2B0137C000D39C6A /* Settings */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		3CADAD302B01373500D39C6A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				3CADAD492B01386B00D39C6A /* Model */,
+				3CADAD4A2B01387100D39C6A /* View */,
+				3CADAD4B2B01387500D39C6A /* Controller */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		3CADAD312B01375B00D39C6A /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				3CADAD462B01385300D39C6A /* Model */,
+				3CADAD472B01385800D39C6A /* View */,
+				3CADAD482B01385D00D39C6A /* Controller */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		3CADAD342B01377500D39C6A /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				3CADAD432B01383900D39C6A /* Model */,
+				3CADAD442B01383F00D39C6A /* View */,
+				3CADAD452B01384400D39C6A /* Controller */,
+			);
+			path = Rules;
+			sourceTree = "<group>";
+		};
+		3CADAD372B01378E00D39C6A /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				3CADAD402B01381800D39C6A /* Model */,
+				3CADAD412B01382300D39C6A /* View */,
+				3CADAD422B01382900D39C6A /* Controller */,
+			);
+			path = Results;
+			sourceTree = "<group>";
+		};
+		3CADAD3A2B0137C000D39C6A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				3CADAD3D2B0137FB00D39C6A /* Model */,
+				3CADAD3E2B01380100D39C6A /* View */,
+				3CADAD3F2B01380700D39C6A /* Controller */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		3CADAD3D2B0137FB00D39C6A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3CADAD3E2B01380100D39C6A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3CADAD3F2B01380700D39C6A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3CADAD3B2B0137CE00D39C6A /* SettingsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3CADAD402B01381800D39C6A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3CADAD412B01382300D39C6A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3CADAD422B01382900D39C6A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3CADAD382B01379B00D39C6A /* ResultsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3CADAD432B01383900D39C6A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3CADAD442B01383F00D39C6A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3CADAD452B01384400D39C6A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3CADAD352B01378500D39C6A /* RulesViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3CADAD462B01385300D39C6A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3CADAD472B01385800D39C6A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3CADAD482B01385D00D39C6A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3CADAD322B01377100D39C6A /* GameViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3CADAD492B01386B00D39C6A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3CADAD4A2B01387100D39C6A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3CADAD4B2B01387500D39C6A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3CADAD1D2B01346E00D39C6A /* MainViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3CADAD4C2B01390500D39C6A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,9 +338,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CADAD1E2B01346E00D39C6A /* ViewController.swift in Sources */,
+				3CADAD362B01378500D39C6A /* RulesViewController.swift in Sources */,
+				3CADAD332B01377100D39C6A /* GameViewController.swift in Sources */,
+				3CADAD3C2B0137CE00D39C6A /* SettingsViewController.swift in Sources */,
+				3CADAD1E2B01346E00D39C6A /* MainViewController.swift in Sources */,
 				3CADAD1A2B01346E00D39C6A /* AppDelegate.swift in Sources */,
 				3CADAD1C2B01346E00D39C6A /* SceneDelegate.swift in Sources */,
+				3CADAD392B01379B00D39C6A /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +490,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,6 +518,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
