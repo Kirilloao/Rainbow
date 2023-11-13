@@ -7,10 +7,12 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
-
+final class MainViewController: UIViewController {
+    
+    // MARK: - Private UI Properties
     private let mainView = MainView()
     
+    // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -18,27 +20,7 @@ class MainViewController: UIViewController {
         addTargets()
     }
     
-    private func setupView() {
-        view.addSubviews(mainView)
-        
-    }
-    private func setupConstraints() {
-        NSLayoutConstraint.activate([
-
-            mainView.topAnchor.constraint(equalTo: view.topAnchor),
-            mainView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            mainView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ])
-    }
-    
-    private func addTargets() {
-        mainView.newGameTarget(self, action: #selector(newGameAction))
-        mainView.statTarget(self, action: #selector(statAction))
-        mainView.settingsTarget(self, action: #selector(settingsAction))
-        mainView.rulesTarget(self, action: #selector(rulesAction))
-    }
-    
+    // MARK: - Private Actions
     @objc private func settingsAction() {
         
     }
@@ -54,32 +36,27 @@ class MainViewController: UIViewController {
     @objc private func statAction() {
         
     }
-}
-
-
-//MARK: - SwiftUI
-import SwiftUI
-struct Provider_MainViewController : PreviewProvider {
-    static var previews: some View {
-        ContainterView().edgesIgnoringSafeArea(.all)
+    
+    // MARK: - Private Methods
+    private func setupView() {
+        view.addSubviews(mainView)
+        
     }
     
-    struct ContainterView: UIViewControllerRepresentable {
-        func makeUIViewController(context: Context) -> UIViewController {
-            return MainViewController()
-        }
-        
-        typealias UIViewControllerType = UIViewController
-        
-        
-        let viewController = MainViewController()
-        func makeUIViewController(context: UIViewControllerRepresentableContext<Provider_MainViewController.ContainterView>) -> MainViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: Provider_MainViewController.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<Provider_MainViewController.ContainterView>) {
-            
-        }
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            mainView.topAnchor.constraint(equalTo: view.topAnchor),
+            mainView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            mainView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mainView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
     }
     
+    private func addTargets() {
+        mainView.newGameTarget(self, action: #selector(newGameAction))
+        mainView.statTarget(self, action: #selector(statAction))
+        mainView.settingsTarget(self, action: #selector(settingsAction))
+        mainView.rulesTarget(self, action: #selector(rulesAction))
+    }
 }
+

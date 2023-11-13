@@ -18,10 +18,10 @@
 		3CADAD3C2B0137CE00D39C6A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD3B2B0137CE00D39C6A /* SettingsViewController.swift */; };
 		3CADAD4E2B01563C00D39C6A /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD4D2B01563C00D39C6A /* UIColor + Extension.swift */; };
 		FA054BF32B029C91007DD777 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF22B029C91007DD777 /* MainView.swift */; };
-		FA054BF82B029CB6007DD777 /* UIButton-ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF42B029CB6007DD777 /* UIButton-ext.swift */; };
-		FA054BF92B029CB6007DD777 /* UILabel-ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF52B029CB6007DD777 /* UILabel-ext.swift */; };
-		FA054BFA2B029CB6007DD777 /* UIImage-ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF62B029CB6007DD777 /* UIImage-ext.swift */; };
-		FA054BFB2B029CB6007DD777 /* UIView-ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF72B029CB6007DD777 /* UIView-ext.swift */; };
+		FA054BF82B029CB6007DD777 /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF42B029CB6007DD777 /* UIButton + Extension.swift */; };
+		FA054BF92B029CB6007DD777 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF52B029CB6007DD777 /* UILabel + Extension.swift */; };
+		FA054BFA2B029CB6007DD777 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF62B029CB6007DD777 /* UIImage + Extension.swift */; };
+		FA054BFB2B029CB6007DD777 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF72B029CB6007DD777 /* UIView + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,10 +38,10 @@
 		3CADAD3B2B0137CE00D39C6A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3CADAD4D2B01563C00D39C6A /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		FA054BF22B029C91007DD777 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		FA054BF42B029CB6007DD777 /* UIButton-ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton-ext.swift"; sourceTree = "<group>"; };
-		FA054BF52B029CB6007DD777 /* UILabel-ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel-ext.swift"; sourceTree = "<group>"; };
-		FA054BF62B029CB6007DD777 /* UIImage-ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage-ext.swift"; sourceTree = "<group>"; };
-		FA054BF72B029CB6007DD777 /* UIView-ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView-ext.swift"; sourceTree = "<group>"; };
+		FA054BF42B029CB6007DD777 /* UIButton + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
+		FA054BF52B029CB6007DD777 /* UILabel + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
+		FA054BF62B029CB6007DD777 /* UIImage + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
+		FA054BF72B029CB6007DD777 /* UIView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,10 +228,10 @@
 		3CADAD4C2B01390500D39C6A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				FA054BF42B029CB6007DD777 /* UIButton-ext.swift */,
-				FA054BF62B029CB6007DD777 /* UIImage-ext.swift */,
-				FA054BF52B029CB6007DD777 /* UILabel-ext.swift */,
-				FA054BF72B029CB6007DD777 /* UIView-ext.swift */,
+				FA054BF42B029CB6007DD777 /* UIButton + Extension.swift */,
+				FA054BF62B029CB6007DD777 /* UIImage + Extension.swift */,
+				FA054BF52B029CB6007DD777 /* UILabel + Extension.swift */,
+				FA054BF72B029CB6007DD777 /* UIView + Extension.swift */,
 				3CADAD4D2B01563C00D39C6A /* UIColor + Extension.swift */,
 			);
 			path = Extension;
@@ -358,18 +358,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CADAD362B01378500D39C6A /* RulesViewController.swift in Sources */,
-				FA054BF82B029CB6007DD777 /* UIButton-ext.swift in Sources */,
+				FA054BF82B029CB6007DD777 /* UIButton + Extension.swift in Sources */,
 				FA054BF32B029C91007DD777 /* MainView.swift in Sources */,
 				3CADAD4E2B01563C00D39C6A /* UIColor + Extension.swift in Sources */,
 				3CADAD332B01377100D39C6A /* GameViewController.swift in Sources */,
 				3CADAD3C2B0137CE00D39C6A /* SettingsViewController.swift in Sources */,
-				FA054BF92B029CB6007DD777 /* UILabel-ext.swift in Sources */,
+				FA054BF92B029CB6007DD777 /* UILabel + Extension.swift in Sources */,
 				3CADAD1E2B01346E00D39C6A /* MainViewController.swift in Sources */,
 				3CADAD1A2B01346E00D39C6A /* AppDelegate.swift in Sources */,
 				3CADAD1C2B01346E00D39C6A /* SceneDelegate.swift in Sources */,
 				3CADAD392B01379B00D39C6A /* ResultsViewController.swift in Sources */,
-				FA054BFA2B029CB6007DD777 /* UIImage-ext.swift in Sources */,
-				FA054BFB2B029CB6007DD777 /* UIView-ext.swift in Sources */,
+				FA054BFA2B029CB6007DD777 /* UIImage + Extension.swift in Sources */,
+				FA054BFB2B029CB6007DD777 /* UIView + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,35 @@ import UIKit
 
 final class MainView: UIView {
     
+    // MARK: - Private UI Properties
+    private let image = UIImageView(image: "rainbowImage")
+    private let titleLabel = UILabel(
+        text: "НЛП Игра",
+        font: .systemFont(ofSize: 36)
+    )
+    private let gameLabel = UILabel(
+        text: "Радуга",
+        font: .systemFont(ofSize: 64)
+    )
+    private let newGame = UIButton(
+        title: "Новая игра",
+        backgroundColor: .redButtonColor,
+        cornerRadius: 10
+    )
+    private let stat = UIButton(
+        title: "Статистика",
+        backgroundColor: .greenButtonColor,
+        cornerRadius: 10
+    )
+    private let resume = UIButton(
+        title: "Продолжить",
+        backgroundColor: .blueButtonColor,
+        cornerRadius: 10
+    )
+    private let settings = UIButton(image: "settings")
+    private let rules = UIButton(image: "rules")
+    
+    // MARK: - Init
     init() {
         super.init(frame: .infinite)
         setupView()
@@ -19,20 +48,37 @@ final class MainView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let image = UIImageView(image: "rainbowImage")
-    private let titleLabel = UILabel(text: "НЛП Игра", font: .systemFont(ofSize: 36))
-    private let gameLabel = UILabel(text: "Радуга", font: .systemFont(ofSize: 64))
-    private let newGame = UIButton(title: "Новая игра", backgroundColor: .redButtonColor, cornerRadius: 10)
-    private let stat = UIButton(title: "Статистика", backgroundColor: .greenButtonColor, cornerRadius: 10)
-    private let resume = UIButton(title: "Продолжить", backgroundColor: .blueButtonColor, cornerRadius: 10)
-    private let settings = UIButton(image: "settings")
-    private let rules = UIButton(image: "rules")
+    // MARK: - Public Methods
+    func newGameTarget(_ target: Any, action: Selector) {
+        newGame.addTarget(target, action: action, for: .touchUpInside)
+    }
     
+    func statTarget(_ target: Any, action: Selector) {
+        stat.addTarget(target, action: action, for: .touchUpInside)
+    }
     
+    func settingsTarget(_ target: Any, action: Selector) {
+        settings.addTarget(target, action: action, for: .touchUpInside)
+    }
+    
+    func rulesTarget(_ target: Any, action: Selector) {
+        rules.addTarget(target, action: action, for: .touchUpInside)
+    }
+    
+    // MARK: - Private Methods
     private func setupView() {
-        self.addSubviews(image, titleLabel, gameLabel, newGame, stat, settings, rules, resume)
+        self.addSubviews(
+            image,
+            titleLabel,
+            gameLabel,
+            newGame, stat,
+            settings,
+            rules,
+            resume
+        )
         self.backgroundColor = .grayBackgroundColor
     }
+    
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             image.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 28),
@@ -69,21 +115,6 @@ final class MainView: UIView {
             rules.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -28),
             rules.heightAnchor.constraint(equalTo: settings.heightAnchor),
             rules.widthAnchor.constraint(equalTo: rules.heightAnchor)
-            
         ])
     }
-    
-    func newGameTarget(_ target: Any, action: Selector) {
-        newGame.addTarget(target, action: action, for: .touchUpInside)
-    }
-    func statTarget(_ target: Any, action: Selector) {
-        stat.addTarget(target, action: action, for: .touchUpInside)
-    }
-    func settingsTarget(_ target: Any, action: Selector) {
-        settings.addTarget(target, action: action, for: .touchUpInside)
-    }
-    func rulesTarget(_ target: Any, action: Selector) {
-        rules.addTarget(target, action: action, for: .touchUpInside)
-    }
-
 }
