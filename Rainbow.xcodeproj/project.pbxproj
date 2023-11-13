@@ -17,6 +17,11 @@
 		3CADAD392B01379B00D39C6A /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD382B01379B00D39C6A /* ResultsViewController.swift */; };
 		3CADAD3C2B0137CE00D39C6A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD3B2B0137CE00D39C6A /* SettingsViewController.swift */; };
 		3CADAD4E2B01563C00D39C6A /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD4D2B01563C00D39C6A /* UIColor + Extension.swift */; };
+		FA054BF32B029C91007DD777 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF22B029C91007DD777 /* MainView.swift */; };
+		FA054BF82B029CB6007DD777 /* UIButton-ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF42B029CB6007DD777 /* UIButton-ext.swift */; };
+		FA054BF92B029CB6007DD777 /* UILabel-ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF52B029CB6007DD777 /* UILabel-ext.swift */; };
+		FA054BFA2B029CB6007DD777 /* UIImage-ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF62B029CB6007DD777 /* UIImage-ext.swift */; };
+		FA054BFB2B029CB6007DD777 /* UIView-ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF72B029CB6007DD777 /* UIView-ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +37,11 @@
 		3CADAD382B01379B00D39C6A /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		3CADAD3B2B0137CE00D39C6A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3CADAD4D2B01563C00D39C6A /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		FA054BF22B029C91007DD777 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		FA054BF42B029CB6007DD777 /* UIButton-ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton-ext.swift"; sourceTree = "<group>"; };
+		FA054BF52B029CB6007DD777 /* UILabel-ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel-ext.swift"; sourceTree = "<group>"; };
+		FA054BF62B029CB6007DD777 /* UIImage-ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage-ext.swift"; sourceTree = "<group>"; };
+		FA054BF72B029CB6007DD777 /* UIView-ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView-ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				3CADAD492B01386B00D39C6A /* Model */,
-				3CADAD4A2B01387100D39C6A /* View */,
+				FA054BF12B029C86007DD777 /* View */,
 				3CADAD4B2B01387500D39C6A /* Controller */,
 			);
 			path = Main;
@@ -116,8 +126,8 @@
 		3CADAD312B01375B00D39C6A /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				3CADAD462B01385300D39C6A /* Model */,
-				3CADAD472B01385800D39C6A /* View */,
+				FA054BFD2B02A347007DD777 /* Model */,
+				FA054BFC2B02A343007DD777 /* View */,
 				3CADAD482B01385D00D39C6A /* Controller */,
 			);
 			path = Game;
@@ -126,8 +136,8 @@
 		3CADAD342B01377500D39C6A /* Rules */ = {
 			isa = PBXGroup;
 			children = (
-				3CADAD432B01383900D39C6A /* Model */,
-				3CADAD442B01383F00D39C6A /* View */,
+				FA054BFF2B02A352007DD777 /* Model */,
+				FA054BFE2B02A34E007DD777 /* View */,
 				3CADAD452B01384400D39C6A /* Controller */,
 			);
 			path = Rules;
@@ -136,8 +146,8 @@
 		3CADAD372B01378E00D39C6A /* Results */ = {
 			isa = PBXGroup;
 			children = (
-				3CADAD402B01381800D39C6A /* Model */,
-				3CADAD412B01382300D39C6A /* View */,
+				FA054C012B02A35D007DD777 /* Model */,
+				FA054C002B02A358007DD777 /* View */,
 				3CADAD422B01382900D39C6A /* Controller */,
 			);
 			path = Results;
@@ -175,20 +185,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		3CADAD402B01381800D39C6A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		3CADAD412B01382300D39C6A /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		3CADAD422B01382900D39C6A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,40 +193,12 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		3CADAD432B01383900D39C6A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		3CADAD442B01383F00D39C6A /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		3CADAD452B01384400D39C6A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				3CADAD352B01378500D39C6A /* RulesViewController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		3CADAD462B01385300D39C6A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		3CADAD472B01385800D39C6A /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		3CADAD482B01385D00D39C6A /* Controller */ = {
@@ -245,14 +213,8 @@
 			isa = PBXGroup;
 			children = (
 			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		3CADAD4A2B01387100D39C6A /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
+			name = Model;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		3CADAD4B2B01387500D39C6A /* Controller */ = {
@@ -266,9 +228,63 @@
 		3CADAD4C2B01390500D39C6A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				FA054BF42B029CB6007DD777 /* UIButton-ext.swift */,
+				FA054BF62B029CB6007DD777 /* UIImage-ext.swift */,
+				FA054BF52B029CB6007DD777 /* UILabel-ext.swift */,
+				FA054BF72B029CB6007DD777 /* UIView-ext.swift */,
 				3CADAD4D2B01563C00D39C6A /* UIColor + Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		FA054BF12B029C86007DD777 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA054BF22B029C91007DD777 /* MainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FA054BFC2B02A343007DD777 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FA054BFD2B02A347007DD777 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FA054BFE2B02A34E007DD777 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FA054BFF2B02A352007DD777 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FA054C002B02A358007DD777 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FA054C012B02A35D007DD777 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,13 +358,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CADAD362B01378500D39C6A /* RulesViewController.swift in Sources */,
+				FA054BF82B029CB6007DD777 /* UIButton-ext.swift in Sources */,
+				FA054BF32B029C91007DD777 /* MainView.swift in Sources */,
 				3CADAD4E2B01563C00D39C6A /* UIColor + Extension.swift in Sources */,
 				3CADAD332B01377100D39C6A /* GameViewController.swift in Sources */,
 				3CADAD3C2B0137CE00D39C6A /* SettingsViewController.swift in Sources */,
+				FA054BF92B029CB6007DD777 /* UILabel-ext.swift in Sources */,
 				3CADAD1E2B01346E00D39C6A /* MainViewController.swift in Sources */,
 				3CADAD1A2B01346E00D39C6A /* AppDelegate.swift in Sources */,
 				3CADAD1C2B01346E00D39C6A /* SceneDelegate.swift in Sources */,
 				3CADAD392B01379B00D39C6A /* ResultsViewController.swift in Sources */,
+				FA054BFA2B029CB6007DD777 /* UIImage-ext.swift in Sources */,
+				FA054BFB2B029CB6007DD777 /* UIView-ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
