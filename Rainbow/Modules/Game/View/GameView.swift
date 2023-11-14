@@ -31,7 +31,6 @@ class GameView: UIView {
     //MARK: - Methods
     
     func setupView() {
-        
         //        перенести в контроллер
         //        var views = [UIView(), UIView(), UIView(), UIView(), UIView()]
         //        self.views.forEach { view in
@@ -39,14 +38,25 @@ class GameView: UIView {
         //            label.text = viewsTitle.randomElement()
         //            view.backgroundColor = viewsColor.randomElement()
         //        }
-        
         self.layer.cornerRadius = 10
         self.backgroundColor = viewsColor.randomElement()
         self.addSubviews(viewLabel, checkButton)
         viewLabel.text = self.viewsTitle.randomElement()
         checkButton.setImage(UIImage(named: "noCheck"), for: .normal)
         checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
+        makeShadovForView()
     }
+    
+    //MARK: - Private methods
+    ///Create shadows for each view
+    private func makeShadovForView() {
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.8
+        self.layer.shadowOffset = CGSizeMake(0, 3)
+        self.layer.shadowRadius = 1
+    }
+    
+    //MARK: - objc methods
     
     @objc func checkButtonTapped() {
         let tapCount = 0

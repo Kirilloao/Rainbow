@@ -42,31 +42,31 @@ extension GameViewController {
         
         NSLayoutConstraint.activate([
             gameView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            gameView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
+            gameView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
             gameView.heightAnchor.constraint(equalToConstant: 40),
-            gameView.widthAnchor.constraint(equalToConstant: 190),
+            gameView.widthAnchor.constraint(equalToConstant: 238),
             
             gameView1.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
-            gameView1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
+            gameView1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
             gameView1.heightAnchor.constraint(equalToConstant: 40),
-            gameView1.widthAnchor.constraint(equalToConstant: 190),
+            gameView1.widthAnchor.constraint(equalToConstant: 238),
             
             gameView2.topAnchor.constraint(equalTo: view.topAnchor, constant: 300),
-            gameView2.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
+            gameView2.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
             gameView2.heightAnchor.constraint(equalToConstant: 40),
-            gameView2.widthAnchor.constraint(equalToConstant: 190),
+            gameView2.widthAnchor.constraint(equalToConstant: 238),
             
             
             gameView3.topAnchor.constraint(equalTo: view.topAnchor, constant: 400),
-            gameView3.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
+            gameView3.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
             gameView3.heightAnchor.constraint(equalToConstant: 40),
-            gameView3.widthAnchor.constraint(equalToConstant: 190),
+            gameView3.widthAnchor.constraint(equalToConstant: 238),
             
             
             gameView4.topAnchor.constraint(equalTo: view.topAnchor, constant: 500),
-            gameView4.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
+            gameView4.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
             gameView4.heightAnchor.constraint(equalToConstant: 40),
-            gameView4.widthAnchor.constraint(equalToConstant: 190)
+            gameView4.widthAnchor.constraint(equalToConstant: 238)
         ])
     }
 }
