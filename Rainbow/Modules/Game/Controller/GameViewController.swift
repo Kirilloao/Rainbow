@@ -135,7 +135,3 @@ extension GameViewController {
         ])
     }
 }
-
-#Preview {
-    GameViewController()
-}
