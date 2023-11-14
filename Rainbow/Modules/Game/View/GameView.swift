@@ -38,7 +38,6 @@ class GameView: UIView {
         //            label.text = viewsTitle.randomElement()
         //            view.backgroundColor = viewsColor.randomElement()
         //        }
-        self.layer.cornerRadius = 10
         self.backgroundColor = viewsColor.randomElement()
         self.addSubviews(viewLabel, checkButton)
         viewLabel.text = self.viewsTitle.randomElement()
@@ -50,9 +49,10 @@ class GameView: UIView {
     //MARK: - Private methods
     ///Create shadows for each view
     private func makeShadovForView() {
+        self.layer.cornerRadius = 10
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.8
-        self.layer.shadowOffset = CGSizeMake(0, 3)
+        self.layer.shadowOffset = CGSizeMake(0, 4)
         self.layer.shadowRadius = 1
     }
     
@@ -66,18 +66,20 @@ class GameView: UIView {
     }
 }
 
+//MARK: - Extension
 
 extension GameView {
     
     func constraints() {
         NSLayoutConstraint.activate([
-            // Label constraints
-            viewLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            // View label constraints
+            viewLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             viewLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             
             //Check button constaints
             checkButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            checkButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10)
+            checkButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            
         ])
     }
 }

@@ -16,7 +16,17 @@ class GameViewController: UIViewController {
     var gameView2 = GameView()
     var gameView3 = GameView()
     var gameView4 = GameView()
-    lazy var views = [self.gameView, self.gameView1, self.gameView2, self.gameView3, self.gameView4]
+    private lazy var speedButton: UIButton = {
+       let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.frame = .zero
+        btn.backgroundColor = .red
+        btn.widthAnchor.constraint(equalToConstant: 73).isActive = true
+        btn.heightAnchor.constraint(equalToConstant: 71).isActive = true
+        return btn
+        
+    }()
+    
     
     //MARK: - Life cylce
     
@@ -32,7 +42,16 @@ class GameViewController: UIViewController {
     
     func configureView() {
         self.view.backgroundColor = .grayBackgroundColor
-        self.view.addSubviews(gameView, gameView1, gameView2, gameView3, gameView4)
+        self.view.addSubviews(gameView, gameView1, gameView2, gameView3, gameView4, speedButton)
+        
+        //Speed button
+        speedButton.setTitle("X2", for: .normal)
+        speedButton.titleLabel?.font = UIFont.systemFont(ofSize: 25git)
+        speedButton.layer.cornerRadius = 36
+        speedButton.layer.shadowColor = UIColor.black.cgColor
+        speedButton.layer.shadowOpacity = 0.8
+        speedButton.layer.shadowOffset = CGSizeMake(0, 4)
+        speedButton.layer.shadowRadius = 1
     }
 }
 
@@ -66,8 +85,11 @@ extension GameViewController {
             gameView4.topAnchor.constraint(equalTo: view.topAnchor, constant: 500),
             gameView4.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
             gameView4.heightAnchor.constraint(equalToConstant: 40),
-            gameView4.widthAnchor.constraint(equalToConstant: 238)
-        ])
+            gameView4.widthAnchor.constraint(equalToConstant: 238),
+            
+            //Speed button constaints
+            speedButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            speedButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)        ])
     }
 }
 
