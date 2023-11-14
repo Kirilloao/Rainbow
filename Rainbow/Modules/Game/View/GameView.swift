@@ -16,8 +16,20 @@ class GameView: UIView {
     
     //MARK: - Properties
     
-    private lazy var viewsColor = [UIColor.redGameColor, UIColor.blueGameColor, UIColor.purpleGameColor, UIColor.yellowGameColor, UIColor.greenGameColor]
-    private lazy var viewsTitle = ["Красный", "Синий", "Фиолетовый", "Желтый", "Зеленый"]
+    private lazy var viewsColor = [
+        UIColor.redGameColor,
+        UIColor.blueGameColor,
+        UIColor.purpleGameColor,
+        UIColor.yellowGameColor,
+        UIColor.greenGameColor
+    ]
+    private lazy var viewsTitle = [
+        "Красный",
+        "Синий",
+        "Фиолетовый",
+        "Желтый", 
+        "Зеленый"
+    ]
     
     //MARK: - Life cycle
     

@@ -9,7 +9,6 @@ import UIKit
 
 class GameViewController: UIViewController {
     
-    
     //MARK: - Properties
     
     private var timer: Timer!
@@ -22,7 +21,13 @@ class GameViewController: UIViewController {
     private lazy var thirdColorView = GameView()
     private lazy var fourthColorView = GameView()
     private lazy var fifthColorView = GameView()
-    private lazy var views: [GameView] = [firstColorView, secondColorView, thirdColorView, fourthColorView, fifthColorView]
+    private lazy var views = [
+        firstColorView,
+        secondColorView,
+        thirdColorView,
+        fourthColorView,
+        fifthColorView
+    ]
     private lazy var speedButton: UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
@@ -39,10 +44,11 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        timeCount(value: 100)
         
         //Call functions
+        timeCount(value: 100)
         configureView()
+        setupSpeedButton()
         constranints()
     }
     
@@ -51,19 +57,17 @@ class GameViewController: UIViewController {
     func configureView() {
         //Setup views
         self.view.backgroundColor = .grayBackgroundColor
-        self.view.addSubviews(firstColorView, secondColorView, thirdColorView, fourthColorView, fifthColorView, speedButton)
+        self.view.addSubviews(
+            firstColorView,
+            secondColorView,
+            thirdColorView,
+            fourthColorView,
+            fifthColorView,
+            speedButton
+        )
         views.forEach { view in
             view.addTarget(target: self, action: #selector(checkButtonTapped))
         }
-        
-        //Speed button
-        speedButton.setTitle("X2", for: .normal)
-        speedButton.titleLabel?.font = UIFont.systemFont(ofSize: 25)
-        speedButton.layer.cornerRadius = 36
-        speedButton.layer.shadowColor = UIColor.black.cgColor
-        speedButton.layer.shadowOpacity = 0.8
-        speedButton.layer.shadowOffset = CGSizeMake(0, 4)
-        speedButton.layer.shadowRadius = 1
     }
     
     //MARK: - Private methods
@@ -78,6 +82,17 @@ class GameViewController: UIViewController {
                 Timer.invalidate()
             }
         }
+    }
+    
+    private func setupSpeedButton() {
+        //Speed button
+        speedButton.setTitle("X2", for: .normal)
+        speedButton.titleLabel?.font = UIFont.systemFont(ofSize: 25)
+        speedButton.layer.cornerRadius = 36
+        speedButton.layer.shadowColor = UIColor.black.cgColor
+        speedButton.layer.shadowOpacity = 0.8
+        speedButton.layer.shadowOffset = CGSizeMake(0, 4)
+        speedButton.layer.shadowRadius = 1
     }
     
     //MARK: - @objc methods
