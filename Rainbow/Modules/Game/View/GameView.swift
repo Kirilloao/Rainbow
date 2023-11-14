@@ -13,7 +13,7 @@ class GameView: UIView {
     
     private lazy var viewLabel = UILabel()
     private lazy var checkButton = UIButton()
-    var viewsColor = [UIColor.red, UIColor.blue, UIColor.purple, UIColor.yellow, UIColor.green] // сделать словарь ключ значение для цвета
+    var viewsColor = [UIColor.redGameColor, UIColor.blueGameColor, UIColor.purpleGameColor, UIColor.yellowGameColor, UIColor.greenGameColor] // сделать словарь ключ значение для цвета
     var viewsTitle = ["Красный", "Синий", "Фиолетовый", "Желтый", "Зеленый"]
     
     //MARK: - Life cycle
@@ -38,12 +38,15 @@ class GameView: UIView {
         //            label.text = viewsTitle.randomElement()
         //            view.backgroundColor = viewsColor.randomElement()
         //        }
+        self.alpha = 0
         self.backgroundColor = viewsColor.randomElement()
+        animatedView()
         self.addSubviews(viewLabel, checkButton)
         viewLabel.text = self.viewsTitle.randomElement()
         checkButton.setImage(UIImage(named: "noCheck"), for: .normal)
         checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
         makeShadovForView()
+       
     }
     
     //MARK: - Private methods
@@ -56,6 +59,13 @@ class GameView: UIView {
         self.layer.shadowRadius = 1
     }
     
+    ///Create animation for each view
+    private func animatedView() {
+         UIView.animate(withDuration: 0.5) {
+             self.alpha = 1
+         }
+     }
+    
     //MARK: - objc methods
     
     @objc func checkButtonTapped() {
@@ -65,6 +75,7 @@ class GameView: UIView {
         }
     }
 }
+
 
 //MARK: - Extension
 
