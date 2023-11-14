@@ -18,6 +18,7 @@
 		3CADAD392B01379B00D39C6A /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD382B01379B00D39C6A /* ResultsViewController.swift */; };
 		3CADAD3C2B0137CE00D39C6A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD3B2B0137CE00D39C6A /* SettingsViewController.swift */; };
 		3CADAD4E2B01563C00D39C6A /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD4D2B01563C00D39C6A /* UIColor + Extension.swift */; };
+		3CADAD762B04035000D39C6A /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD752B04035000D39C6A /* CustomNavigationBar.swift */; };
 		FA054BF32B029C91007DD777 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF22B029C91007DD777 /* MainView.swift */; };
 		FA054BF82B029CB6007DD777 /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF42B029CB6007DD777 /* UIButton + Extension.swift */; };
 		FA054BF92B029CB6007DD777 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF52B029CB6007DD777 /* UILabel + Extension.swift */; };
@@ -39,6 +40,7 @@
 		3CADAD382B01379B00D39C6A /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		3CADAD3B2B0137CE00D39C6A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3CADAD4D2B01563C00D39C6A /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		3CADAD752B04035000D39C6A /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		FA054BF22B029C91007DD777 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		FA054BF42B029CB6007DD777 /* UIButton + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
 		FA054BF52B029CB6007DD777 /* UILabel + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				FA054BF52B029CB6007DD777 /* UILabel + Extension.swift */,
 				FA054BF72B029CB6007DD777 /* UIView + Extension.swift */,
 				3CADAD4D2B01563C00D39C6A /* UIColor + Extension.swift */,
+				3CADAD752B04035000D39C6A /* CustomNavigationBar.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				1EE87ED92B02BC78005F1DE7 /* GameView.swift in Sources */,
 				FA054BF92B029CB6007DD777 /* UILabel + Extension.swift in Sources */,
 				3CADAD1E2B01346E00D39C6A /* MainViewController.swift in Sources */,
+				3CADAD762B04035000D39C6A /* CustomNavigationBar.swift in Sources */,
 				3CADAD1A2B01346E00D39C6A /* AppDelegate.swift in Sources */,
 				3CADAD1C2B01346E00D39C6A /* SceneDelegate.swift in Sources */,
 				3CADAD392B01379B00D39C6A /* ResultsViewController.swift in Sources */,
