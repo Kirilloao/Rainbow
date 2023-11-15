@@ -21,20 +21,25 @@ final class MainViewController: UIViewController {
     }
     
     // MARK: - Private Actions
+    //Settings button tapped
     @objc private func settingsAction() {
-        
+        let vc = SettingsViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
-    
+    //Rules button tapped
     @objc private func rulesAction() {
-        
+        let vc = RulesViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
-    
+    //New game button tapped
     @objc private func newGameAction() {
-        
+        let vc = GameViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
-    
-    @objc private func statAction() {
-        
+    //Statistic button tapped
+    @objc private func statisticAction() {
+        let vc = ResultsViewController(model: ResultsModel(statistics: [ResultsCardModel.init(gameId: 0, seconds: 0.0, speedRate: 0, rightCount: 0, totalCount: 0)]))
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: - Private Methods
@@ -54,7 +59,7 @@ final class MainViewController: UIViewController {
     
     private func addTargets() {
         mainView.newGameTarget(self, action: #selector(newGameAction))
-        mainView.statTarget(self, action: #selector(statAction))
+        mainView.statTarget(self, action: #selector(statisticAction))
         mainView.settingsTarget(self, action: #selector(settingsAction))
         mainView.rulesTarget(self, action: #selector(rulesAction))
     }
