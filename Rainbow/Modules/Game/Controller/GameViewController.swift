@@ -17,16 +17,16 @@ class GameViewController: UIViewController {
     //MARK: - UI Elements
     
     private lazy var firstColorView = GameView()
-    private lazy var secondColorView = GameView()
-    private lazy var thirdColorView = GameView()
-    private lazy var fourthColorView = GameView()
-    private lazy var fifthColorView = GameView()
+//    private lazy var secondColorView = GameView()
+//    private lazy var thirdColorView = GameView()
+//    private lazy var fourthColorView = GameView()
+//    private lazy var fifthColorView = GameView()
     private lazy var views = [
         firstColorView,
-        secondColorView,
-        thirdColorView,
-        fourthColorView,
-        fifthColorView
+//        secondColorView,
+//        thirdColorView,
+//        fourthColorView,
+//        fifthColorView
     ]
     private lazy var speedButton: UIButton = {
         let btn = UIButton()
@@ -39,14 +39,22 @@ class GameViewController: UIViewController {
         
     }()
     
+    //Get bounds size
+    let mainViewHeight = Int(UIScreen.main.nativeBounds.height)
+    let mainViewWidth = Int(UIScreen.main.nativeBounds.width)
+    
     //MARK: - Life cylce
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "0:00"
         
-        
+        //Добавить функцию на паузу
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: nil, action: #selector(ba))
+    
         //Call functions
-        timeCount(value: 100)
+//        timeCount(value: 100)
+        print(mainViewHeight, mainViewWidth)
         configureView()
         setupSpeedButton()
         constranints()
@@ -54,15 +62,20 @@ class GameViewController: UIViewController {
     
     //MARK: - Methods
     
+    @objc func ba() {
+        navigationItem.rightBarButtonItem?.setBackgroundImage(UIImage(named: "play"), for: .normal, barMetrics: .default)
+     }
+    
     func configureView() {
         //Setup views
         self.view.backgroundColor = .grayBackgroundColor
         self.view.addSubviews(
+    
             firstColorView,
-            secondColorView,
-            thirdColorView,
-            fourthColorView,
-            fifthColorView,
+//            secondColorView,
+//            thirdColorView,
+//            fourthColorView,
+//            fifthColorView,
             speedButton
         )
         views.forEach { view in
@@ -116,33 +129,33 @@ extension GameViewController {
             firstColorView.widthAnchor.constraint(equalToConstant: 238),
             
             //Second color view
-            secondColorView.topAnchor.constraint(equalTo: firstColorView.bottomAnchor, constant: 60),
-            secondColorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -21),
-            secondColorView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 119),
-            secondColorView.heightAnchor.constraint(equalToConstant: 40),
-            secondColorView.widthAnchor.constraint(equalToConstant: 238),
-            
-            //Third color view
-            thirdColorView.topAnchor.constraint(equalTo: secondColorView.bottomAnchor, constant: 95),
-            thirdColorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 68),
-            thirdColorView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -102),
-            thirdColorView.heightAnchor.constraint(equalToConstant: 40),
-            thirdColorView.widthAnchor.constraint(equalToConstant: 238),
-            
-            //Fourth color view
-            fourthColorView.topAnchor.constraint(equalTo: thirdColorView.bottomAnchor, constant: 143),
-            fourthColorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -53),
-            fourthColorView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor),
-            fourthColorView.heightAnchor.constraint(equalToConstant: 40),
-            fourthColorView.widthAnchor.constraint(equalToConstant: 238),
-            
-            //Fifth color view
-            fifthColorView.topAnchor.constraint(equalTo: fourthColorView.topAnchor, constant: 103),
-            fifthColorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            fifthColorView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -140),
-            fifthColorView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor),
-            fifthColorView.heightAnchor.constraint(equalToConstant: 40),
-            fifthColorView.widthAnchor.constraint(equalToConstant: 238),
+//            secondColorView.topAnchor.constraint(equalTo: firstColorView.bottomAnchor, constant: 60),
+//            secondColorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -21),
+//            secondColorView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 119),
+//            secondColorView.heightAnchor.constraint(equalToConstant: 40),
+//            secondColorView.widthAnchor.constraint(equalToConstant: 238),
+//            
+//            //Third color view
+//            thirdColorView.topAnchor.constraint(equalTo: secondColorView.bottomAnchor, constant: 95),
+//            thirdColorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 68),
+//            thirdColorView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -102),
+//            thirdColorView.heightAnchor.constraint(equalToConstant: 40),
+//            thirdColorView.widthAnchor.constraint(equalToConstant: 238),
+//            
+//            //Fourth color view
+//            fourthColorView.topAnchor.constraint(equalTo: thirdColorView.bottomAnchor, constant: 143),
+//            fourthColorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -53),
+//            fourthColorView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor),
+//            fourthColorView.heightAnchor.constraint(equalToConstant: 40),
+//            fourthColorView.widthAnchor.constraint(equalToConstant: 238),
+//            
+//            //Fifth color view
+//            fifthColorView.topAnchor.constraint(equalTo: fourthColorView.topAnchor, constant: 103),
+//            fifthColorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+//            fifthColorView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -140),
+//            fifthColorView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor),
+//            fifthColorView.heightAnchor.constraint(equalToConstant: 40),
+//            fifthColorView.widthAnchor.constraint(equalToConstant: 238),
             
             //Speed button constaints
             speedButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),

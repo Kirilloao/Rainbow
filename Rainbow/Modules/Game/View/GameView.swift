@@ -21,7 +21,17 @@ class GameView: UIView {
         UIColor.blueGameColor,
         UIColor.purpleGameColor,
         UIColor.yellowGameColor,
-        UIColor.greenGameColor
+        UIColor.greenGameColor,
+        UIColor.redGameColor,
+        UIColor.blueGameColor,
+        UIColor.purpleGameColor,
+        UIColor.yellowGameColor,
+        UIColor.greenGameColor,
+        UIColor.redGameColor,
+        UIColor.blueGameColor,
+        UIColor.purpleGameColor,
+        UIColor.yellowGameColor,
+        UIColor.greenGameColor,
     ]
     private lazy var viewsTitle = [
         "Красный",
