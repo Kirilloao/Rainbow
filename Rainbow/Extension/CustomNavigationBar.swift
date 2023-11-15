@@ -35,7 +35,7 @@ final class CustomNavigationController: UINavigationController, UINavigationCont
     // MARK: - Private Methods
     private func configureBackButton(for viewController: UIViewController) {
         let backButton = UIBarButtonItem(
-            image: UIImage(named: "leftIcon"),
+            image: UIImage(named: "backButton"),
             style: .plain,
             target: self,
             action: #selector(goBack))
@@ -47,7 +47,7 @@ final class CustomNavigationController: UINavigationController, UINavigationCont
     
     private func configureNavigationBarAppearance() {
         let navBarAppearance = UINavigationBarAppearance()
-         navBarAppearance.titleTextAttributes = [.font: UIFont.boldSystemFont(ofSize: 30)]
+         navBarAppearance.titleTextAttributes = [.font: UIFont.boldSystemFont(ofSize: 29)]
          navigationBar.standardAppearance = navBarAppearance
     }
 }
