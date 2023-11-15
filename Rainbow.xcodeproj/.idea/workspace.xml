@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eef29b21-cdcb-4f62-8579-43d63b6cacd7" name="Default Changelist" comment="" />
+    <list default="true" id="eef29b21-cdcb-4f62-8579-43d63b6cacd7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,7 +12,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="Nikita/MainViewController_UI" />
+        <entry key="$PROJECT_DIR$/.." value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -24,9 +26,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -37,6 +46,10 @@
       <option name="presentableId" value="Default" />
       <updated>1699896059419</updated>
       <workItem from="1699896061234" duration="1993000" />
+      <workItem from="1699902133360" duration="2352000" />
+      <workItem from="1699986512522" duration="1096000" />
+      <workItem from="1699992216524" duration="37000" />
+      <workItem from="1700068283579" duration="905000" />
     </task>
     <task id="LOCAL-00001" summary="layout MainViewController, add extensions for UIView, UIButton, UIlabel, UIImageView">
       <created>1699900395874</created>
@@ -62,7 +75,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Nikita/MainViewController_UI" />
+                        <option value="origin/develop" />
                       </list>
                     </value>
                   </entry>
@@ -73,6 +86,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="layout MainViewController, add extensions for UIView, UIButton, UIlabel, UIImageView" />

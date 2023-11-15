@@ -24,7 +24,7 @@ final class MainView: UIView {
         backgroundColor: .redButtonColor,
         cornerRadius: 10
     )
-    private let stat = UIButton(
+    private let statistic = UIButton(
         title: "Статистика",
         backgroundColor: .greenButtonColor,
         cornerRadius: 10
@@ -54,7 +54,7 @@ final class MainView: UIView {
     }
     
     func statTarget(_ target: Any, action: Selector) {
-        stat.addTarget(target, action: action, for: .touchUpInside)
+        statistic.addTarget(target, action: action, for: .touchUpInside)
     }
     
     func settingsTarget(_ target: Any, action: Selector) {
@@ -71,7 +71,7 @@ final class MainView: UIView {
             image,
             titleLabel,
             gameLabel,
-            newGame, stat,
+            newGame, statistic,
             settings,
             rules,
             resume
@@ -100,11 +100,11 @@ final class MainView: UIView {
             resume.heightAnchor.constraint(equalTo: newGame.heightAnchor),
             resume.widthAnchor.constraint(equalTo: newGame.widthAnchor),
             
-            stat.topAnchor.constraint(equalTo: resume.bottomAnchor, constant: 20),
-            stat.centerXAnchor.constraint(equalTo: resume.centerXAnchor),
-            stat.heightAnchor.constraint(equalTo: resume.heightAnchor),
-            stat.widthAnchor.constraint(equalTo: resume.widthAnchor),
-            stat.bottomAnchor.constraint(lessThanOrEqualTo: settings.topAnchor, constant: -40),
+            statistic.topAnchor.constraint(equalTo: resume.bottomAnchor, constant: 20),
+            statistic.centerXAnchor.constraint(equalTo: resume.centerXAnchor),
+            statistic.heightAnchor.constraint(equalTo: resume.heightAnchor),
+            statistic.widthAnchor.constraint(equalTo: resume.widthAnchor),
+            statistic.bottomAnchor.constraint(lessThanOrEqualTo: settings.topAnchor, constant: -40),
             
             settings.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -30),
             settings.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 28),
