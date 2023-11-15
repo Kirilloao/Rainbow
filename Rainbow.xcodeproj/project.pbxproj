@@ -19,6 +19,12 @@
 		3CADAD3C2B0137CE00D39C6A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD3B2B0137CE00D39C6A /* SettingsViewController.swift */; };
 		3CADAD4E2B01563C00D39C6A /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD4D2B01563C00D39C6A /* UIColor + Extension.swift */; };
 		3CADAD762B04035000D39C6A /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD752B04035000D39C6A /* CustomNavigationBar.swift */; };
+		433CD84F2B03D8DB00D76A01 /* ResultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CD84E2B03D8DB00D76A01 /* ResultsModel.swift */; };
+		433CD8512B03D95A00D76A01 /* ResultsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CD8502B03D95A00D76A01 /* ResultsCardView.swift */; };
+		433CD8532B03D9DC00D76A01 /* ResultsCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CD8522B03D9DC00D76A01 /* ResultsCardModel.swift */; };
+		433CD8552B03E3A400D76A01 /* ResultsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CD8542B03E3A400D76A01 /* ResultsTableView.swift */; };
+		433CD8572B03E3F900D76A01 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CD8562B03E3F900D76A01 /* ResultsTableViewCell.swift */; };
+		433CD8592B03E6D500D76A01 /* ResultsViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CD8582B03E6D500D76A01 /* ResultsViewController + Extensions.swift */; };
 		FA054BF32B029C91007DD777 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF22B029C91007DD777 /* MainView.swift */; };
 		FA054BF82B029CB6007DD777 /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF42B029CB6007DD777 /* UIButton + Extension.swift */; };
 		FA054BF92B029CB6007DD777 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF52B029CB6007DD777 /* UILabel + Extension.swift */; };
@@ -41,6 +47,12 @@
 		3CADAD3B2B0137CE00D39C6A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3CADAD4D2B01563C00D39C6A /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		3CADAD752B04035000D39C6A /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		433CD84E2B03D8DB00D76A01 /* ResultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsModel.swift; sourceTree = "<group>"; };
+		433CD8502B03D95A00D76A01 /* ResultsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCardView.swift; sourceTree = "<group>"; };
+		433CD8522B03D9DC00D76A01 /* ResultsCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCardModel.swift; sourceTree = "<group>"; };
+		433CD8542B03E3A400D76A01 /* ResultsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableView.swift; sourceTree = "<group>"; };
+		433CD8562B03E3F900D76A01 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
+		433CD8582B03E6D500D76A01 /* ResultsViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultsViewController + Extensions.swift"; sourceTree = "<group>"; };
 		FA054BF22B029C91007DD777 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		FA054BF42B029CB6007DD777 /* UIButton + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
 		FA054BF52B029CB6007DD777 /* UILabel + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
@@ -150,8 +162,8 @@
 		3CADAD372B01378E00D39C6A /* Results */ = {
 			isa = PBXGroup;
 			children = (
-				FA054C012B02A35D007DD777 /* Model */,
-				FA054C002B02A358007DD777 /* View */,
+				433CD84D2B03D8C600D76A01 /* Model */,
+				433CD84C2B03D8BE00D76A01 /* View */,
 				3CADAD422B01382900D39C6A /* Controller */,
 			);
 			path = Results;
@@ -193,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				3CADAD382B01379B00D39C6A /* ResultsViewController.swift */,
+				433CD8582B03E6D500D76A01 /* ResultsViewController + Extensions.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -242,6 +255,25 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		433CD84C2B03D8BE00D76A01 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				433CD8542B03E3A400D76A01 /* ResultsTableView.swift */,
+				433CD8562B03E3F900D76A01 /* ResultsTableViewCell.swift */,
+				433CD8502B03D95A00D76A01 /* ResultsCardView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		433CD84D2B03D8C600D76A01 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				433CD84E2B03D8DB00D76A01 /* ResultsModel.swift */,
+				433CD8522B03D9DC00D76A01 /* ResultsCardModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		FA054BF12B029C86007DD777 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,20 +305,6 @@
 			sourceTree = "<group>";
 		};
 		FA054BFF2B02A352007DD777 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		FA054C002B02A358007DD777 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		FA054C012B02A35D007DD777 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -365,18 +383,24 @@
 			files = (
 				3CADAD362B01378500D39C6A /* RulesViewController.swift in Sources */,
 				FA054BF82B029CB6007DD777 /* UIButton + Extension.swift in Sources */,
+				433CD8572B03E3F900D76A01 /* ResultsTableViewCell.swift in Sources */,
 				FA054BF32B029C91007DD777 /* MainView.swift in Sources */,
 				3CADAD4E2B01563C00D39C6A /* UIColor + Extension.swift in Sources */,
 				3CADAD332B01377100D39C6A /* GameViewController.swift in Sources */,
 				3CADAD3C2B0137CE00D39C6A /* SettingsViewController.swift in Sources */,
 				1EE87ED92B02BC78005F1DE7 /* GameView.swift in Sources */,
+				433CD8552B03E3A400D76A01 /* ResultsTableView.swift in Sources */,
 				FA054BF92B029CB6007DD777 /* UILabel + Extension.swift in Sources */,
 				3CADAD1E2B01346E00D39C6A /* MainViewController.swift in Sources */,
 				3CADAD762B04035000D39C6A /* CustomNavigationBar.swift in Sources */,
 				3CADAD1A2B01346E00D39C6A /* AppDelegate.swift in Sources */,
 				3CADAD1C2B01346E00D39C6A /* SceneDelegate.swift in Sources */,
 				3CADAD392B01379B00D39C6A /* ResultsViewController.swift in Sources */,
+				433CD8592B03E6D500D76A01 /* ResultsViewController + Extensions.swift in Sources */,
+				433CD8512B03D95A00D76A01 /* ResultsCardView.swift in Sources */,
 				FA054BFA2B029CB6007DD777 /* UIImage + Extension.swift in Sources */,
+				433CD84F2B03D8DB00D76A01 /* ResultsModel.swift in Sources */,
+				433CD8532B03D9DC00D76A01 /* ResultsCardModel.swift in Sources */,
 				FA054BFB2B029CB6007DD777 /* UIView + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,7 +540,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T22G8674NU;
+				DEVELOPMENT_TEAM = QL72V7DXZH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Rainbow/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -529,7 +553,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = KirillTaraturin.Rainbow;
+				PRODUCT_BUNDLE_IDENTIFIER = yo1901;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -547,7 +571,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T22G8674NU;
+				DEVELOPMENT_TEAM = QL72V7DXZH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Rainbow/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -560,7 +584,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = KirillTaraturin.Rainbow;
+				PRODUCT_BUNDLE_IDENTIFIER = yo1901;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
