@@ -43,7 +43,6 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         //Call functions
         timeCount(value: 100)
         configureView()
