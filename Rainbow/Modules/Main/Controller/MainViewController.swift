@@ -41,6 +41,7 @@ final class MainViewController: UIViewController {
         let vc = ResultsViewController(model: ResultsModel(statistics: [ResultsCardModel.init(gameId: 0, seconds: 0.0, speedRate: 0, rightCount: 0, totalCount: 0)]))
         navigationController?.pushViewController(vc, animated: true)
     }
+
     
     // MARK: - Private Methods
     private func setupView() {
@@ -65,3 +66,29 @@ final class MainViewController: UIViewController {
     }
 }
 
+//MARK: - SwiftUI
+import SwiftUI
+struct Provider_MainViewController : PreviewProvider {
+    static var previews: some View {
+        ContainterView().edgesIgnoringSafeArea(.all)
+    }
+    
+    struct ContainterView: UIViewControllerRepresentable {
+        func makeUIViewController(context: Context) -> UIViewController {
+            return MainViewController()
+        }
+        
+        typealias UIViewControllerType = UIViewController
+        
+        
+        let viewController = MainViewController()
+        func makeUIViewController(context: UIViewControllerRepresentableContext<Provider_MainViewController.ContainterView>) -> MainViewController {
+            return viewController
+        }
+        
+        func updateUIViewController(_ uiViewController: Provider_MainViewController.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<Provider_MainViewController.ContainterView>) {
+            
+        }
+    }
+    
+}

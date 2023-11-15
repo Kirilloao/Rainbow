@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="eef29b21-cdcb-4f62-8579-43d63b6cacd7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Rainbow/Modules/Main/Controller/MainViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Rainbow/Modules/Main/Controller/MainViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Rainbow/Modules/Main/View/MainView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Rainbow/Modules/Main/View/MainView.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +77,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/develop" />
+                        <option value="develop" />
                       </list>
                     </value>
                   </entry>
@@ -90,6 +92,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="layout MainViewController, add extensions for UIView, UIButton, UIlabel, UIImageView" />
-    <option name="LAST_COMMIT_MESSAGE" value="layout MainViewController, add extensions for UIView, UIButton, UIlabel, UIImageView" />
+    <MESSAGE value="Added project navigation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added project navigation" />
   </component>
 </project>
