@@ -8,7 +8,7 @@
 import UIKit
 
 extension UILabel {
-    convenience init(text: String? = nil, font: UIFont? = .systemFont(ofSize: 20)) {
+    convenience init(text: String? = nil, font: UIFont? = .systemFont(ofSize: 20), color: UIColor? = .label) {
         self.init(frame: .infinite)
         
         if let text = text {
@@ -17,6 +17,10 @@ extension UILabel {
         
         if let font = font {
             self.font = font
+        }
+        
+        if let color {
+            self.textColor = color
         }
     }
 }
