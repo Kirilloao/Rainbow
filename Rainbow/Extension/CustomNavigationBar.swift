@@ -47,7 +47,7 @@ final class CustomNavigationController: UINavigationController, UINavigationCont
     
     private func configureNavigationBarAppearance() {
         let navBarAppearance = UINavigationBarAppearance()
-         navBarAppearance.titleTextAttributes = [.font: UIFont.boldSystemFont(ofSize: 30)]
+         navBarAppearance.titleTextAttributes = [.font: UIFont.boldSystemFont(ofSize: 29)]
          navigationBar.standardAppearance = navBarAppearance
     }
 }

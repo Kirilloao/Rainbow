@@ -40,8 +40,8 @@ class GameViewController: UIViewController {
     }()
     
     //Get bounds size
-    let mainViewHeight = Int(UIScreen.main.nativeBounds.height)
-    let mainViewWidth = Int(UIScreen.main.nativeBounds.width)
+    private lazy var mainViewHeight = Int(UIScreen.main.bounds.height) - Int(view.safeAreaInsets.bottom + view.safeAreaInsets.top + 40)
+    private lazy var mainViewWidth = Int(UIScreen.main.bounds.width - 238)
     
     //MARK: - Life cylce
     
@@ -50,21 +50,22 @@ class GameViewController: UIViewController {
         title = "0:00"
         
         //Добавить функцию на паузу
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: nil, action: #selector(ba))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: nil, action: nil)
     
         //Call functions
 //        timeCount(value: 100)
-        print(mainViewHeight, mainViewWidth)
         configureView()
         setupSpeedButton()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        print(self.view.safeAreaInsets)
         constranints()
+        print(mainViewHeight)
     }
     
     //MARK: - Methods
-    
-    @objc func ba() {
-        navigationItem.rightBarButtonItem?.setBackgroundImage(UIImage(named: "play"), for: .normal, barMetrics: .default)
-     }
     
     func configureView() {
         //Setup views
@@ -108,6 +109,17 @@ class GameViewController: UIViewController {
         speedButton.layer.shadowRadius = 1
     }
     
+    private func getRandom() -> (CGFloat, CGFloat) {
+        var height = CGFloat(Int.random(in: 50...mainViewHeight))
+        var widht = CGFloat(Int.random(in: 0...mainViewWidth))
+        if height >= 679 && widht >= 100 {
+            widht = 60
+            height = 640
+        }
+        print(height, widht)
+        return (height, widht)
+    }
+    
     //MARK: - @objc methods
     
     @objc func checkButtonTapped(_ sender: UIButton) {
@@ -117,14 +129,16 @@ class GameViewController: UIViewController {
 
 extension GameViewController {
     
+    
     // Setup constraints
     private func constranints() {
         
+        let (height, width) = getRandom()
+        
         NSLayoutConstraint.activate([
             //First color view
-            firstColorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 68),
-            firstColorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 17),
-            firstColorView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -20),
+            firstColorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: height),
+            firstColorView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: width),
             firstColorView.heightAnchor.constraint(equalToConstant: 40),
             firstColorView.widthAnchor.constraint(equalToConstant: 238),
             
