@@ -19,6 +19,9 @@
 		3CADAD3C2B0137CE00D39C6A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD3B2B0137CE00D39C6A /* SettingsViewController.swift */; };
 		3CADAD4E2B01563C00D39C6A /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD4D2B01563C00D39C6A /* UIColor + Extension.swift */; };
 		3CADAD762B04035000D39C6A /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD752B04035000D39C6A /* CustomNavigationBar.swift */; };
+		3CADADA12B061D7700D39C6A /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADADA02B061D7700D39C6A /* UserDefaultsManager.swift */; };
+		3CADADA32B068D2500D39C6A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADADA22B068D2500D39C6A /* AppState.swift */; };
+		3CADADA52B068EA400D39C6A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADADA42B068EA400D39C6A /* Settings.swift */; };
 		433CD84F2B03D8DB00D76A01 /* ResultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CD84E2B03D8DB00D76A01 /* ResultsModel.swift */; };
 		433CD8512B03D95A00D76A01 /* ResultsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CD8502B03D95A00D76A01 /* ResultsCardView.swift */; };
 		433CD8532B03D9DC00D76A01 /* ResultsCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CD8522B03D9DC00D76A01 /* ResultsCardModel.swift */; };
@@ -48,6 +51,9 @@
 		3CADAD3B2B0137CE00D39C6A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3CADAD4D2B01563C00D39C6A /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		3CADAD752B04035000D39C6A /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		3CADADA02B061D7700D39C6A /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		3CADADA22B068D2500D39C6A /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		3CADADA42B068EA400D39C6A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		433CD84E2B03D8DB00D76A01 /* ResultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsModel.swift; sourceTree = "<group>"; };
 		433CD8502B03D95A00D76A01 /* ResultsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCardView.swift; sourceTree = "<group>"; };
 		433CD8522B03D9DC00D76A01 /* ResultsCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCardModel.swift; sourceTree = "<group>"; };
@@ -92,6 +98,7 @@
 		3CADAD182B01346E00D39C6A /* Rainbow */ = {
 			isa = PBXGroup;
 			children = (
+				3CADAD9F2B061D6600D39C6A /* Services */,
 				3CADAD2D2B0136A000D39C6A /* App */,
 				3CADAD4C2B01390500D39C6A /* Extension */,
 				3CADAD2F2B01371500D39C6A /* Modules */,
@@ -258,6 +265,15 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		3CADAD9F2B061D6600D39C6A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3CADADA02B061D7700D39C6A /* UserDefaultsManager.swift */,
+				3CADADA22B068D2500D39C6A /* AppState.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		433CD84C2B03D8BE00D76A01 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,6 +312,7 @@
 		FA054BFD2B02A347007DD777 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3CADADA42B068EA400D39C6A /* Settings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -387,10 +404,13 @@
 				3CADAD362B01378500D39C6A /* RulesViewController.swift in Sources */,
 				FA054BF82B029CB6007DD777 /* UIButton + Extension.swift in Sources */,
 				433CD8572B03E3F900D76A01 /* ResultsTableViewCell.swift in Sources */,
+				3CADADA32B068D2500D39C6A /* AppState.swift in Sources */,
 				FA054BF32B029C91007DD777 /* MainView.swift in Sources */,
 				3CADAD4E2B01563C00D39C6A /* UIColor + Extension.swift in Sources */,
 				79FF3A7F2B047B57005146F5 /* SettingView.swift in Sources */,
 				3CADAD332B01377100D39C6A /* GameViewController.swift in Sources */,
+				3CADADA12B061D7700D39C6A /* UserDefaultsManager.swift in Sources */,
+				3CADADA52B068EA400D39C6A /* Settings.swift in Sources */,
 				3CADAD3C2B0137CE00D39C6A /* SettingsViewController.swift in Sources */,
 				1EE87ED92B02BC78005F1DE7 /* GameView.swift in Sources */,
 				433CD8552B03E3A400D76A01 /* ResultsTableView.swift in Sources */,
