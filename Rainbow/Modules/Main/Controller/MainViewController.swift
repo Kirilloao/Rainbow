@@ -38,7 +38,7 @@ final class MainViewController: UIViewController {
     }
     //Statistic button tapped
     @objc private func statisticAction() {
-        let vc = ResultsViewController(model: ResultsModel(statistics: [ResultsCardModel.init(gameId: 0, seconds: 0.0, speedRate: 0, rightCount: 0, totalCount: 0)]))
+        let vc = ResultsViewController(model: ResultsModel(statistics: [ResultsCardModel.init(gameId: 0, seconds: 0, speedRate: 0, rightCount: 0, totalCount: 0)]))
         navigationController?.pushViewController(vc, animated: true)
     }
 
