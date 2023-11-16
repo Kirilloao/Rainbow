@@ -21,13 +21,33 @@ class GameView: UIView {
         UIColor.blueGameColor,
         UIColor.purpleGameColor,
         UIColor.yellowGameColor,
-        UIColor.greenGameColor
+        UIColor.greenGameColor,
+        UIColor.redGameColor,
+        UIColor.blueGameColor,
+        UIColor.purpleGameColor,
+        UIColor.yellowGameColor,
+        UIColor.greenGameColor,
+        UIColor.redGameColor,
+        UIColor.blueGameColor,
+        UIColor.purpleGameColor,
+        UIColor.yellowGameColor,
+        UIColor.greenGameColor,
     ]
     private lazy var viewsTitle = [
         "Красный",
         "Синий",
         "Фиолетовый",
-        "Желтый", 
+        "Желтый",
+        "Зеленый",
+        "Красный",
+        "Синий",
+        "Фиолетовый",
+        "Желтый",
+        "Зеленый",
+        "Красный",
+        "Синий",
+        "Фиолетовый",
+        "Желтый",
         "Зеленый"
     ]
     
@@ -51,25 +71,32 @@ class GameView: UIView {
         checkButton.addTarget(target, action: action, for: .touchUpInside)
     }
     
+    func changeColorsAndTitle() {
+        self.backgroundColor = viewsColor.randomElement()
+        viewLabel.text = viewsTitle.randomElement()
+        checkButton.setImage(nil, for: .normal)
+    }
+    
     //MARK: - Private methods
     
     private func setupView() {
         //Setup view
-         self.alpha = 0
-         self.backgroundColor = viewsColor.randomElement()
-         animatedView()
-         self.addSubviews(viewLabel, checkButton)
+        self.alpha = 0
+        self.backgroundColor = viewsColor.randomElement()
+        animatedView()
+        self.addSubviews(viewLabel, checkButton)
         
         //Setup label
-         viewLabel.text = self.viewsTitle.randomElement()
+        viewLabel.text = viewsTitle.randomElement()
+        viewLabel.font = UIFont.boldSystemFont(ofSize: 20)
         
         //Setup button
-         checkButton.backgroundColor = .grayBackgroundColor
-         checkButton.layer.cornerRadius = 15
+        checkButton.backgroundColor = .grayBackgroundColor
+        checkButton.layer.cornerRadius = 15
         
         //Call functions
-         makeShadovForView()
-     }
+        makeShadovForView()
+    }
     
     ///Create shadows for each view
     private func makeShadovForView() {
@@ -83,9 +110,9 @@ class GameView: UIView {
     ///Create animation for each view
     private func animatedView() {
         UIView.animate(withDuration: 0.5) {
-             self.alpha = 1
-         }
-     }
+            self.alpha = 1
+        }
+    }
 }
 
 //MARK: - Extension
@@ -93,7 +120,7 @@ class GameView: UIView {
 extension GameView {
     
     // Setup constraints
-   private func constraints() {
+    private func constraints() {
         
         NSLayoutConstraint.activate([
             // View label constraints
