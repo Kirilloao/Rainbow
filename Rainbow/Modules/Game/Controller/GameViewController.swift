@@ -45,9 +45,6 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         title = "1:00"
         
-        rightBarButton.tintColor = .black
-        navigationItem.rightBarButtonItem = rightBarButton
-
         //Call functions
         timeCount(totalTime)
         configureView()
@@ -57,9 +54,11 @@ class GameViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        print(self.view.safeAreaInsets)
-        constranints()
-        print(mainViewHeight)
+        constraints()
+        let (height, width) = getRandom()
+        print(height, width)
+        colorView.frame = CGRect(x: width, y: height, width: 238, height: 40)
+        colorView.translatesAutoresizingMaskIntoConstraints = true
     }
     
     //MARK: - Methods
@@ -67,6 +66,8 @@ class GameViewController: UIViewController {
     func configureView() {
         //Setup views
         self.view.backgroundColor = .grayBackgroundColor
+        rightBarButton.tintColor = .black
+        navigationItem.rightBarButtonItem = rightBarButton
         self.view.addSubviews(
             colorView,
             speedButton
@@ -84,6 +85,7 @@ class GameViewController: UIViewController {
                 self.navigationItem.title = self.formatTime(self.totalTime)
             } else {
                 self.timer.invalidate()
+                self.viewTimer.invalidate()
             }
         }
     }
@@ -102,24 +104,25 @@ class GameViewController: UIViewController {
     }
     
     private func getRandom() -> (CGFloat, CGFloat) {
-        var height = CGFloat(Int.random(in: 50...mainViewHeight))
-        var widht = CGFloat(Int.random(in: 0...mainViewWidth))
-        if height >= 679 && widht >= 100 {
-            widht = 60
-            height = 640
+        var height = CGFloat(Int.random(in: Int(view.safeAreaInsets.top)...mainViewHeight))
+        var widht = CGFloat(Int.random(in: Int(view.safeAreaInsets.left)...mainViewWidth))
+        let heightDifference = UIScreen.main.bounds.height - view.safeAreaInsets.bottom - 73
+        let widhtDifference = UIScreen.main.bounds.width - 313
+        if height >= heightDifference && widht >= widhtDifference {
+            widht = widhtDifference
+            height = heightDifference
         }
-        print(height, widht)
         return (height, widht)
     }
     
-   private func formatTime(_ totalSeconds: Int) -> String {
+    private func formatTime(_ totalSeconds: Int) -> String {
         let minutes = totalSeconds / 60
         let seconds = totalSeconds % 60
         return String(format: "%d:%02d", minutes, seconds)
     }
     
     private func colorViewTimer() {
-        viewTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(toggleView), userInfo: nil, repeats: true)
+        viewTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(toggleView), userInfo: nil, repeats: true)
     }
     
     //MARK: - @objc methods
@@ -130,12 +133,14 @@ class GameViewController: UIViewController {
     
     @objc func pauseButtonTapped() {
         isPlaying.toggle()
-        if isPlaying {
-            rightBarButton.image = UIImage(systemName: "play.fill")
-            timer.invalidate()
-        } else {
+        if !isPlaying {
             rightBarButton.image = UIImage(systemName: "pause.fill")
             timeCount(totalTime)
+            self.colorViewTimer()
+        } else {
+            rightBarButton.image = UIImage(systemName: "play.fill")
+            timer.invalidate()
+            viewTimer.invalidate()
         }
     }
     
@@ -159,11 +164,13 @@ class GameViewController: UIViewController {
         default:
             print("error")
         }
-        
     }
     
     @objc func toggleView() {
-        colorView.isHidden = !colorView.isHidden
+        let (height, width) = getRandom()
+        print(height, width)
+        colorView.frame = CGRect(x: width, y: height, width: 238, height: 40)
+        colorView.changeColorsAndTitle()
     }
 }
 
@@ -171,48 +178,10 @@ class GameViewController: UIViewController {
 
 extension GameViewController {
     
-    
     // Setup constraints
-    private func constranints() {
-        
-        let (height, width) = getRandom()
+    private func constraints() {
         
         NSLayoutConstraint.activate([
-            //First color view
-            colorView.topAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: height),
-            colorView.leadingAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.leadingAnchor, constant: width),
-            colorView.heightAnchor.constraint(equalToConstant: 40),
-            colorView.widthAnchor.constraint(equalToConstant: 238),
-            
-            //Second color view
-            //            secondColorView.topAnchor.constraint(equalTo: firstColorView.bottomAnchor, constant: 60),
-            //            secondColorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -21),
-            //            secondColorView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 119),
-            //            secondColorView.heightAnchor.constraint(equalToConstant: 40),
-            //            secondColorView.widthAnchor.constraint(equalToConstant: 238),
-            //
-            //            //Third color view
-            //            thirdColorView.topAnchor.constraint(equalTo: secondColorView.bottomAnchor, constant: 95),
-            //            thirdColorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 68),
-            //            thirdColorView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -102),
-            //            thirdColorView.heightAnchor.constraint(equalToConstant: 40),
-            //            thirdColorView.widthAnchor.constraint(equalToConstant: 238),
-            //
-            //            //Fourth color view
-            //            fourthColorView.topAnchor.constraint(equalTo: thirdColorView.bottomAnchor, constant: 143),
-            //            fourthColorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -53),
-            //            fourthColorView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor),
-            //            fourthColorView.heightAnchor.constraint(equalToConstant: 40),
-            //            fourthColorView.widthAnchor.constraint(equalToConstant: 238),
-            //
-            //            //Fifth color view
-            //            fifthColorView.topAnchor.constraint(equalTo: fourthColorView.topAnchor, constant: 103),
-            //            fifthColorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            //            fifthColorView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -140),
-            //            fifthColorView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor),
-            //            fifthColorView.heightAnchor.constraint(equalToConstant: 40),
-            //            fifthColorView.widthAnchor.constraint(equalToConstant: 238),
-            
             //Speed button constaints
             speedButton.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16),
             speedButton.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -34)
