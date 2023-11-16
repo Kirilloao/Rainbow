@@ -29,6 +29,7 @@ class SettingsViewController: UIViewController {
     
     private lazy var letterColorsView: SettingView = {
         let view = SettingView(labelText: "цвета букв")
+        view.addColorButtons(colors: [.greenGameColor, .darkGreenGameColor, .pinkGameColor, .lightBlueGameColor, .darkRedGameColor, .purpleGameColor, .blueGameColor, .orangeGameColor, .redGameColor, .yellowGameColor, .black, .grayGameColor])
         return view
     }()
     
@@ -46,13 +47,13 @@ class SettingsViewController: UIViewController {
     
     private lazy var backgroundColorView: SettingView = {
         let view = SettingView(labelText: "цвет фона")
-        view.addSegmentedControl(withSegments: 3)
+        view.addSegmentedControl(titles: ["Cерый","Белый","Черный"], defaultSelectedIndex: 0)
         return view
     }()
     
     private lazy var wordsPosition: SettingView = {
         let view = SettingView(labelText: "расположение слова на экране")
-        view.addSegmentedControl(withSegments: 2)
+        view.addSegmentedControl(titles: ["Случайное","По центру"], defaultSelectedIndex: 1)
         return view
     }()
     
@@ -62,7 +63,7 @@ class SettingsViewController: UIViewController {
         view.addSubviews(gameTimeView,speedTimeView,witchCheckView,letterColorsView,letterSizeView,letterBackgroundView,backgroundColorView,wordsPosition)
         
           NSLayoutConstraint.activate([
-            gameTimeView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+            gameTimeView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             gameTimeView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             speedTimeView.topAnchor.constraint(equalTo: gameTimeView.bottomAnchor, constant: 14),
@@ -92,6 +93,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .grayBackgroundColor
+        navigationItem.title = "Настройки"
         setupUI()
         
     }

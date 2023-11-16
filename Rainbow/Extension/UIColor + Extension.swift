@@ -54,5 +54,29 @@ extension UIColor {
     static var yellowGameColor: UIColor {
         UIColor(named: "yellowGameColor") ?? .clear
     }
+    
+    static var darkGreenGameColor: UIColor {
+        UIColor(named: "darkGreenGameColor") ?? .clear
+    }
+    
+    static var darkRedGameColor: UIColor {
+        UIColor(named: "darkRedGameColor") ?? .clear
+    }
+    
+    static var grayGameColor: UIColor {
+        UIColor(named: "grayGameColor") ?? .clear
+    }
+    
+    static var lightBlueGameColor: UIColor {
+        UIColor(named: "lightBlueGameColor") ?? .clear
+    }
+    
+    static var orangeGameColor: UIColor {
+        UIColor(named: "orangeGameColor") ?? .clear
+    }
+    
+    static var pinkGameColor: UIColor {
+        UIColor(named: "pinkGameColor") ?? .clear
+    }
 }
 
