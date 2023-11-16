@@ -11,7 +11,7 @@ final class AppState {
     static let shared = AppState()
     
     private let defaults = UserDefaultsManager.shared
-    private let defaultSettings = Settings(gameTime: 2, speed: 5, isSubstrate: true)
+    private let defaultSettings = Settings(gameTime: 2, speed: 5, isSubstrate: false)
     private var games = [ResultsCardModel]()
     
     private init() {}

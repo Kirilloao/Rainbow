@@ -15,7 +15,8 @@ class GameView: UIView {
     private lazy var checkButton = UIButton()
     
     //MARK: - Properties
-    
+
+    private var letterColor = false
     private lazy var viewsColor = [
         UIColor.redGameColor,
         UIColor.blueGameColor,
@@ -53,9 +54,9 @@ class GameView: UIView {
     
     //MARK: - Life cycle
     
-    init() {
+    init(letterColor: Bool) {
         super.init(frame: .zero)
-        
+        self.letterColor = letterColor
         //Call functions
         setupView()
         constraints()
@@ -72,7 +73,13 @@ class GameView: UIView {
     }
     
     func changeColorsAndTitle() {
-        self.backgroundColor = viewsColor.randomElement()
+        if letterColor {
+            self.backgroundColor = viewsColor.randomElement()
+        } else {
+            self.backgroundColor = .clear
+            viewLabel.textColor = viewsColor.randomElement()
+            checkButton.backgroundColor = .white
+        }
         viewLabel.text = viewsTitle.randomElement()
         checkButton.setImage(nil, for: .normal)
     }
@@ -88,14 +95,14 @@ class GameView: UIView {
         
         //Setup label
         viewLabel.text = viewsTitle.randomElement()
-        viewLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        viewLabel.font = UIFont.boldSystemFont(ofSize: 25)
         
         //Setup button
         checkButton.backgroundColor = .grayBackgroundColor
         checkButton.layer.cornerRadius = 15
         
         //Call functions
-        makeShadovForView()
+//        makeShadovForView()
     }
     
     ///Create shadows for each view
