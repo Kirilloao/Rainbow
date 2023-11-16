@@ -35,7 +35,7 @@ final class CustomNavigationController: UINavigationController, UINavigationCont
     // MARK: - Private Methods
     private func configureBackButton(for viewController: UIViewController) {
         let backButton = UIBarButtonItem(
-            image: UIImage(named: "backButton"),
+            image: UIImage(systemName: "arrow.left"),
             style: .plain,
             target: self,
             action: #selector(goBack))
