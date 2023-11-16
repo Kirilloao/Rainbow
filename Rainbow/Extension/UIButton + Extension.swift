@@ -10,7 +10,9 @@ import UIKit
 extension UIButton {
     
     convenience init(title: String? = nil, backgroundColor: UIColor? = nil, cornerRadius: CGFloat? = 0, image: String? = nil) {
-        self.init(frame: .infinite)
+        self.init(type: .system)
+        self.frame = .infinite
+        self.tintColor = .white
         
         if let title = title {
             self.setTitle(title, for: .normal)
@@ -25,7 +27,8 @@ extension UIButton {
         }
         
         if let image = image {
-            self.setImage(UIImage(named: image), for: .normal)
+            let uiImage = UIImage(named: image)?.withRenderingMode(.alwaysOriginal)
+            self.setImage(uiImage, for: .normal)
         }
     }
 }

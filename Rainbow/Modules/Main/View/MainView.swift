@@ -13,11 +13,11 @@ final class MainView: UIView {
     private let image = UIImageView(image: "rainbowImage")
     private let titleLabel = UILabel(
         text: "НЛП Игра",
-        font: .systemFont(ofSize: 36)
+        font: .systemFont(ofSize: 32)
     )
     private let gameLabel = UILabel(
         text: "Радуга",
-        font: .systemFont(ofSize: 64)
+        font: .systemFont(ofSize: 54)
     )
     private let newGame = UIButton(
         title: "Новая игра",
@@ -81,18 +81,18 @@ final class MainView: UIView {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            image.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 28),
+            image.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
             image.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
-            titleLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 16),
+            titleLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 12),
             titleLabel.centerXAnchor.constraint(equalTo: image.centerXAnchor),
             
-            gameLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            gameLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             gameLabel.centerXAnchor.constraint(equalTo: titleLabel.centerXAnchor),
             
             newGame.topAnchor.constraint(equalTo: gameLabel.bottomAnchor, constant: 34),
             newGame.centerXAnchor.constraint(equalTo: gameLabel.centerXAnchor),
-            newGame.heightAnchor.constraint(equalToConstant: 85),
+            newGame.heightAnchor.constraint(equalToConstant: 65),
             newGame.widthAnchor.constraint(equalToConstant: 285),
             
             resume.topAnchor.constraint(equalTo: newGame.bottomAnchor, constant: 20),
@@ -106,7 +106,7 @@ final class MainView: UIView {
             statistic.widthAnchor.constraint(equalTo: resume.widthAnchor),
             statistic.bottomAnchor.constraint(lessThanOrEqualTo: settings.topAnchor, constant: -40),
             
-            settings.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -30),
+            settings.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
             settings.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 28),
             settings.heightAnchor.constraint(equalToConstant: 50),
             settings.widthAnchor.constraint(equalTo: settings.heightAnchor),

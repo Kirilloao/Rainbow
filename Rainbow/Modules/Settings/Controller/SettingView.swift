@@ -35,7 +35,7 @@ class SettingView: UIView {
         
         NSLayoutConstraint.activate([
             widthAnchor.constraint(equalToConstant: 298),
-            heightAnchor.constraint(equalToConstant: 66)
+            heightAnchor.constraint(greaterThanOrEqualToConstant: 66)
         ])
     }
     
@@ -48,9 +48,7 @@ class SettingView: UIView {
         addSubviews(label)
         
         NSLayoutConstraint.activate([
-//            label.widthAnchor.constraint(lessThanOrEqualToConstant: 133),
             label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-//            label.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
     
@@ -69,15 +67,13 @@ class SettingView: UIView {
         
         self.control = control
     }
-    
-    
+        
     func addSlider(_ slider: UIControl) {
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.tintColor = .orange
         
         var valueLabel = UILabel()
         valueLabel.text = "0"
-        
         
         addSubviews(slider)
         addSubviews(valueLabel)
@@ -99,25 +95,71 @@ class SettingView: UIView {
         self.control = slider
     }
     
-    func addSegmentedControl(withSegments segments: Int) {
-        let segmentedControl = UISegmentedControl()
+    func addSegmentedControl(titles: [String], defaultSelectedIndex: Int) {
+        let segmentedControl = UISegmentedControl(items: titles)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        for index in 0..<segments {
-            segmentedControl.insertSegment(withTitle: "\(index + 1)", at: index, animated: false)
-        }
-        addSubviews(segmentedControl)
+        segmentedControl.selectedSegmentIndex = defaultSelectedIndex
         
+        addSubviews(segmentedControl)
         label.numberOfLines = 1
         
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             segmentedControl.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             segmentedControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            segmentedControl.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 12)
+            segmentedControl.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 12),
+            segmentedControl.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
         ])
         
         control = segmentedControl
     }
     
-}
+    func addColorButtons(colors: [UIColor]) {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 5
+
+        addSubviews(stackView)
+
+        var rowStackView: UIStackView?
+        
+        for (index, color) in colors.enumerated() {
+            let button = UIButton()
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.backgroundColor = color
+            button.addTarget(self, action: #selector(colorButtonTapped(_:)), for: .touchUpInside)
+
+            let widthConstraint = button.widthAnchor.constraint(equalToConstant: 25)
+            let heightConstraint = button.heightAnchor.constraint(equalToConstant: 25)
+
+            NSLayoutConstraint.activate([
+                widthConstraint,
+                heightConstraint,
+            ])
+
+            if index % 6 == 0 {
+                rowStackView = UIStackView()
+                rowStackView?.translatesAutoresizingMaskIntoConstraints = false
+                rowStackView?.axis = .horizontal
+                rowStackView?.spacing = 5
+
+                stackView.addArrangedSubview(rowStackView!)
+            }
+
+            rowStackView?.addArrangedSubview(button)
+        }
+
+        NSLayoutConstraint.activate([
+            label.centerYAnchor.constraint(equalTo: centerYAnchor),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -14),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+    }
+
+        @objc private func colorButtonTapped(_ sender: UIButton) {
+    
+        }
+    }
+
 

@@ -16,10 +16,9 @@ class ResultsViewController: UIViewController {
     init(model: ResultsDataSource) {
         self.model = model
         self.cleanButton = UIButton(title: model.buttonTitle, backgroundColor: .redGameColor, cornerRadius: 10)
-        cleanButton.titleLabel?.font = .systemFont(ofSize: 20)
-        cleanButton.dropShadow()
-        
         super.init(nibName: nil, bundle: nil)
+        
+        setupButton()
     }
     
     required init?(coder: NSCoder) {
@@ -32,7 +31,7 @@ class ResultsViewController: UIViewController {
         self.title = model.title
         
         setupTableView()
-        setupButton()
+        setupButtonConstraints()
     }
     
     private func setupTableView() {
@@ -53,17 +52,24 @@ class ResultsViewController: UIViewController {
       }
     
     private func setupButton() {
+        cleanButton.titleLabel?.font = .systemFont(ofSize: 20)
+        cleanButton.dropShadow()
+        cleanButton.isEnabled = !model.isEmpty
+        cleanButton.addTarget(self, action: #selector(cleanAction), for: .touchUpInside)
+    }
+    
+    private func setupButtonConstraints() {
         view.addSubview(cleanButton)
         cleanButton.translatesAutoresizingMaskIntoConstraints = false
         cleanButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 51).isActive = true
         cleanButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -51).isActive = true
         cleanButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -51).isActive = true
         cleanButton.heightAnchor.constraint(equalToConstant: 63).isActive = true
-        
-        cleanButton.addTarget(self, action: #selector(cleanAction), for: .touchUpInside)
     }
     
     @objc private func cleanAction() {
-        
+        model.removeStatistics()
+        tableView.reloadData()
+        cleanButton.isEnabled = false
     }
 }
