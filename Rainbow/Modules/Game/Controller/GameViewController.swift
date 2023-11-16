@@ -12,7 +12,8 @@ class GameViewController: UIViewController {
     //MARK: - Properties
     
     private var timer: Timer!
-    private var secondsPassed = 0
+    private var viewTimer: Timer!
+    private var totalTime = 60
     
     //MARK: - UI Elements
     
@@ -35,22 +36,23 @@ class GameViewController: UIViewController {
     private lazy var mainViewWidth = Int(UIScreen.main.bounds.width - 238)
     
     //Navigation bar button
-    private lazy var rightBarButton = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: self, action: #selector(pauseButtonTapped))
+    private lazy var rightBarButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(pauseButtonTapped))
     private lazy var isPlaying = false
     
     //MARK: - Life cylce
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "0:00"
+        title = "1:00"
         
         rightBarButton.tintColor = .black
         navigationItem.rightBarButtonItem = rightBarButton
 
         //Call functions
-        //timeCount(value: 100)
+        timeCount(totalTime)
         configureView()
         setupSpeedButton()
+        colorViewTimer()
     }
     
     override func viewWillLayoutSubviews() {
@@ -74,14 +76,14 @@ class GameViewController: UIViewController {
     
     //MARK: - Private methods
     
-    private func timeCount(value: Int) {
-        let value = value
+    private func timeCount(_ time: Int) {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { Timer in
-            if self.secondsPassed < value {
-                self.secondsPassed += 1
-                print(self.secondsPassed)
+            if self.totalTime > 0 {
+                self.totalTime -= 1
+                print(self.totalTime)
+                self.navigationItem.title = self.formatTime(self.totalTime)
             } else {
-                Timer.invalidate()
+                self.timer.invalidate()
             }
         }
     }
@@ -89,6 +91,7 @@ class GameViewController: UIViewController {
     private func setupSpeedButton() {
         //Speed button
         speedButton.titleLabel?.font = UIFont.systemFont(ofSize: 25)
+        speedButton.titleLabel?.textAlignment = .center
         speedButton.setTitle(speedButtonTitle[0], for: .normal)
         speedButton.layer.cornerRadius = 36
         speedButton.layer.shadowColor = UIColor.black.cgColor
@@ -109,6 +112,16 @@ class GameViewController: UIViewController {
         return (height, widht)
     }
     
+   private func formatTime(_ totalSeconds: Int) -> String {
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        return String(format: "%d:%02d", minutes, seconds)
+    }
+    
+    private func colorViewTimer() {
+        viewTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(toggleView), userInfo: nil, repeats: true)
+    }
+    
     //MARK: - @objc methods
     
     @objc func checkButtonTapped(_ sender: UIButton) {
@@ -118,9 +131,11 @@ class GameViewController: UIViewController {
     @objc func pauseButtonTapped() {
         isPlaying.toggle()
         if isPlaying {
-            rightBarButton.image = UIImage(named: "play")
+            rightBarButton.image = UIImage(systemName: "play.fill")
+            timer.invalidate()
         } else {
-            rightBarButton.image = UIImage(named: "pause")
+            rightBarButton.image = UIImage(systemName: "pause.fill")
+            timeCount(totalTime)
         }
     }
     
@@ -146,8 +161,11 @@ class GameViewController: UIViewController {
         }
         
     }
+    
+    @objc func toggleView() {
+        colorView.isHidden = !colorView.isHidden
+    }
 }
-
 
 //MARK: - Extension
 
