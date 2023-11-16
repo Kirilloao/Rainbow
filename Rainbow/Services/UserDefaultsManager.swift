@@ -8,15 +8,8 @@
 import Foundation
 
 enum Key: String {
-    case gameTime = "GameTime"
-    case speed = "Speed"
-    case check = "Check"
-    case letterColors = "LetterColors"
-    case letterSize = "LetterSize"
-    case substrate = "Substrate"
-    case backgroundColor = "BackgroundColor"
-    case wordsLocation = "WordsLocation"
-    case currentGameTime = "CurrentGameTime"
+    case settings = "Settings"
+    case results = "Results"
 }
 
 final class UserDefaultsManager {
