@@ -33,9 +33,8 @@ final class UserDefaultsManager {
     
     func saveObject<T: Encodable>(object: T, for key: Key) {
         let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(object) {
-            defaults.set(encoded, forKey: key.rawValue)
-        }
+        guard let encoded = try? encoder.encode(object) else { return }
+        defaults.set(encoded, forKey: key.rawValue)
     }
     
     // MARK: - Load Methods
@@ -44,10 +43,10 @@ final class UserDefaultsManager {
     }
     
     func loadObject<T: Decodable>(type: T.Type, for key: Key) -> T? {
-        if let data = defaults.data(forKey: key.rawValue) {
-            let decoder = JSONDecoder()
-            return try? decoder.decode(type, from: data)
-        }
-        return nil
+        guard let data = defaults.data(forKey: key.rawValue) else { return nil}
+        let deconder = JSONDecoder()
+        return try? deconder.decode(type, from: data)
     }
 }
+
+
