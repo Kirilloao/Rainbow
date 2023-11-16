@@ -27,14 +27,9 @@ class SettingsViewController: UIViewController {
         return view
     }()
     
-//    private lazy var letterColorsView: SettingView = {
-//        let view = SettingView(labelText: "цвета букв")
-//        return view
-//    }()
-    
     private lazy var letterColorsView: SettingView = {
         let view = SettingView(labelText: "цвета букв")
-        view.addColorButtons(colors: [.red, .blue, .green, .yellow, .purple, .orange, .red, .blue, .green, .yellow, .purple, .orange])
+        view.addColorButtons(colors: [.greenGameColor, .darkGreenGameColor, .pinkGameColor, .lightBlueGameColor, .darkRedGameColor, .purpleGameColor, .blueGameColor, .orangeGameColor, .redGameColor, .yellowGameColor, .black, .grayGameColor])
         return view
     }()
     
