@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct ResultsCardModel {
+struct ResultsCardModel: Codable {
     let gameId: Int
-    let seconds: Double
+    let seconds: Int
     let speedRate: Int
     let rightCount: Int
     let totalCount: Int
