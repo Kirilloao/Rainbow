@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ResultsCardView: UIView {
+final class ResultsCardView: UIView {
     private var model: ResultsCardModel!
     
     // MARK: - private UI properties
