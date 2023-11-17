@@ -69,7 +69,7 @@ class GameViewController: UIViewController {
         title = "1:00"
         
         //Call functions
-        timeCount(totalTime)gi
+        timeCount(totalTime)
         configureView()
         setupSpeedButton()
         colorViewTimer()

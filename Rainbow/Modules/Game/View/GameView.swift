@@ -57,6 +57,7 @@ class GameView: UIView {
     init(letterColor: Bool) {
         super.init(frame: .zero)
         self.letterColor = letterColor
+        
         //Call functions
         setupView()
         constraints()
@@ -73,13 +74,8 @@ class GameView: UIView {
     }
     
     func changeColorsAndTitle() {
-        if letterColor {
-            self.backgroundColor = viewsColor.randomElement()
-        } else {
-            self.backgroundColor = .clear
-            viewLabel.textColor = viewsColor.randomElement()
-            checkButton.backgroundColor = .white
-        }
+    
+        checkLetterColor()
         viewLabel.text = viewsTitle.randomElement()
         checkButton.setImage(nil, for: .normal)
     }
@@ -89,8 +85,8 @@ class GameView: UIView {
     private func setupView() {
         //Setup view
         self.alpha = 0
-        self.backgroundColor = viewsColor.randomElement()
-        animatedView()
+        checkLetterColor()
+        self.layer.cornerRadius = 10
         self.addSubviews(viewLabel, checkButton)
         
         //Setup label
@@ -98,16 +94,14 @@ class GameView: UIView {
         viewLabel.font = UIFont.boldSystemFont(ofSize: 25)
         
         //Setup button
-        checkButton.backgroundColor = .grayBackgroundColor
         checkButton.layer.cornerRadius = 15
         
         //Call functions
-//        makeShadovForView()
+        animatedView()
     }
     
     ///Create shadows for each view
     private func makeShadovForView() {
-        self.layer.cornerRadius = 10
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.8
         self.layer.shadowOffset = CGSizeMake(0, 4)
@@ -118,6 +112,18 @@ class GameView: UIView {
     private func animatedView() {
         UIView.animate(withDuration: 0.5) {
             self.alpha = 1
+        }
+    }
+    
+    private func checkLetterColor() {
+        if letterColor {
+            self.backgroundColor = viewsColor.randomElement()
+            checkButton.backgroundColor = .white
+            makeShadovForView()
+        } else {
+            self.backgroundColor = .clear
+            viewLabel.textColor = viewsColor.randomElement()
+            checkButton.backgroundColor = .white
         }
     }
 }
