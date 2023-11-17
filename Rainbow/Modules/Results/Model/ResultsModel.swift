@@ -15,10 +15,10 @@ protocol ResultsDataSource {
     var isEmpty: Bool { get }
     
     func removeStatistics()
-    func updateStatistics(with statistics: [ResultsCardModel])
 }
 
-class ResultsModel: ResultsDataSource {
+final class ResultsModel: ResultsDataSource {
+    private let dataSource: StatisticsDataSource
     private var statistics: [ResultsCardModel]
     
     let title = "Статистика"
@@ -36,17 +36,13 @@ class ResultsModel: ResultsDataSource {
         statistics.isEmpty
     }
     
-    init(statistics: [ResultsCardModel]) {
-        self.statistics = statistics
+    init(dataSource: StatisticsDataSource) {
+        self.dataSource = dataSource
+        self.statistics = dataSource.getGames()
     }
     
     func removeStatistics() {
         statistics.removeAll()
-        // TODO: - delete from app state
-    }
-    
-    func updateStatistics(with statistics: [ResultsCardModel]) {
-        self.statistics = statistics
-        // TODO: - update in app state
+        dataSource.removeGames()
     }
 }

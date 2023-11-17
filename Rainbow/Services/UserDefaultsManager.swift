@@ -13,11 +13,9 @@ enum Key: String {
 }
 
 final class UserDefaultsManager {
-    static let shared = UserDefaultsManager()
-    
     private let defaults = UserDefaults.standard
     
-    private init() {}
+    init() {}
     
     // MARK: - Save Methods
     func save<T>(value: T.Type, key: Key) {

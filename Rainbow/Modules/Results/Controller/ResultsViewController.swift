@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ResultsViewController: UIViewController {
+final class ResultsViewController: UIViewController {
     private let tableView = ResultsTableView()
     private let cleanButton: UIButton!
     
