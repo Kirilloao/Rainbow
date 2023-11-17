@@ -50,4 +50,4 @@
 ---
 
 ## Description
-
+Challenge your mind with colors that don't match their names! Quick to start and engaging, this game tests your brain's ability to adapt to conflicting information. Choose your round duration, pause when needed, and check your performance in the post-game stats. Perfect for a quick brain workout!
