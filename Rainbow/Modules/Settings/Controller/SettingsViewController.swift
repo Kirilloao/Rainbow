@@ -8,6 +8,7 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
+    private let dataSource: SettingsDataSource
     
     private lazy var gameTimeView: SettingView = {
         let view = SettingView(labelText: "время игры")
@@ -98,6 +99,14 @@ class SettingsViewController: UIViewController {
         
     }
     
+    init(dataSource: SettingsDataSource) {
+        self.dataSource = dataSource
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 
@@ -110,15 +119,15 @@ struct Provider_SettingsViewController : PreviewProvider {
     
     struct ContainterView: UIViewControllerRepresentable {
         func makeUIViewController(context: Context) -> UIViewController {
-            return SettingsViewController()
+            let dataSource = MockSettingsDataSource()
+            return SettingsViewController(dataSource: dataSource)
         }
         
         typealias UIViewControllerType = UIViewController
         
-        
-        let viewController = SettingsViewController()
         func makeUIViewController(context: UIViewControllerRepresentableContext<Provider_SettingsViewController.ContainterView>) -> SettingsViewController {
-            return viewController
+            let dataSource = MockSettingsDataSource()
+            return SettingsViewController(dataSource: dataSource)
         }
         
         func updateUIViewController(_ uiViewController: Provider_SettingsViewController.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<Provider_SettingsViewController.ContainterView>) {
@@ -126,4 +135,16 @@ struct Provider_SettingsViewController : PreviewProvider {
         }
     }
     
+}
+
+final class MockSettingsDataSource: SettingsDataSource {
+    init() {}
+    
+    func getSettings() -> Settings {
+        Settings(gameTime: 2, speed: 3, isSubstrate: true)
+    }
+    
+    func saveSettings(_ settings: Settings) {
+        // nothing to save in mock class
+    }
 }

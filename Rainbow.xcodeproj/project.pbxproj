@@ -28,6 +28,8 @@
 		433CD8552B03E3A400D76A01 /* ResultsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CD8542B03E3A400D76A01 /* ResultsTableView.swift */; };
 		433CD8572B03E3F900D76A01 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CD8562B03E3F900D76A01 /* ResultsTableViewCell.swift */; };
 		433CD8592B03E6D500D76A01 /* ResultsViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CD8582B03E6D500D76A01 /* ResultsViewController + Extensions.swift */; };
+		434F38FE2B079E9600E5971D /* AppState + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F38FD2B079E9600E5971D /* AppState + Extensions.swift */; };
+		434F39002B07A0FE00E5971D /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F38FF2B07A0FE00E5971D /* Protocols.swift */; };
 		79FF3A7F2B047B57005146F5 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FF3A7E2B047B57005146F5 /* SettingView.swift */; };
 		FA054BF32B029C91007DD777 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF22B029C91007DD777 /* MainView.swift */; };
 		FA054BF82B029CB6007DD777 /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA054BF42B029CB6007DD777 /* UIButton + Extension.swift */; };
@@ -60,6 +62,8 @@
 		433CD8542B03E3A400D76A01 /* ResultsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableView.swift; sourceTree = "<group>"; };
 		433CD8562B03E3F900D76A01 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
 		433CD8582B03E6D500D76A01 /* ResultsViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultsViewController + Extensions.swift"; sourceTree = "<group>"; };
+		434F38FD2B079E9600E5971D /* AppState + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState + Extensions.swift"; sourceTree = "<group>"; };
+		434F38FF2B07A0FE00E5971D /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		79FF3A7E2B047B57005146F5 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		FA054BF22B029C91007DD777 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		FA054BF42B029CB6007DD777 /* UIButton + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
@@ -270,6 +274,8 @@
 			children = (
 				3CADADA02B061D7700D39C6A /* UserDefaultsManager.swift */,
 				3CADADA22B068D2500D39C6A /* AppState.swift */,
+				434F38FD2B079E9600E5971D /* AppState + Extensions.swift */,
+				434F38FF2B07A0FE00E5971D /* Protocols.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -413,6 +419,7 @@
 				3CADADA52B068EA400D39C6A /* Settings.swift in Sources */,
 				3CADAD3C2B0137CE00D39C6A /* SettingsViewController.swift in Sources */,
 				1EE87ED92B02BC78005F1DE7 /* GameView.swift in Sources */,
+				434F39002B07A0FE00E5971D /* Protocols.swift in Sources */,
 				433CD8552B03E3A400D76A01 /* ResultsTableView.swift in Sources */,
 				FA054BF92B029CB6007DD777 /* UILabel + Extension.swift in Sources */,
 				3CADAD1E2B01346E00D39C6A /* MainViewController.swift in Sources */,
@@ -420,6 +427,7 @@
 				3CADAD1A2B01346E00D39C6A /* AppDelegate.swift in Sources */,
 				3CADAD1C2B01346E00D39C6A /* SceneDelegate.swift in Sources */,
 				3CADAD392B01379B00D39C6A /* ResultsViewController.swift in Sources */,
+				434F38FE2B079E9600E5971D /* AppState + Extensions.swift in Sources */,
 				433CD8592B03E6D500D76A01 /* ResultsViewController + Extensions.swift in Sources */,
 				433CD8512B03D95A00D76A01 /* ResultsCardView.swift in Sources */,
 				FA054BFA2B029CB6007DD777 /* UIImage + Extension.swift in Sources */,

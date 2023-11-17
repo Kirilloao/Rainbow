@@ -7,4 +7,4 @@
 
 import UIKit
 
-class ResultsTableView: UITableView { }
+final class ResultsTableView: UITableView { }
