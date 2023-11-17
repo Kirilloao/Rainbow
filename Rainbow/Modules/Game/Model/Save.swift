@@ -11,7 +11,8 @@ struct Save: Codable {
     
     var frame: CGRect
     var viewColor: [CGFloat]
-    var titlteColor: [CGFloat]
+    var isSubstrate: Bool
     var time: Int
+    var title: String
     
 }

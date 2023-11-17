@@ -16,13 +16,13 @@ class GameView: UIView {
     
     //MARK: - Properties
     
-    private var letterColor = false
+    private var isSubstrate = false
     
     //MARK: - Life cycle
     
-    init(letterColor: Bool) {
+    init(isSubstrate: Bool) {
         super.init(frame: .zero)
-        self.letterColor = letterColor
+        self.isSubstrate = isSubstrate
         
         //Call functions
         setupView()
@@ -43,13 +43,17 @@ class GameView: UIView {
         viewLabel.textColor
     }
     
-    func changeColorsAndTitle(backColor: UIColor, textColor: UIColor, title: String) {
+    func changeColorsAndTitle(textColor: UIColor, title: String) {
         
-        checkLetterColor(color: backColor, textColor: textColor)
+        checkLetterColor(textColor: textColor)
         viewLabel.text = title
         viewLabel.font = UIFont.boldSystemFont(ofSize: 25)
         checkButton.setImage(nil, for: .normal)
         checkButton.layer.cornerRadius = 15
+    }
+    
+    func getTitle() -> String {
+        viewLabel.text!
     }
     
     //MARK: - Private methods
@@ -80,9 +84,9 @@ class GameView: UIView {
         }
     }
     
-    private func checkLetterColor(color: UIColor, textColor: UIColor) {
-        if letterColor {
-            self.backgroundColor = color
+    private func checkLetterColor(textColor: UIColor) {
+        if isSubstrate {
+            self.backgroundColor = textColor
             checkButton.backgroundColor = .white
             makeShadovForView()
         } else {
