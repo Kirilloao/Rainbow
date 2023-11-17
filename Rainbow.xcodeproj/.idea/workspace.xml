@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="eef29b21-cdcb-4f62-8579-43d63b6cacd7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Rainbow/Modules/Game/Controller/GameViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Rainbow/Modules/Game/Controller/GameViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Rainbow/Modules/Game/Model/Save.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Rainbow/Modules/Game/Model/Save.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Rainbow/Modules/Game/View/GameView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Rainbow/Modules/Game/View/GameView.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Rainbow/Modules/Main/Controller/MainViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Rainbow/Modules/Main/Controller/MainViewController.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Rainbow/Modules/Main/View/MainView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Rainbow/Modules/Main/View/MainView.swift" afterDir="false" />
     </list>
@@ -52,6 +55,7 @@
       <workItem from="1699986512522" duration="1096000" />
       <workItem from="1699992216524" duration="37000" />
       <workItem from="1700068283579" duration="905000" />
+      <workItem from="1700243834567" duration="1439000" />
     </task>
     <task id="LOCAL-00001" summary="layout MainViewController, add extensions for UIView, UIButton, UIlabel, UIImageView">
       <created>1699900395874</created>
@@ -60,7 +64,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699900395874</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary=".">
+      <created>1700156132687</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700156132687</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -77,7 +88,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="develop" />
+                        <option value="MainViewController_Logic" />
                       </list>
                     </value>
                   </entry>

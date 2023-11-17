@@ -18,7 +18,10 @@ final class GameViewController: UIViewController {
     private var viewTimer: Timer!
     private var totalTime = 0
     private var speedGame = 0
-    private var letterColor = true
+    private var isSubstrate = true
+    private var isResume = false
+    private var topInset = CGFloat.zero
+    private var bottomInset = CGFloat.zero
     
     //MARK: - UI Elements
     
@@ -33,7 +36,7 @@ final class GameViewController: UIViewController {
     }()
     
     //Get bounds size
-    private lazy var mainViewHeight = Int(UIScreen.main.bounds.height) - Int(view.safeAreaInsets.bottom + view.safeAreaInsets.top + 40)
+    private lazy var mainViewHeight = Int(UIScreen.main.bounds.height) - Int(bottomInset + topInset + 40)
     private lazy var mainViewWidth = Int(UIScreen.main.bounds.width - 238)
     
     //Navigation bar button
@@ -41,13 +44,23 @@ final class GameViewController: UIViewController {
     private lazy var isPlaying = false
     
     
-    init(dataSource: GameDataSource) {
+    init(dataSource: GameDataSource, resume: Bool = false) {
         self.dataSource = dataSource
         let settings = dataSource.getSettings()
-        self.totalTime = 60 * dataSource.getSettings().gameTime
-        self.speedGame = settings.speed
-        self.letterColor = settings.isSubstrate
-        self.colorView = GameView(letterColor: settings.isSubstrate)
+        self.isResume = resume
+        if resume, let savedGame = dataSource.getGame() {
+            self.totalTime = savedGame.time
+            self.isSubstrate = savedGame.isSubstrate
+            self.speedGame = settings.speed
+            self.colorView = GameView(isSubstrate: settings.isSubstrate)
+        } else {
+            self.totalTime = 60 * dataSource.getSettings().gameTime
+            self.speedGame = settings.speed
+            self.isSubstrate = settings.isSubstrate
+            self.colorView = GameView(isSubstrate: settings.isSubstrate)
+        }
+      
+        
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -55,6 +68,8 @@ final class GameViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+ 
     
     //MARK: - Life cylce
     
@@ -67,21 +82,34 @@ final class GameViewController: UIViewController {
         configureView()
         setupSpeedButton()
         colorViewTimer()
+        if isResume, let game = dataSource.getGame() {
+            colorView.frame = game.frame
+            colorView.translatesAutoresizingMaskIntoConstraints = true
+
+        } else {
+            let (height, width) = getRandom()
+            print(height, width)
+            colorView.frame = CGRect(x: width, y: height, width: 238, height: 40)
+            colorView.translatesAutoresizingMaskIntoConstraints = true
+        }
+  
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         constraints()
-        let (height, width) = getRandom()
-        print(height, width)
-        colorView.frame = CGRect(x: width, y: height, width: 238, height: 40)
-        colorView.translatesAutoresizingMaskIntoConstraints = true
+        
+       
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         timer.invalidate()
         viewTimer.invalidate()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         saveGame()
     }
     
@@ -97,10 +125,18 @@ final class GameViewController: UIViewController {
             speedButton
         )
         colorView.addTarget(target: self, action: #selector(checkButtonTapped))
-        guard let title = storage.viewsTitle.randomElement() else { return }
-        guard let backColor = storage.viewsColor.randomElement() else { return }
-        guard let textColor = storage.viewsColor.randomElement() else { return }
-        colorView.changeColorsAndTitle(backColor: backColor, textColor: textColor, title: title)
+        var color: UIColor? = nil
+        var title: String? = nil
+        if isResume, let game = dataSource.getGame() {
+            color = UIColor(red: game.viewColor[0], green: game.viewColor[1] , blue: game.viewColor[2], alpha: game.viewColor[3])
+            title = game.title
+        } else {
+            color = storage.viewsColor.randomElement()
+            title = storage.viewsTitle.randomElement()
+        }
+        guard let textColor = color else { return }
+        guard let title = title else { return }
+        colorView.changeColorsAndTitle(textColor: textColor, title: title)
     }
     
     func saveGame() {
@@ -108,7 +144,8 @@ final class GameViewController: UIViewController {
         let colorView = self.colorView.backgroundColor?.cgColor.components
         let colorTitle = self.colorView.getLabelTextColor().cgColor.components
         let currentTime = self.totalTime
-        let saveGa = Save(frame: frameView, viewColor: colorView!, titlteColor: colorTitle!, time: currentTime)
+        let title = self.colorView.getTitle()
+        let saveGa = Save(frame: frameView, viewColor: colorView!, isSubstrate: isSubstrate, time: currentTime, title: title)
         dataSource.saveGame(saveGa)
     }
     
@@ -209,9 +246,8 @@ final class GameViewController: UIViewController {
         print(height, width)
         colorView.frame = CGRect(x: width, y: height, width: 238, height: 40)
         guard let title = storage.viewsTitle.randomElement() else { return }
-        guard let backColor = storage.viewsColor.randomElement() else { return }
         guard let textColor = storage.viewsColor.randomElement() else { return }
-        colorView.changeColorsAndTitle(backColor: backColor, textColor: textColor, title: title)
+        colorView.changeColorsAndTitle(textColor: textColor, title: title)
     }
 }
 
