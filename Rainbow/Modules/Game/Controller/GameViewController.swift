@@ -13,8 +13,7 @@ class GameViewController: UIViewController {
     
     private var appState = AppState.shared
     private var colorView: GameView!
-    private lazy var speedButtonTitle = ["X1", "X2", "X3", "X4", "X5"]
-    private lazy var valueTitle = 0
+    private var storage = Storage()
     private var timer: Timer!
     private var viewTimer: Timer!
     private var totalTime = 0
@@ -102,6 +101,10 @@ class GameViewController: UIViewController {
             speedButton
         )
         colorView.addTarget(target: self, action: #selector(checkButtonTapped))
+        guard let title = storage.viewsTitle.randomElement() else { return }
+        guard let backColor = storage.viewsColor.randomElement() else { return }
+        guard let textColor = storage.viewsColor.randomElement() else { return }
+        colorView.changeColorsAndTitle(backColor: backColor, textColor: textColor, title: title)
     }
     
     //MARK: - Private methods
@@ -123,7 +126,7 @@ class GameViewController: UIViewController {
         //Speed button
         speedButton.titleLabel?.font = UIFont.systemFont(ofSize: 25)
         speedButton.titleLabel?.textAlignment = .center
-        speedButton.setTitle(speedButtonTitle[0], for: .normal)
+        speedButton.setTitle(storage.speedButtonTitle[0], for: .normal)
         speedButton.layer.cornerRadius = 36
         speedButton.layer.shadowColor = UIColor.black.cgColor
         speedButton.layer.shadowOpacity = 0.8
@@ -154,6 +157,7 @@ class GameViewController: UIViewController {
         viewTimer = Timer.scheduledTimer(timeInterval: TimeInterval(speedGame), target: self, selector: #selector(toggleView), userInfo: nil, repeats: true)
     }
     
+    
     //MARK: - @objc methods
     
     @objc func checkButtonTapped(_ sender: UIButton) {
@@ -174,22 +178,22 @@ class GameViewController: UIViewController {
     }
     
     @objc func speedButtonTapped() {
-        switch valueTitle {
+        switch self.storage.valueTitle {
         case 0:
-            speedButton.setTitle(speedButtonTitle[valueTitle], for: .normal)
-            valueTitle += 1
+            speedButton.setTitle(self.storage.speedButtonTitle[self.storage.valueTitle], for: .normal)
+            self.storage.valueTitle += 1
         case 1:
-            speedButton.setTitle(speedButtonTitle[valueTitle], for: .normal)
-            valueTitle += 1
+            speedButton.setTitle(self.storage.speedButtonTitle[self.storage.valueTitle], for: .normal)
+            self.storage.valueTitle += 1
         case 2:
-            speedButton.setTitle(speedButtonTitle[valueTitle], for: .normal)
-            valueTitle += 1
+            speedButton.setTitle(self.storage.speedButtonTitle[self.storage.valueTitle], for: .normal)
+            self.storage.valueTitle += 1
         case 3:
-            speedButton.setTitle(speedButtonTitle[valueTitle], for: .normal)
-            valueTitle += 1
+            speedButton.setTitle(self.storage.speedButtonTitle[self.storage.valueTitle], for: .normal)
+            self.storage.valueTitle += 1
         case 4:
-            speedButton.setTitle(speedButtonTitle[valueTitle], for: .normal)
-            valueTitle = 0
+            speedButton.setTitle(self.storage.speedButtonTitle[self.storage.valueTitle], for: .normal)
+            self.storage.valueTitle = 0
         default:
             print("error")
         }
@@ -199,7 +203,10 @@ class GameViewController: UIViewController {
         let (height, width) = getRandom()
         print(height, width)
         colorView.frame = CGRect(x: width, y: height, width: 238, height: 40)
-        colorView.changeColorsAndTitle()
+        guard let title = storage.viewsTitle.randomElement() else { return }
+        guard let backColor = storage.viewsColor.randomElement() else { return }
+        guard let textColor = storage.viewsColor.randomElement() else { return }
+        colorView.changeColorsAndTitle(backColor: backColor, textColor: textColor, title: title)
     }
 }
 
@@ -212,6 +219,7 @@ extension GameViewController {
         
         NSLayoutConstraint.activate([
             //Speed button constaints
+
             speedButton.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16),
             speedButton.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -34)
         ])

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E38281A2B07D51E008C1FDD /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3828192B07D51E008C1FDD /* Storage.swift */; };
 		1EE87ED92B02BC78005F1DE7 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE87ED82B02BC78005F1DE7 /* GameView.swift */; };
 		3CADAD1A2B01346E00D39C6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD192B01346E00D39C6A /* AppDelegate.swift */; };
 		3CADAD1C2B01346E00D39C6A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADAD1B2B01346E00D39C6A /* SceneDelegate.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E3828192B07D51E008C1FDD /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		1EE87ED82B02BC78005F1DE7 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		3CADAD162B01346E00D39C6A /* Rainbow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rainbow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CADAD192B01346E00D39C6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				3CADADA42B068EA400D39C6A /* Settings.swift */,
+				1E3828192B07D51E008C1FDD /* Storage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				433CD84F2B03D8DB00D76A01 /* ResultsModel.swift in Sources */,
 				433CD8532B03D9DC00D76A01 /* ResultsCardModel.swift in Sources */,
 				FA054BFB2B029CB6007DD777 /* UIView + Extension.swift in Sources */,
+				1E38281A2B07D51E008C1FDD /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
