@@ -39,3 +39,16 @@ extension AppState: StatisticsDataSource {
         saveGames()
     }
 }
+
+extension AppState: GameState {
+    func saveGame(_ game: Save) {
+        defaults.saveObject(object: game, for: .save)
+        
+    }
+    
+    func getGame() -> Save? {
+        defaults.loadObject(type: Save.self, for: .save)
+    }
+    
+    
+}

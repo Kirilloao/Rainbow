@@ -16,45 +16,13 @@ class GameView: UIView {
     
     //MARK: - Properties
     
-    private lazy var viewsColor = [
-        UIColor.redGameColor,
-        UIColor.blueGameColor,
-        UIColor.purpleGameColor,
-        UIColor.yellowGameColor,
-        UIColor.greenGameColor,
-        UIColor.redGameColor,
-        UIColor.blueGameColor,
-        UIColor.purpleGameColor,
-        UIColor.yellowGameColor,
-        UIColor.greenGameColor,
-        UIColor.redGameColor,
-        UIColor.blueGameColor,
-        UIColor.purpleGameColor,
-        UIColor.yellowGameColor,
-        UIColor.greenGameColor,
-    ]
-    private lazy var viewsTitle = [
-        "Красный",
-        "Синий",
-        "Фиолетовый",
-        "Желтый",
-        "Зеленый",
-        "Красный",
-        "Синий",
-        "Фиолетовый",
-        "Желтый",
-        "Зеленый",
-        "Красный",
-        "Синий",
-        "Фиолетовый",
-        "Желтый",
-        "Зеленый"
-    ]
+    private var letterColor = false
     
     //MARK: - Life cycle
     
-    init() {
+    init(letterColor: Bool) {
         super.init(frame: .zero)
+        self.letterColor = letterColor
         
         //Call functions
         setupView()
@@ -71,10 +39,17 @@ class GameView: UIView {
         checkButton.addTarget(target, action: action, for: .touchUpInside)
     }
     
-    func changeColorsAndTitle() {
-        self.backgroundColor = viewsColor.randomElement()
-        viewLabel.text = viewsTitle.randomElement()
+    func getLabelTextColor() -> UIColor {
+        viewLabel.textColor
+    }
+    
+    func changeColorsAndTitle(backColor: UIColor, textColor: UIColor, title: String) {
+        
+        checkLetterColor(color: backColor, textColor: textColor)
+        viewLabel.text = title
+        viewLabel.font = UIFont.boldSystemFont(ofSize: 25)
         checkButton.setImage(nil, for: .normal)
+        checkButton.layer.cornerRadius = 15
     }
     
     //MARK: - Private methods
@@ -82,25 +57,16 @@ class GameView: UIView {
     private func setupView() {
         //Setup view
         self.alpha = 0
-        self.backgroundColor = viewsColor.randomElement()
-        animatedView()
-        self.addSubviews(viewLabel, checkButton)
-        
-        //Setup label
-        viewLabel.text = viewsTitle.randomElement()
-        viewLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        
-        //Setup button
-        checkButton.backgroundColor = .grayBackgroundColor
         checkButton.layer.cornerRadius = 15
+        self.layer.cornerRadius = 10
+        self.addSubviews(viewLabel) //checkButton)
         
         //Call functions
-        makeShadovForView()
+        animatedView()
     }
     
     ///Create shadows for each view
     private func makeShadovForView() {
-        self.layer.cornerRadius = 10
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.8
         self.layer.shadowOffset = CGSizeMake(0, 4)
@@ -111,6 +77,18 @@ class GameView: UIView {
     private func animatedView() {
         UIView.animate(withDuration: 0.5) {
             self.alpha = 1
+        }
+    }
+    
+    private func checkLetterColor(color: UIColor, textColor: UIColor) {
+        if letterColor {
+            self.backgroundColor = color
+            checkButton.backgroundColor = .white
+            makeShadovForView()
+        } else {
+            self.backgroundColor = .clear
+            viewLabel.textColor = textColor
+            checkButton.backgroundColor = .white
         }
     }
 }
@@ -128,10 +106,10 @@ extension GameView {
             viewLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             
             //Check button constaints
-            checkButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            checkButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            checkButton.widthAnchor.constraint(equalToConstant: 30),
-            checkButton.heightAnchor.constraint(equalToConstant: 30)
+//            checkButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+//            checkButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+//            checkButton.widthAnchor.constraint(equalToConstant: 30),
+//            checkButton.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 }
