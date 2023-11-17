@@ -43,6 +43,12 @@ final class MainViewController: UIViewController {
         let vc = ResultsViewController(model: resultsModel)
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @objc private func resumeGame() {
+        let vc = GameViewController(dataSource: appState, resume: true)
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
 
     
     // MARK: - Private Methods
@@ -65,6 +71,7 @@ final class MainViewController: UIViewController {
         mainView.statTarget(self, action: #selector(statisticAction))
         mainView.settingsTarget(self, action: #selector(settingsAction))
         mainView.rulesTarget(self, action: #selector(rulesAction))
+        mainView.resumeTarget(self, action: #selector(resumeGame))
     }
 }
 
