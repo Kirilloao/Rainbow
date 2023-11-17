@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias GameDataSource = SettingsDataSource & StatisticsDataSource
+typealias GameDataSource = SettingsDataSource & StatisticsDataSource & GameState
 
 protocol SettingsDataSource {
     func getSettings() -> Settings
@@ -19,4 +19,9 @@ protocol StatisticsDataSource {
     func saveGames()
     func getGames() -> [ResultsCardModel]
     func removeGames()
+}
+
+protocol GameState {
+    func saveGame(_ game: Save)
+    func getGame() -> Save?
 }

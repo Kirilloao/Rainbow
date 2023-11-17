@@ -82,6 +82,7 @@ final class GameViewController: UIViewController {
         super.viewDidDisappear(animated)
         timer.invalidate()
         viewTimer.invalidate()
+        saveGame()
     }
     
     //MARK: - Methods
@@ -100,6 +101,15 @@ final class GameViewController: UIViewController {
         guard let backColor = storage.viewsColor.randomElement() else { return }
         guard let textColor = storage.viewsColor.randomElement() else { return }
         colorView.changeColorsAndTitle(backColor: backColor, textColor: textColor, title: title)
+    }
+    
+    func saveGame() {
+        let frameView = self.colorView.frame
+        let colorView = self.colorView.backgroundColor?.cgColor.components
+        let colorTitle = self.colorView.getLabelTextColor().cgColor.components
+        let currentTime = self.totalTime
+        let saveGa = Save(frame: frameView, viewColor: colorView!, titlteColor: colorTitle!, time: currentTime)
+        dataSource.saveGame(saveGa)
     }
     
     //MARK: - Private methods

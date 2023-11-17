@@ -39,6 +39,10 @@ class GameView: UIView {
         checkButton.addTarget(target, action: action, for: .touchUpInside)
     }
     
+    func getLabelTextColor() -> UIColor {
+        viewLabel.textColor
+    }
+    
     func changeColorsAndTitle(backColor: UIColor, textColor: UIColor, title: String) {
         
         checkLetterColor(color: backColor, textColor: textColor)
