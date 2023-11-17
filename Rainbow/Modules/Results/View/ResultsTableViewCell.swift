@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ResultsTableViewCell: UITableViewCell {
+final class ResultsTableViewCell: UITableViewCell {
     static let identifier = "ResultsTableViewCell"
     
     private var containerView = ResultsCardView()

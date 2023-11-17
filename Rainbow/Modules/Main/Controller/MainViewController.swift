@@ -8,6 +8,7 @@
 import UIKit
 
 final class MainViewController: UIViewController {
+    private let appState = AppState()
     
     // MARK: - Private UI Properties
     private let mainView = MainView()
@@ -23,7 +24,7 @@ final class MainViewController: UIViewController {
     // MARK: - Private Actions
     //Settings button tapped
     @objc private func settingsAction() {
-        let vc = SettingsViewController()
+        let vc = SettingsViewController(dataSource: appState)
         navigationController?.pushViewController(vc, animated: true)
     }
     //Rules button tapped
@@ -33,12 +34,13 @@ final class MainViewController: UIViewController {
     }
     //New game button tapped
     @objc private func newGameAction() {
-        let vc = GameViewController()
+        let vc = GameViewController(dataSource: appState)
         navigationController?.pushViewController(vc, animated: true)
     }
     //Statistic button tapped
     @objc private func statisticAction() {
-        let vc = ResultsViewController(model: ResultsModel(statistics: [ResultsCardModel.init(gameId: 0, seconds: 0, speedRate: 0, rightCount: 0, totalCount: 0)]))
+        let resultsModel = ResultsModel(dataSource: appState)
+        let vc = ResultsViewController(model: resultsModel)
         navigationController?.pushViewController(vc, animated: true)
     }
 

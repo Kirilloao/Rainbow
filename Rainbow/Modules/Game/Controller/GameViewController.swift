@@ -7,13 +7,13 @@
 
 import UIKit
 
-class GameViewController: UIViewController {
+final class GameViewController: UIViewController {
     
     //MARK: - Properties
-    
+    private var dataSource: GameDataSource
     private var timer: Timer!
     private var viewTimer: Timer!
-    private var totalTime = 60
+    private var totalTime: Int
     
     //MARK: - UI Elements
     
@@ -39,11 +39,23 @@ class GameViewController: UIViewController {
     private lazy var rightBarButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(pauseButtonTapped))
     private lazy var isPlaying = false
     
+    
+    init(dataSource: GameDataSource) {
+        self.dataSource = dataSource
+        self.totalTime = 60 * dataSource.getSettings().gameTime
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: - Life cylce
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "1:00"
+        title = "\(totalTime / 60):00"
         
         //Call functions
         timeCount(totalTime)
