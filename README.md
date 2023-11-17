@@ -1,6 +1,6 @@
 # 🌈 Rainbow 
 
-## Challenge1 [(Swift Marathon X)](https://t.me/dev_rush) <a href="url"><img src="https://github.com/DmitryLorents/Bomba-Challenge1/blob/dmitry/readmeFix/Bomba-Challenge1/SupportingFiles/Assets.xcassets/ReadmeFiles/swiftMarathon.imageset/swift%20Marathon.jpeg" height="auto" width="30" align="center"></a>
+## Challenge №1 [(Swift Marathon X)](https://t.me/dev_rush) <a href="url"><img src="https://github.com/DmitryLorents/Bomba-Challenge1/blob/dmitry/readmeFix/Bomba-Challenge1/SupportingFiles/Assets.xcassets/ReadmeFiles/swiftMarathon.imageset/swift%20Marathon.jpeg" height="auto" width="30" align="center"></a>
 
 
 
