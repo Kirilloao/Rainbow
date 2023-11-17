@@ -43,7 +43,11 @@ final class GameViewController: UIViewController {
     
     init(dataSource: GameDataSource) {
         self.dataSource = dataSource
+        let settings = dataSource.getSettings()
         self.totalTime = 60 * dataSource.getSettings().gameTime
+        self.speedGame = settings.speed
+        self.letterColor = settings.isSubstrate
+        self.colorView = GameView(letterColor: settings.isSubstrate)
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -53,27 +57,6 @@ final class GameViewController: UIViewController {
     }
     
     //MARK: - Life cylce
-    
-    init() {
-        let settings = AppState.shared.getSettings()
-        self.totalTime = 60 * settings.gameTime
-        self.speedGame = settings.speed
-        self.letterColor = settings.isSubstrate
-        self.colorView = GameView(letterColor: settings.isSubstrate)
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    init(appState: AppState = AppState.shared, timer: Timer!, viewTimer: Timer!, totalTime: Int = 0) {
-        super.init(nibName: nil, bundle: nil)
-        self.appState = appState
-        self.timer = timer
-        self.viewTimer = viewTimer
-        self.totalTime = totalTime
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
