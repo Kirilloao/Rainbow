@@ -10,6 +10,7 @@ import Foundation
 enum Key: String {
     case settings = "Settings"
     case results = "Results"
+    case save = "Save"
 }
 
 final class UserDefaultsManager {
