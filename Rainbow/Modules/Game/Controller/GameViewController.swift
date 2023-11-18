@@ -20,8 +20,12 @@ final class GameViewController: UIViewController {
     private var speedGame = 0
     private var isSubstrate = true
     private var isResume = false
-    private var topInset = CGFloat.zero
-    private var bottomInset = CGFloat.zero
+    private var isFirstLayout = true
+    
+    private let colorViewHeight: CGFloat = 40
+    private let colorViewWidth: CGFloat = 238
+    private let speedButtonHeight: CGFloat = 73
+    private let speedButtonWidth: CGFloat = 75
     
     //MARK: - UI Elements
     
@@ -30,14 +34,14 @@ final class GameViewController: UIViewController {
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.frame = .zero
         btn.backgroundColor = .red
-        btn.widthAnchor.constraint(equalToConstant: 75).isActive = true
-        btn.heightAnchor.constraint(equalToConstant: 73).isActive = true
+        btn.widthAnchor.constraint(equalToConstant: speedButtonWidth).isActive = true
+        btn.heightAnchor.constraint(equalToConstant: speedButtonHeight).isActive = true
         return btn
     }()
     
     //Get bounds size
-    private lazy var mainViewHeight = Int(UIScreen.main.bounds.height) - Int(bottomInset + topInset + 40)
-    private lazy var mainViewWidth = Int(UIScreen.main.bounds.width - 238)
+    private lazy var mainViewHeight = Int(UIScreen.main.bounds.height) - Int(view.safeAreaInsets.bottom + colorViewHeight)
+    private lazy var mainViewWidth = Int(UIScreen.main.bounds.width - colorViewWidth - 6)
     
     //Navigation bar button
     private lazy var rightBarButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(pauseButtonTapped))
@@ -60,8 +64,6 @@ final class GameViewController: UIViewController {
             self.colorView = GameView(isSubstrate: settings.isSubstrate)
         }
       
-        
-        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -69,37 +71,33 @@ final class GameViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
- 
-    
     //MARK: - Life cylce
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "\(totalTime / 60):00"
+        self.navigationItem.title = formatTime(totalTime)
         
         //Call functions
         timeCount(totalTime)
         configureView()
         setupSpeedButton()
         colorViewTimer()
-        if isResume, let game = dataSource.getGame() {
-            colorView.frame = game.frame
-            colorView.translatesAutoresizingMaskIntoConstraints = true
-
-        } else {
-            let (height, width) = getRandom()
-            print(height, width)
-            colorView.frame = CGRect(x: width, y: height, width: 238, height: 40)
-            colorView.translatesAutoresizingMaskIntoConstraints = true
-        }
-  
+        constraints()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        constraints()
         
-       
+        guard isFirstLayout else { return }
+        isFirstLayout = false
+        
+        if isResume, let game = dataSource.getGame() {
+            colorView.frame = game.frame
+        } else {
+            let (height, width) = getRandom()
+            colorView.frame = CGRect(x: width, y: height, width: colorViewWidth, height: colorViewHeight)
+        }
+        colorView.translatesAutoresizingMaskIntoConstraints = true
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -134,19 +132,18 @@ final class GameViewController: UIViewController {
             color = storage.viewsColor.randomElement()
             title = storage.viewsTitle.randomElement()
         }
-        guard let textColor = color else { return }
+        guard let color = color else { return }
         guard let title = title else { return }
-        colorView.changeColorsAndTitle(textColor: textColor, title: title)
+        colorView.changeColorsAndTitle(color: color, title: title)
     }
     
     func saveGame() {
         let frameView = self.colorView.frame
         let colorView = self.colorView.backgroundColor?.cgColor.components
-        let colorTitle = self.colorView.getLabelTextColor().cgColor.components
         let currentTime = self.totalTime
         let title = self.colorView.getTitle()
-        let saveGa = Save(frame: frameView, viewColor: colorView!, isSubstrate: isSubstrate, time: currentTime, title: title)
-        dataSource.saveGame(saveGa)
+        let saveGame = Save(frame: frameView, viewColor: colorView!, isSubstrate: isSubstrate, time: currentTime, title: title)
+        dataSource.saveGame(saveGame)
     }
     
     //MARK: - Private methods
@@ -179,14 +176,15 @@ final class GameViewController: UIViewController {
     
     private func getRandom() -> (CGFloat, CGFloat) {
         var height = CGFloat(Int.random(in: Int(view.safeAreaInsets.top)...mainViewHeight))
-        var widht = CGFloat(Int.random(in: Int(view.safeAreaInsets.left)...mainViewWidth))
-        let heightDifference = UIScreen.main.bounds.height - view.safeAreaInsets.bottom - 73
-        let widhtDifference = UIScreen.main.bounds.width - 313
-        if height >= heightDifference && widht >= widhtDifference {
-            widht = widhtDifference
+        var width = CGFloat(Int.random(in: Int(view.safeAreaInsets.left + 6)...mainViewWidth))
+        let heightDifference = UIScreen.main.bounds.height - view.safeAreaInsets.top - speedButtonHeight
+        let widthDifference = UIScreen.main.bounds.width - colorViewWidth - speedButtonWidth
+    
+        if height >= heightDifference && width >= widthDifference {
             height = heightDifference
+            width = widthDifference
         }
-        return (height, widht)
+        return (height, width)
     }
     
     private func formatTime(_ totalSeconds: Int) -> String {
@@ -244,10 +242,10 @@ final class GameViewController: UIViewController {
     @objc func toggleView() {
         let (height, width) = getRandom()
         print(height, width)
-        colorView.frame = CGRect(x: width, y: height, width: 238, height: 40)
+        colorView.frame = CGRect(x: width, y: height, width: colorViewWidth, height: colorViewHeight)
         guard let title = storage.viewsTitle.randomElement() else { return }
-        guard let textColor = storage.viewsColor.randomElement() else { return }
-        colorView.changeColorsAndTitle(textColor: textColor, title: title)
+        guard let color = storage.viewsColor.randomElement() else { return }
+        colorView.changeColorsAndTitle(color: color, title: title)
     }
 }
 
