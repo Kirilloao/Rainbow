@@ -12,13 +12,13 @@ class SettingsViewController: UIViewController {
     
     private lazy var gameTimeView: SettingView = {
         let view = SettingView(labelText: "время игры")
-        view.addSlider(UISlider())
+        view.addSlider(minValue: 1, maxValue: 10)
         return view
     }()
     
     private lazy var speedTimeView: SettingView = {
         let view = SettingView(labelText: "скорость смены заданий, сек")
-        view.addSlider(UISlider())
+        view.addSlider(minValue: 1, maxValue: 5)
         return view
     }()
     
@@ -109,34 +109,6 @@ class SettingsViewController: UIViewController {
     }
 }
 
-
-
-import SwiftUI
-struct Provider_SettingsViewController : PreviewProvider {
-    static var previews: some View {
-        ContainterView().edgesIgnoringSafeArea(.all)
-    }
-    
-    struct ContainterView: UIViewControllerRepresentable {
-        func makeUIViewController(context: Context) -> UIViewController {
-            let dataSource = MockSettingsDataSource()
-            return SettingsViewController(dataSource: dataSource)
-        }
-        
-        typealias UIViewControllerType = UIViewController
-        
-        func makeUIViewController(context: UIViewControllerRepresentableContext<Provider_SettingsViewController.ContainterView>) -> SettingsViewController {
-            let dataSource = MockSettingsDataSource()
-            return SettingsViewController(dataSource: dataSource)
-        }
-        
-        func updateUIViewController(_ uiViewController: Provider_SettingsViewController.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<Provider_SettingsViewController.ContainterView>) {
-            
-        }
-    }
-    
-}
-
 final class MockSettingsDataSource: SettingsDataSource {
     init() {}
     
@@ -148,3 +120,4 @@ final class MockSettingsDataSource: SettingsDataSource {
         // nothing to save in mock class
     }
 }
+

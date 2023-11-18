@@ -12,6 +12,7 @@ class SettingView: UIView {
     
     private var label = UILabel()
     private var control: UIControl?
+    private var valueLabel = UILabel()
     
     init(labelText: String) {
         label = UILabel()
@@ -68,12 +69,19 @@ class SettingView: UIView {
         self.control = control
     }
         
-    func addSlider(_ slider: UIControl) {
+    func addSlider(minValue: Int, maxValue: Int) {
+        
+        var slider =  UISlider()
+        
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.tintColor = .orange
-        
-        var valueLabel = UILabel()
-        valueLabel.text = "0"
+        slider.minimumValue = Float(minValue)
+        slider.maximumValue = Float(maxValue)
+        slider.value = 2
+        slider.addTarget(self, action: #selector(updateLabelValue(_:)), for: .valueChanged)
+
+        let value = Int(slider.value)
+        valueLabel.text = "\(value)"
         
         addSubviews(slider)
         addSubviews(valueLabel)
@@ -83,16 +91,23 @@ class SettingView: UIView {
             label.widthAnchor.constraint(lessThanOrEqualToConstant: 133),
             label.centerYAnchor.constraint(equalTo: centerYAnchor),
             
-            valueLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            valueLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             valueLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            valueLabel.widthAnchor.constraint(equalToConstant: 36),
             
             slider.trailingAnchor.constraint(equalTo: valueLabel.leadingAnchor, constant: -8),
+//            slider.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 8),
             slider.centerYAnchor.constraint(equalTo: centerYAnchor),
             slider.widthAnchor.constraint(equalToConstant: 110)
             
         ])
         
         self.control = slider
+    }
+    
+    @objc private func updateLabelValue(_ sender: UISlider) {
+        let value = Int(sender.value)
+        valueLabel.text = "\(value)"
     }
     
     func addSegmentedControl(titles: [String], defaultSelectedIndex: Int) {

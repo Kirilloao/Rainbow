@@ -206,6 +206,7 @@
 		3CADAD3E2B01380100D39C6A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				79FF3A7E2B047B57005146F5 /* SettingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -214,7 +215,6 @@
 			isa = PBXGroup;
 			children = (
 				3CADAD3B2B0137CE00D39C6A /* SettingsViewController.swift */,
-				79FF3A7E2B047B57005146F5 /* SettingView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
