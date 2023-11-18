@@ -27,3 +27,5 @@ protocol GameState {
     func getGame() -> Save?
     func deleteSavedGames() 
 }
+
+

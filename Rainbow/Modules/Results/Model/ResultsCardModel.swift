@@ -23,7 +23,7 @@ struct ResultsCardModel: Codable {
     }
     
     var timeLabelText: String {
-        "время \(seconds)"
+        "время \(seconds) сек"
     }
     
     var speedRateLabelText: String {
