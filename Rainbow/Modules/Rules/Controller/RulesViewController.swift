@@ -9,8 +9,8 @@ import UIKit
 
 final class RulesViewController: UIViewController {
     
+    // MARK: - Private UI Properties
     private let rulesView = RulesView()
-    
     
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
@@ -24,7 +24,6 @@ final class RulesViewController: UIViewController {
     private func setViews() {
         view.backgroundColor = .grayBackgroundColor
         view.addSubview(rulesView)
-
     }
     
     private func setupConstraints() {
@@ -35,10 +34,7 @@ final class RulesViewController: UIViewController {
             rulesView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             rulesView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             rulesView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
-    
-        
         ])
-
     }
 }
 

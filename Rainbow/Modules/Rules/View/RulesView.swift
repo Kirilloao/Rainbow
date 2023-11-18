@@ -10,14 +10,6 @@ import UIKit
 final class RulesView: UIView {
     
     // MARK: - Private UI Properties
-    // MARK: - Private UI Properties
-    //    private let myView: UIView = {
-    //        let view = UIView()
-    //        view.backgroundColor = .white
-    //        view.translatesAutoresizingMaskIntoConstraints = false
-    //        return view
-    //    }()
-    
     private let labelTitle: UILabel = {
         let labelTitle = UILabel()
         labelTitle.text = "ПРАВИЛА ИГРЫ"
@@ -164,14 +156,8 @@ final class RulesView: UIView {
         addSubview(finalLabel)
     }
     
-    
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            //            topAnchor.constraint(equalTo: topAnchor, constant: 160),
-            //           leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
-            //            trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40),
-            //           bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100),
-            
             labelTitle.widthAnchor.constraint(equalToConstant: 225),
             labelTitle.heightAnchor.constraint(equalToConstant: 21),
             labelTitle.topAnchor.constraint(equalTo: topAnchor, constant: 22),
@@ -202,5 +188,4 @@ final class RulesView: UIView {
             finalLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20)
         ])
     }
-    
 }
