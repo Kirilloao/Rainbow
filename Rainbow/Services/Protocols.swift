@@ -19,6 +19,7 @@ protocol StatisticsDataSource {
     func saveGames()
     func getGames() -> [ResultsCardModel]
     func removeGames()
+    var count: Int { get }
 }
 
 protocol GameState {

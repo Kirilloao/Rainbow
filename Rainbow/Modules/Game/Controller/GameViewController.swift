@@ -2,7 +2,7 @@
 //  GameViewController.swift
 //  Rainbow
 //
-//  Created by Kirill Taraturin on 12.11.2023.
+//  Created by Nikita on 14.11.2023.
 //
 
 import UIKit
@@ -17,6 +17,7 @@ final class GameViewController: UIViewController {
     private var timer: Timer!
     private var viewTimer: Timer!
     private var totalTime = 0
+    private var initialTime = 0
     private var speedGame = 0
     private var isSubstrate = true
     private var isResume = false
@@ -54,12 +55,12 @@ final class GameViewController: UIViewController {
             self.speedGame = settings.speed
             self.colorView = GameView(isSubstrate: settings.isSubstrate)
         } else {
-            self.totalTime = 60 * dataSource.getSettings().gameTime
+            self.totalTime = dataSource.getSettings().gameTime
             self.speedGame = settings.speed
             self.isSubstrate = settings.isSubstrate
             self.colorView = GameView(isSubstrate: settings.isSubstrate)
         }
-      
+        self.initialTime = totalTime
         
         
         super.init(nibName: nil, bundle: nil)
@@ -82,10 +83,14 @@ final class GameViewController: UIViewController {
         configureView()
         setupSpeedButton()
         colorViewTimer()
+        
+        if totalTime == 0 {
+            print("hi")
+        }
+        
         if isResume, let game = dataSource.getGame() {
             colorView.frame = game.frame
             colorView.translatesAutoresizingMaskIntoConstraints = true
-
         } else {
             let (height, width) = getRandom()
             print(height, width)
@@ -142,7 +147,6 @@ final class GameViewController: UIViewController {
     func saveGame() {
         let frameView = self.colorView.frame
         let colorView = self.colorView.backgroundColor?.cgColor.components
-        let colorTitle = self.colorView.getLabelTextColor().cgColor.components
         let currentTime = self.totalTime
         let title = self.colorView.getTitle()
         let saveGa = Save(frame: frameView, viewColor: colorView!, isSubstrate: isSubstrate, time: currentTime, title: title)
@@ -152,7 +156,7 @@ final class GameViewController: UIViewController {
     //MARK: - Private methods
     
     private func timeCount(_ time: Int) {
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { Timer in
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] Timer in
             if self.totalTime > 0 {
                 self.totalTime -= 1
                 print(self.totalTime)
@@ -160,6 +164,13 @@ final class GameViewController: UIViewController {
             } else {
                 self.timer.invalidate()
                 self.viewTimer.invalidate()
+                let currentGame = ResultsCardModel(gameId: dataSource.count + 1, seconds: initialTime, speedRate: speedGame, rightCount: 10, totalCount: 20)
+                dataSource.addGame(currentGame)
+                let resultsModel = ResultsModel(dataSource: dataSource)
+                let vc = ResultsViewController(model: resultsModel)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
             }
         }
     }
@@ -198,7 +209,6 @@ final class GameViewController: UIViewController {
     private func colorViewTimer() {
         viewTimer = Timer.scheduledTimer(timeInterval: TimeInterval(speedGame), target: self, selector: #selector(toggleView), userInfo: nil, repeats: true)
     }
-    
     
     //MARK: - @objc methods
     
@@ -259,8 +269,8 @@ extension GameViewController {
     private func constraints() {
         
         NSLayoutConstraint.activate([
+            
             //Speed button constaints
-
             speedButton.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16),
             speedButton.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -34)
         ])

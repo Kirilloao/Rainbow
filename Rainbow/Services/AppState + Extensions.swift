@@ -21,6 +21,10 @@ extension AppState: SettingsDataSource {
 }
 
 extension AppState: StatisticsDataSource {
+    var count: Int {
+        games.count
+    }
+    
     func addGame(_ game: ResultsCardModel) {
         games.append(game)
         saveGames()
