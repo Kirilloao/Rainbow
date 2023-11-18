@@ -65,6 +65,7 @@ final class GameViewController: UIViewController {
             self.colorView = GameView(isSubstrate: settings.isSubstrate)
         }
         self.initialTime = totalTime
+        dataSource.deleteSavedGames()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -88,7 +89,6 @@ final class GameViewController: UIViewController {
         guard isFirstLayout else { return }
         isFirstLayout = false
         
-    
         constraints()
     }
         if isResume, let game = dataSource.getGame() {

@@ -54,5 +54,7 @@ extension AppState: GameState {
         defaults.loadObject(type: Save.self, for: .save)
     }
     
-    
+    func deleteSavedGames() {
+        defaults.deleteObject(for: .save)
+    }
 }

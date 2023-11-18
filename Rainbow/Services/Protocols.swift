@@ -25,4 +25,5 @@ protocol StatisticsDataSource {
 protocol GameState {
     func saveGame(_ game: Save)
     func getGame() -> Save?
+    func deleteSavedGames() 
 }
