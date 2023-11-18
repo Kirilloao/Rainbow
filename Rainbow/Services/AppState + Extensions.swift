@@ -21,18 +21,25 @@ extension AppState: SettingsDataSource {
 }
 
 extension AppState: StatisticsDataSource {
+    var count: Int {
+        games.count
+    }
+    
     func addGame(_ game: ResultsCardModel) {
         games.append(game)
         saveGames()
     }
     
     func saveGames() {
-        defaults.saveObject(object: [games], for: .results)
+        defaults.saveObject(object: games, for: .results)
     }
     
     func getGames() -> [ResultsCardModel] {
-        games
+        guard games.isEmpty else { return games }
+        games = defaults.loadObject(type: [ResultsCardModel].self, for: .results) ?? []
+        return games
     }
+    
     
     func removeGames() {
         games.removeAll()
@@ -50,5 +57,7 @@ extension AppState: GameState {
         defaults.loadObject(type: Save.self, for: .save)
     }
     
-    
+    func deleteSavedGames() {
+        defaults.deleteObject(for: .save)
+    }
 }

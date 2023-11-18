@@ -19,9 +19,13 @@ protocol StatisticsDataSource {
     func saveGames()
     func getGames() -> [ResultsCardModel]
     func removeGames()
+    var count: Int { get }
 }
 
 protocol GameState {
     func saveGame(_ game: Save)
     func getGame() -> Save?
+    func deleteSavedGames() 
 }
+
+

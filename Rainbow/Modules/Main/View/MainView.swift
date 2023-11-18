@@ -67,6 +67,9 @@ final class MainView: UIView {
     func resumeTarget(_ target: Any, action: Selector) {
         resume.addTarget(target, action: action, for: .touchUpInside)
     }
+    func toggleResumeButton(isEnabled: Bool) {
+        resume.isEnabled = isEnabled
+    }
     
     // MARK: - Private Methods
     private func setupView() {
