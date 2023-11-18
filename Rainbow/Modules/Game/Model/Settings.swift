@@ -11,4 +11,13 @@ struct Settings: Codable {
     var gameTime: Int
     var speed: Int
     var isSubstrate: Bool
+//    var taskCheck: Bool
+//    var lettersColors: [CGFloat]
+//    var letterSize: Int
+//    var lettersBackground: Bool
+//    var backgroundColor: Int
+//    var wordsPosition: Int
+    
+    
+    
 }
