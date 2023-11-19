@@ -10,7 +10,7 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     private let dataSource: SettingsDataSource
-    private var gameTimeValue = 2
+    private var gameTimeValue: Float = 2
     private var speedTimeValue = 5
     private var gameTimeSliderValue: Float = 2
     private var speedTimeSliderValue: Float = 5
@@ -44,9 +44,9 @@ class SettingsViewController: UIViewController {
         slider.minimumValue = 1
         slider.maximumValue = 10
         slider.tintColor = .orange
-        slider.value = self.gameTimeSliderValue
+        slider.value = self.gameTimeValue
         
-        self.timeValueLabel.text = "\(self.gameTimeValue)"
+        self.timeValueLabel.text = "\(Int(self.gameTimeValue))"
         
         slider.addTarget(self, action: #selector(gameTimeSliderValueChanged(_:)), for: .valueChanged)
         
@@ -66,14 +66,14 @@ class SettingsViewController: UIViewController {
     }()
     
     @objc private func gameTimeSliderValueChanged(_ sender: UISlider) {
-        let value = Int(sender.value)
-        self.gameTimeSliderValue = sender.value
-        gameTimeValue = value
+//        let value = Int(sender.value)
+        self.gameTimeValue = sender.value
+//        gameTimeValue = Float(value)
         updateTimeLabel()
     }
     
     private func updateTimeLabel() {
-        self.timeValueLabel.text = "\(gameTimeValue)"
+        self.timeValueLabel.text = "\(Int(gameTimeValue))"
     }
     
     private lazy var speedTimeView: SettingView = {
@@ -320,7 +320,7 @@ class SettingsViewController: UIViewController {
     }
     
     func saveSettings() {
-        let gameTime = gameTimeValue
+        let gameTime = Int(gameTimeValue) * 60
         let speed = speedTimeValue
         let isSubstruct = isSubstrate
         let time = gameTimeSliderValue
@@ -381,7 +381,7 @@ class SettingsViewController: UIViewController {
     init(dataSource: SettingsDataSource) {
         self.dataSource = dataSource
         let settings = dataSource.getSettings()
-        self.gameTimeValue = settings.gameTime
+        self.gameTimeValue = Float(settings.gameTime / 60)
         self.gameTimeSliderValue = settings.gameTimeValueSlider
         self.speedTimeSliderValue = settings.speedTimeValueSlider
         self.speedTimeValue = settings.speed
