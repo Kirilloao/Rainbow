@@ -18,6 +18,6 @@ final class AppState {
         let backgroundColor = UIColor.grayBackgroundColor.cgColor.components!
         print(buttonColor)
 //        defaults.deleteObject(for: .settings)
-        self.defaultSettings = Settings(gameTime: 120, gameTimeValueSlider: 2, speedTimeValueSlider: 5, speed: 5, isSubstrate: true, isBackgroundNeed: true, backgroundColor: backgroundColor, buttonColors: buttonColor)
+        self.defaultSettings = Settings(gameTime: 120, gameTimeValueSlider: 2, speedTimeValueSlider: 5, speed: 5, isSubstrate: true, isBackgroundNeed: true, backgroundColor: backgroundColor, buttonColors: buttonColor, fontSize: 25)
     }
 }

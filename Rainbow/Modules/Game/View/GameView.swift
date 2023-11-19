@@ -43,10 +43,10 @@ class GameView: UIView {
         viewLabel.textColor
     }
     
-    func changeColorsAndTitle(color: UIColor, title: String) {
+    func changeColorsAndTitle(color: UIColor, title: String, fontSize: CGFloat) {
         checkLetterColor(with: color)
         viewLabel.text = title
-        viewLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        viewLabel.font = UIFont.boldSystemFont(ofSize: fontSize)
         checkButton.setImage(nil, for: .normal)
         checkButton.layer.cornerRadius = 15
     }
@@ -86,6 +86,7 @@ class GameView: UIView {
     private func checkLetterColor(with color: UIColor) {
         if isSubstrate {
             self.backgroundColor = color
+            viewLabel.textColor = .white
             checkButton.backgroundColor = .white
             makeShadovForView()
         } else {
