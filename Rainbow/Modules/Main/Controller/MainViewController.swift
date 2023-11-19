@@ -21,6 +21,12 @@ final class MainViewController: UIViewController {
         addTargets()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let isEnabled = !(appState.getGame() == nil)
+        mainView.toggleResumeButton(isEnabled: isEnabled)
+    }
+    
     // MARK: - Private Actions
     //Settings button tapped
     @objc private func settingsAction() {
