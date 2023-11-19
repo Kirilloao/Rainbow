@@ -184,15 +184,20 @@ class SettingsViewController: UIViewController {
         return stackView
     }()
     
+    
+    private lazy var stepperLabel: UILabel = {
+        let stepperLabel = UILabel(text: "Aa",font: .systemFont(ofSize: fontSize), color: .black)
+        stepperLabel.text = "Aa"
+        return stepperLabel
+    }()
+    
     @objc private func colorButtonTapped(_ sender: UIButton) {
         sender.subviews.forEach { view in
             if let checkmarkView = view as? UIImageView {
                 checkmarkView.isHidden = !checkmarkView.isHidden
                 if let index = selectedColors.firstIndex(where: { $0.cgColor.components == sender.backgroundColor?.cgColor.components }) {
-                    print("remove")
                     selectedColors.remove(at: index)
                 } else if let color = sender.backgroundColor {
-                    print("append")
                     selectedColors.append(color)
                 }
             }
@@ -213,11 +218,9 @@ class SettingsViewController: UIViewController {
     
     private lazy var letterSizeView: SettingView = {
         let view = SettingView(labelText: "размер букв")
-        let stepperLabel = UILabel(text: "Aa",font: .systemFont(ofSize: fontSize), color: .black)
-        stepperLabel.text = "Aa"
         let stepper = UIStepper()
         stepper.minimumValue = 15
-        stepper.maximumValue = 20
+        stepper.maximumValue = 25
         stepper.stepValue = 1
         stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
         
@@ -226,7 +229,7 @@ class SettingsViewController: UIViewController {
             
             stepperLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             stepperLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-            stepperLabel.widthAnchor.constraint(equalToConstant: 27),
+            stepperLabel.widthAnchor.constraint(equalToConstant: 29),
             stepper.trailingAnchor.constraint(equalTo: stepperLabel.leadingAnchor, constant: -20),
             stepper.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             stepper.widthAnchor.constraint(lessThanOrEqualToConstant: 110)
@@ -237,6 +240,7 @@ class SettingsViewController: UIViewController {
     
     @objc private func stepperValueChanged(_ sender: UIStepper) {
         fontSize = CGFloat(sender.value)
+        stepperLabel.font = .systemFont(ofSize: fontSize)
     }
     
     private lazy var letterBackgroundView: SettingView = {
@@ -266,7 +270,7 @@ class SettingsViewController: UIViewController {
         label.numberOfLines = 1
         
         let segmentedControl = UISegmentedControl(items: ["Серый", "Белый", "Черный"])
-        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.selectedSegmentIndex = indexForbackgroundColor
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
         
         view.addSubviews(segmentedControl,label)
@@ -284,14 +288,27 @@ class SettingsViewController: UIViewController {
         return view
     }()
     
+    private var indexForbackgroundColor: Int {
+        switch bgColor.cgColor.components {
+        case UIColor.grayBackgroundColor.cgColor.components:
+            return 0
+        case UIColor.whiteBackGroundColor.cgColor.components:
+            return 1
+        case UIColor.blackGameColor.cgColor.components:
+            return 2
+        default:
+            return 0
+        }
+    }
+    
     @objc private func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             bgColor = .grayBackgroundColor
         case 1:
-            bgColor = .white
+            bgColor = .whiteBackGroundColor
         case 2:
-            bgColor = .black
+            bgColor = .blackGameColor
         default:
             return
         }
@@ -334,8 +351,7 @@ class SettingsViewController: UIViewController {
         let bg = lettersBackgroundEnabled
         let bgColor = bgColor.cgColor.components
         let buttonColors: [[CGFloat]] = selectedColors.compactMap { $0.cgColor.components }
-        print("†† \(buttonColors)")
-        let settings = Settings(gameTime: gameTime, gameTimeValueSlider: time,speedTimeValueSlider: speedTime, speed: speed, isSubstrate: isSubstruct, isBackgroundNeed: bg, backgroundColor: bgColor!, buttonColors: buttonColors)
+        let settings = Settings(gameTime: gameTime, gameTimeValueSlider: time,speedTimeValueSlider: speedTime, speed: speed, isSubstrate: isSubstruct, isBackgroundNeed: bg, backgroundColor: bgColor!, buttonColors: buttonColors, fontSize: fontSize)
         dataSource.saveSettings(settings)
         
         print(settings)
@@ -381,7 +397,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = bgColor
+        view.backgroundColor = .grayBackgroundColor
         navigationItem.title = "Настройки"
         setupUI()
     }

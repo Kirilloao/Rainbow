@@ -22,6 +22,9 @@ final class GameViewController: UIViewController {
     private var isSubstrate = true
     private var isResume = false
     private var isFirstLayout = true
+    private var fontSize: CGFloat = 16
+    private var backgroundColor: UIColor
+    
     private let maxSpeedGame = 5
     private let colorViewHeight: CGFloat = 40
     private let colorViewWidth: CGFloat = 238
@@ -59,12 +62,20 @@ final class GameViewController: UIViewController {
             self.speedGame = savedGame.speedGame
             self.colorView = GameView(isSubstrate: settings.isBackgroundNeed)
             self.initialTime = Int(settings.gameTime)
+            self.fontSize = CGFloat(settings.fontSize)
+            let cgfloatColor = settings.backgroundColor
+            let backgroundColor = UIColor(red: cgfloatColor[0], green: cgfloatColor[1], blue: cgfloatColor[2], alpha: cgfloatColor[3])
+            self.backgroundColor = backgroundColor
         } else {
             self.totalTime = Int(dataSource.getSettings().gameTime)
             self.speedGame = settings.speed
             self.isSubstrate = settings.isBackgroundNeed
             self.colorView = GameView(isSubstrate: settings.isBackgroundNeed)
             self.initialTime = totalTime
+            self.fontSize = CGFloat(settings.fontSize)
+            let cgfloatColor = settings.backgroundColor
+            let backgroundColor = UIColor(red: cgfloatColor[0], green: cgfloatColor[1], blue: cgfloatColor[2], alpha: cgfloatColor[3])
+            self.backgroundColor = backgroundColor
         }
         dataSource.deleteSavedGames()
         super.init(nibName: nil, bundle: nil)
@@ -118,8 +129,9 @@ final class GameViewController: UIViewController {
     
     func configureView() {
         //Setup views
-        self.view.backgroundColor = .grayBackgroundColor
-        rightBarButton.tintColor = .black
+        self.view.backgroundColor = backgroundColor
+        let isBlack = backgroundColor.cgColor.components == UIColor.blackGameColor.cgColor.components
+        rightBarButton.tintColor = isBlack ? .white : .black
         navigationItem.rightBarButtonItem = rightBarButton
         self.view.addSubviews(
             colorView,
@@ -138,7 +150,8 @@ final class GameViewController: UIViewController {
         }
         guard let color = color else { return }
         guard let title = title else { return }
-        colorView.changeColorsAndTitle(color: color, title: title)
+        let fontSize = dataSource.getSettings().fontSize
+        colorView.changeColorsAndTitle(color: color, title: title, fontSize: fontSize)
     }
     
     func saveGame() {
@@ -256,7 +269,8 @@ final class GameViewController: UIViewController {
        
         guard let uiColor = dataSource.getSettings().buttonColors.randomElement() else { return }
         let color = UIColor(red: uiColor[0], green: uiColor[1], blue: uiColor[2], alpha: uiColor[3])
-        colorView.changeColorsAndTitle(color: color, title: title)
+        let fontSize = dataSource.getSettings().fontSize
+        colorView.changeColorsAndTitle(color: color, title: title, fontSize: fontSize)
     }
 }
 

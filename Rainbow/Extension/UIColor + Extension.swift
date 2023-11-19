@@ -82,5 +82,9 @@ extension UIColor {
     static var blackGameColor: UIColor {
         UIColor(named: "blackGameColor") ?? .clear
     }
+    
+    static var whiteBackGroundColor: UIColor {
+        UIColor(named: "whiteBackGroundColor") ?? .clear
+    }
 }
 
