@@ -327,7 +327,8 @@ class SettingsViewController: UIViewController {
         let speedTime = speedTimeSliderValue
         let bg = lettersBackgroundEnabled
         let bgColor = bgColor.cgColor.components
-        let settings = Settings(gameTime: gameTime, gameTimeValueSlider: time,speedTimeValueSlider: speedTime, speed: speed, isSubstrate: isSubstruct, isBackgroundNeed: bg, backgroundColor: bgColor!)
+        let buttonColors: [[CGFloat]] = selectedColors.compactMap { $0.cgColor.components }
+        let settings = Settings(gameTime: gameTime, gameTimeValueSlider: time,speedTimeValueSlider: speedTime, speed: speed, isSubstrate: isSubstruct, isBackgroundNeed: bg, backgroundColor: bgColor!, buttonColors: buttonColors)
         dataSource.saveSettings(settings)
         
         print(settings)
@@ -387,7 +388,10 @@ class SettingsViewController: UIViewController {
         self.speedTimeValue = settings.speed
         self.isSubstrate = settings.isSubstrate
         self.lettersBackgroundEnabled = settings.isBackgroundNeed
-        
+        self.bgColor = UIColor(red: settings.backgroundColor[0], green: settings.backgroundColor[1], blue: settings.backgroundColor[2], alpha: settings.backgroundColor[3])
+        self.selectedColors = settings.buttonColors.map({ color in
+            UIColor(red: color[0], green: color[1], blue: color[2], alpha: color[3])
+        })
         super.init(nibName: nil, bundle: nil)
     }
     

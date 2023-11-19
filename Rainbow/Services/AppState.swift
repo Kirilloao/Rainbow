@@ -5,13 +5,19 @@
 //  Created by Kirill Taraturin on 16.11.2023.
 //
 
-import Foundation
+import UIKit
 
 final class AppState {
     let defaults = UserDefaultsManager()
-    let defaultSettings = Settings(gameTime: 120, gameTimeValueSlider: 2, speedTimeValueSlider: 5, speed: 5, isSubstrate: true, isBackgroundNeed: true, backgroundColor: [])
-//     let defaultSettings = Settings(gameTime: 120, speed: 5, isSubstrate: true)
+    let defaultSettings: Settings
+    let buttonColors: [UIColor] = [ .greenGameColor, .darkGreenGameColor, .pinkGameColor, .lightBlueGameColor, .darkRedGameColor, .purpleGameColor, .blueGameColor, .orangeGameColor, .redGameColor, .yellowGameColor, .black, .grayGameColor]
     var games = [ResultsCardModel]()
     
-    init() {}
+    init() {
+        let buttonColor = buttonColors.compactMap { color in
+            color.cgColor.components
+        }
+        let backgroundColor = UIColor.grayBackgroundColor.cgColor.components!
+        self.defaultSettings = Settings(gameTime: 120, gameTimeValueSlider: 2, speedTimeValueSlider: 5, speed: 5, isSubstrate: true, isBackgroundNeed: true, backgroundColor: backgroundColor, buttonColors: buttonColor)
+    }
 }
