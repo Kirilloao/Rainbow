@@ -19,7 +19,7 @@
 * [Kirilloao *(teamleader)*](https://github.com/Kirilloao)
 * [YO1901](https://github.com/YO1901)
 * [AnnaZaitsava](https://github.com/AnnaZaitsava)
-* [khariJuli](https://github.com/khariJuli)
+* [KhariJuli](https://github.com/khariJuli)
 * [Nikita06122002](https://github.com/Nikita06122002)
 * [SemennikovNA](https://github.com/SemennikovNA)
 
