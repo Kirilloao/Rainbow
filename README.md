@@ -39,7 +39,7 @@
 ## Video demonstration of the application
 
 <p align="center">
-  <img src="LINK" width="300"/>
+  <img src="https://github.com/Kirilloao/Rainbow/blob/develop/Rainbow/SupportingFiles/Assets.xcassets/Gif/ezgif.com-video-to-gif.dataset/ezgif.com-video-to-gif.gif" width="300"/>
 </p>
 
 
