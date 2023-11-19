@@ -58,9 +58,9 @@ final class GameViewController: UIViewController {
             self.isSubstrate = savedGame.isSubstrate
             self.speedGame = savedGame.speedGame
             self.colorView = GameView(isSubstrate: settings.isBackgroundNeed)
-            self.initialTime = settings.gameTime
+            self.initialTime = Int(settings.gameTime)
         } else {
-            self.totalTime = dataSource.getSettings().gameTime
+            self.totalTime = Int(dataSource.getSettings().gameTime)
             self.speedGame = settings.speed
             self.isSubstrate = settings.isBackgroundNeed
             self.colorView = GameView(isSubstrate: settings.isBackgroundNeed)
