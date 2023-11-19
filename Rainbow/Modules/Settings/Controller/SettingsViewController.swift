@@ -139,18 +139,17 @@ class SettingsViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 5
-        let colors: [UIColor] =  [ .greenGameColor, .darkGreenGameColor, .pinkGameColor, .lightBlueGameColor, .darkRedGameColor, .purpleGameColor, .blueGameColor, .orangeGameColor, .redGameColor, .yellowGameColor, .black, .grayGameColor]
         
         var rowStackView: UIStackView?
         
-        for (index, color) in colors.enumerated() {
+        for (index, color) in dataSource.colors.enumerated() {
             let button = UIButton()
             button.translatesAutoresizingMaskIntoConstraints = false
             button.backgroundColor = color
             
             let checkmarkView = UIImageView(image: UIImage(systemName: "checkmark"))
             checkmarkView.tintColor = .white
-            checkmarkView.isHidden = false
+            checkmarkView.isHidden = !selectedColors.contains(color)
             button.addSubview(checkmarkView)
             checkmarkView.translatesAutoresizingMaskIntoConstraints = false
             
@@ -189,6 +188,13 @@ class SettingsViewController: UIViewController {
         sender.subviews.forEach { view in
             if let checkmarkView = view as? UIImageView {
                 checkmarkView.isHidden = !checkmarkView.isHidden
+                if let index = selectedColors.firstIndex(where: { $0.cgColor.components == sender.backgroundColor?.cgColor.components }) {
+                    print("remove")
+                    selectedColors.remove(at: index)
+                } else if let color = sender.backgroundColor {
+                    print("append")
+                    selectedColors.append(color)
+                }
             }
         }
     }
@@ -328,6 +334,7 @@ class SettingsViewController: UIViewController {
         let bg = lettersBackgroundEnabled
         let bgColor = bgColor.cgColor.components
         let buttonColors: [[CGFloat]] = selectedColors.compactMap { $0.cgColor.components }
+        print("†† \(buttonColors)")
         let settings = Settings(gameTime: gameTime, gameTimeValueSlider: time,speedTimeValueSlider: speedTime, speed: speed, isSubstrate: isSubstruct, isBackgroundNeed: bg, backgroundColor: bgColor!, buttonColors: buttonColors)
         dataSource.saveSettings(settings)
         
