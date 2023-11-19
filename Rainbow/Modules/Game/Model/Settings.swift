@@ -9,12 +9,14 @@ import Foundation
 
 struct Settings: Codable {
     var gameTime: Int
+    var gameTimeValueSlider: Float
+    var speedTimeValueSlider: Float
     var speed: Int
     var isSubstrate: Bool
+    var isBackgroundNeed: Bool
 //    var taskCheck: Bool
 //    var lettersColors: [CGFloat]
-//    var letterSize: Int
-//    var lettersBackground: Bool
+//    var fontSize: Int
 //    var backgroundColor: Int
 //    var wordsPosition: Int
     
