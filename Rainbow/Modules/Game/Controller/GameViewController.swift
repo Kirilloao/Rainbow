@@ -2,7 +2,7 @@
 //  GameViewController.swift
 //  Rainbow
 //
-//  Created by Kirill Taraturin on 12.11.2023.
+//  Created by Nikita on 14.11.2023.
 //
 
 import UIKit
@@ -17,11 +17,16 @@ final class GameViewController: UIViewController {
     private var timer: Timer!
     private var viewTimer: Timer!
     private var totalTime = 0
+    private var initialTime = 0
     private var speedGame = 0
     private var isSubstrate = true
     private var isResume = false
-    private var topInset = CGFloat.zero
-    private var bottomInset = CGFloat.zero
+    private var isFirstLayout = true
+    private let maxSpeedGame = 5
+    private let colorViewHeight: CGFloat = 40
+    private let colorViewWidth: CGFloat = 238
+    private let speedButtonHeight: CGFloat = 73
+    private let speedButtonWidth: CGFloat = 75
     
     //MARK: - UI Elements
     
@@ -30,14 +35,14 @@ final class GameViewController: UIViewController {
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.frame = .zero
         btn.backgroundColor = .red
-        btn.widthAnchor.constraint(equalToConstant: 75).isActive = true
-        btn.heightAnchor.constraint(equalToConstant: 73).isActive = true
+        btn.widthAnchor.constraint(equalToConstant: speedButtonWidth).isActive = true
+        btn.heightAnchor.constraint(equalToConstant: speedButtonHeight).isActive = true
         return btn
     }()
     
     //Get bounds size
-    private lazy var mainViewHeight = Int(UIScreen.main.bounds.height) - Int(bottomInset + topInset + 40)
-    private lazy var mainViewWidth = Int(UIScreen.main.bounds.width - 238)
+    private lazy var mainViewHeight = Int(UIScreen.main.bounds.height) - Int(view.safeAreaInsets.bottom + colorViewHeight)
+    private lazy var mainViewWidth = Int(UIScreen.main.bounds.width - colorViewWidth - 6)
     
     //Navigation bar button
     private lazy var rightBarButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(pauseButtonTapped))
@@ -51,17 +56,17 @@ final class GameViewController: UIViewController {
         if resume, let savedGame = dataSource.getGame() {
             self.totalTime = savedGame.time
             self.isSubstrate = savedGame.isSubstrate
-            self.speedGame = settings.speed
+            self.speedGame = savedGame.speedGame
             self.colorView = GameView(isSubstrate: settings.isSubstrate)
+            self.initialTime = settings.gameTime
         } else {
-            self.totalTime = 60 * dataSource.getSettings().gameTime
+            self.totalTime = dataSource.getSettings().gameTime
             self.speedGame = settings.speed
             self.isSubstrate = settings.isSubstrate
             self.colorView = GameView(isSubstrate: settings.isSubstrate)
+            self.initialTime = totalTime
         }
-      
-        
-        
+        dataSource.deleteSavedGames()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -69,37 +74,18 @@ final class GameViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
- 
-    
     //MARK: - Life cylce
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "\(totalTime / 60):00"
+        self.navigationItem.title = formatTime(totalTime)
         
         //Call functions
         timeCount(totalTime)
         configureView()
         setupSpeedButton()
         colorViewTimer()
-        if isResume, let game = dataSource.getGame() {
-            colorView.frame = game.frame
-            colorView.translatesAutoresizingMaskIntoConstraints = true
-
-        } else {
-            let (height, width) = getRandom()
-            print(height, width)
-            colorView.frame = CGRect(x: width, y: height, width: 238, height: 40)
-            colorView.translatesAutoresizingMaskIntoConstraints = true
-        }
-  
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
         constraints()
-        
-       
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -111,6 +97,21 @@ final class GameViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         saveGame()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        guard isFirstLayout else { return }
+        isFirstLayout = false
+        
+        //Check saved games
+        if isResume, let game = dataSource.getGame() {
+            colorView.frame = game.frame
+        } else {
+            let (height, width) = getRandom()
+            colorView.frame = CGRect(x: width, y: height, width: colorViewWidth, height: colorViewHeight)
+        }
+        colorView.translatesAutoresizingMaskIntoConstraints = true
     }
     
     //MARK: - Methods
@@ -134,25 +135,26 @@ final class GameViewController: UIViewController {
             color = storage.viewsColor.randomElement()
             title = storage.viewsTitle.randomElement()
         }
-        guard let textColor = color else { return }
+        guard let color = color else { return }
         guard let title = title else { return }
-        colorView.changeColorsAndTitle(textColor: textColor, title: title)
+        colorView.changeColorsAndTitle(color: color, title: title)
     }
     
     func saveGame() {
+        guard totalTime > 0 else { return }
         let frameView = self.colorView.frame
         let colorView = self.colorView.backgroundColor?.cgColor.components
-        let colorTitle = self.colorView.getLabelTextColor().cgColor.components
         let currentTime = self.totalTime
+        let speedGame = self.speedGame
         let title = self.colorView.getTitle()
-        let saveGa = Save(frame: frameView, viewColor: colorView!, isSubstrate: isSubstrate, time: currentTime, title: title)
-        dataSource.saveGame(saveGa)
+        let saveGame = Save(frame: frameView, viewColor: colorView!, isSubstrate: isSubstrate, speedGame: speedGame, time: currentTime, title: title)
+        dataSource.saveGame(saveGame)
     }
     
     //MARK: - Private methods
     
     private func timeCount(_ time: Int) {
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { Timer in
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] Timer in
             if self.totalTime > 0 {
                 self.totalTime -= 1
                 print(self.totalTime)
@@ -160,6 +162,14 @@ final class GameViewController: UIViewController {
             } else {
                 self.timer.invalidate()
                 self.viewTimer.invalidate()
+                let currentGame = ResultsCardModel(gameId: dataSource.count + 1, seconds: initialTime, speedRate: maxSpeedGame / speedGame, rightCount: 10, totalCount: 20)
+                dataSource.addGame(currentGame)
+                dataSource.deleteSavedGames()
+                let resultsModel = ResultsModel(dataSource: dataSource)
+                let vc = ResultsViewController(model: resultsModel)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
             }
         }
     }
@@ -168,7 +178,7 @@ final class GameViewController: UIViewController {
         //Speed button
         speedButton.titleLabel?.font = UIFont.systemFont(ofSize: 25)
         speedButton.titleLabel?.textAlignment = .center
-        speedButton.setTitle(storage.speedButtonTitle[0], for: .normal)
+        speedButton.setTitle("X\(maxSpeedGame - speedGame + 1)", for: .normal)
         speedButton.layer.cornerRadius = 36
         speedButton.layer.shadowColor = UIColor.black.cgColor
         speedButton.layer.shadowOpacity = 0.8
@@ -179,14 +189,15 @@ final class GameViewController: UIViewController {
     
     private func getRandom() -> (CGFloat, CGFloat) {
         var height = CGFloat(Int.random(in: Int(view.safeAreaInsets.top)...mainViewHeight))
-        var widht = CGFloat(Int.random(in: Int(view.safeAreaInsets.left)...mainViewWidth))
-        let heightDifference = UIScreen.main.bounds.height - view.safeAreaInsets.bottom - 73
-        let widhtDifference = UIScreen.main.bounds.width - 313
-        if height >= heightDifference && widht >= widhtDifference {
-            widht = widhtDifference
+        var width = CGFloat(Int.random(in: Int(view.safeAreaInsets.left + 6)...mainViewWidth))
+        let heightDifference = UIScreen.main.bounds.height - view.safeAreaInsets.top - speedButtonHeight
+        let widthDifference = UIScreen.main.bounds.width - colorViewWidth - speedButtonWidth
+    
+        if height >= heightDifference && width >= widthDifference {
             height = heightDifference
+            width = widthDifference
         }
-        return (height, widht)
+        return (height, width)
     }
     
     private func formatTime(_ totalSeconds: Int) -> String {
@@ -199,6 +210,10 @@ final class GameViewController: UIViewController {
         viewTimer = Timer.scheduledTimer(timeInterval: TimeInterval(speedGame), target: self, selector: #selector(toggleView), userInfo: nil, repeats: true)
     }
     
+    private func changeViewTimer() {
+        viewTimer.invalidate()
+        colorViewTimer()
+    }
     
     //MARK: - @objc methods
     
@@ -220,34 +235,25 @@ final class GameViewController: UIViewController {
     }
     
     @objc func speedButtonTapped() {
-        switch self.storage.valueTitle {
-        case 0:
-            speedButton.setTitle(self.storage.speedButtonTitle[self.storage.valueTitle], for: .normal)
-            self.storage.valueTitle += 1
+        switch speedGame {
+        case (2...5):
+            self.speedGame -= 1
         case 1:
-            speedButton.setTitle(self.storage.speedButtonTitle[self.storage.valueTitle], for: .normal)
-            self.storage.valueTitle += 1
-        case 2:
-            speedButton.setTitle(self.storage.speedButtonTitle[self.storage.valueTitle], for: .normal)
-            self.storage.valueTitle += 1
-        case 3:
-            speedButton.setTitle(self.storage.speedButtonTitle[self.storage.valueTitle], for: .normal)
-            self.storage.valueTitle += 1
-        case 4:
-            speedButton.setTitle(self.storage.speedButtonTitle[self.storage.valueTitle], for: .normal)
-            self.storage.valueTitle = 0
+            self.speedGame = self.maxSpeedGame
         default:
             print("error")
         }
+        speedButton.setTitle("X\(maxSpeedGame - speedGame + 1)", for: .normal)
+        self.changeViewTimer()
     }
     
     @objc func toggleView() {
         let (height, width) = getRandom()
         print(height, width)
-        colorView.frame = CGRect(x: width, y: height, width: 238, height: 40)
+        colorView.frame = CGRect(x: width, y: height, width: colorViewWidth, height: colorViewHeight)
         guard let title = storage.viewsTitle.randomElement() else { return }
-        guard let textColor = storage.viewsColor.randomElement() else { return }
-        colorView.changeColorsAndTitle(textColor: textColor, title: title)
+        guard let color = storage.viewsColor.randomElement() else { return }
+        colorView.changeColorsAndTitle(color: color, title: title)
     }
 }
 
@@ -259,8 +265,8 @@ extension GameViewController {
     private func constraints() {
         
         NSLayoutConstraint.activate([
+            
             //Speed button constaints
-
             speedButton.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16),
             speedButton.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -34)
         ])

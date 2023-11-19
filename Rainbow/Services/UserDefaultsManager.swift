@@ -39,6 +39,11 @@ final class UserDefaultsManager {
         let deconder = JSONDecoder()
         return try? deconder.decode(type, from: data)
     }
+    
+    //MARK: - Delete Methods
+    func deleteObject(for key: Key) {
+        defaults.removeObject(forKey: key.rawValue)
+    }
 }
 
 

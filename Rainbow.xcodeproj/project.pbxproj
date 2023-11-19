@@ -24,6 +24,7 @@
 		3CADADA12B061D7700D39C6A /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADADA02B061D7700D39C6A /* UserDefaultsManager.swift */; };
 		3CADADA32B068D2500D39C6A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADADA22B068D2500D39C6A /* AppState.swift */; };
 		3CADADA52B068EA400D39C6A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADADA42B068EA400D39C6A /* Settings.swift */; };
+		3CADADA72B08CEC000D39C6A /* RulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADADA62B08CEC000D39C6A /* RulesView.swift */; };
 		433CD84F2B03D8DB00D76A01 /* ResultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CD84E2B03D8DB00D76A01 /* ResultsModel.swift */; };
 		433CD8512B03D95A00D76A01 /* ResultsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CD8502B03D95A00D76A01 /* ResultsCardView.swift */; };
 		433CD8532B03D9DC00D76A01 /* ResultsCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CD8522B03D9DC00D76A01 /* ResultsCardModel.swift */; };
@@ -60,6 +61,7 @@
 		3CADADA02B061D7700D39C6A /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		3CADADA22B068D2500D39C6A /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		3CADADA42B068EA400D39C6A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		3CADADA62B08CEC000D39C6A /* RulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesView.swift; sourceTree = "<group>"; };
 		433CD84E2B03D8DB00D76A01 /* ResultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsModel.swift; sourceTree = "<group>"; };
 		433CD8502B03D95A00D76A01 /* ResultsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCardView.swift; sourceTree = "<group>"; };
 		433CD8522B03D9DC00D76A01 /* ResultsCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCardModel.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 		FA054BFE2B02A34E007DD777 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3CADADA62B08CEC000D39C6A /* RulesView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				433CD8512B03D95A00D76A01 /* ResultsCardView.swift in Sources */,
 				FA054BFA2B029CB6007DD777 /* UIImage + Extension.swift in Sources */,
 				433CD84F2B03D8DB00D76A01 /* ResultsModel.swift in Sources */,
+				3CADADA72B08CEC000D39C6A /* RulesView.swift in Sources */,
 				433CD8532B03D9DC00D76A01 /* ResultsCardModel.swift in Sources */,
 				FA054BFB2B029CB6007DD777 /* UIView + Extension.swift in Sources */,
 				1E38281A2B07D51E008C1FDD /* Storage.swift in Sources */,

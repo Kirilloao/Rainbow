@@ -44,8 +44,4 @@ final class Storage {
         "Желтый",
         "Зеленый"
     ]
-    
-    lazy var speedButtonTitle = ["X1", "X2", "X3", "X4", "X5"]
-    lazy var valueTitle = 0
-    
 }
