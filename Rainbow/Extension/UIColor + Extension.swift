@@ -78,5 +78,9 @@ extension UIColor {
     static var pinkGameColor: UIColor {
         UIColor(named: "pinkGameColor") ?? .clear
     }
+    
+    static var blackGameColor: UIColor {
+        UIColor(named: "blackGameColor") ?? .clear
+    }
 }
 

@@ -5,7 +5,7 @@
 //  Created by Yerlan Omarov on 17.11.2023.
 //
 
-import Foundation
+import UIKit
 
 extension AppState: SettingsDataSource {
     func getSettings() -> Settings {
@@ -17,6 +17,10 @@ extension AppState: SettingsDataSource {
 
     func saveSettings(_ settings: Settings) {
         defaults.saveObject(object: settings, for: .settings)
+    }
+    
+    var colors: [UIColor] {
+        buttonColors
     }
 }
 

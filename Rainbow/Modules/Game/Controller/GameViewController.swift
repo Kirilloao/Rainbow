@@ -132,8 +132,9 @@ final class GameViewController: UIViewController {
             color = UIColor(red: game.viewColor[0], green: game.viewColor[1] , blue: game.viewColor[2], alpha: game.viewColor[3])
             title = game.title
         } else {
-            color = storage.viewsColor.randomElement()
             title = storage.viewsTitle.randomElement()
+            guard let uiColor = dataSource.getSettings().buttonColors.randomElement() else { return }
+            color = UIColor(red: uiColor[0], green: uiColor[1], blue: uiColor[2], alpha: uiColor[3])
         }
         guard let color = color else { return }
         guard let title = title else { return }
@@ -252,7 +253,9 @@ final class GameViewController: UIViewController {
         print(height, width)
         colorView.frame = CGRect(x: width, y: height, width: colorViewWidth, height: colorViewHeight)
         guard let title = storage.viewsTitle.randomElement() else { return }
-        guard let color = storage.viewsColor.randomElement() else { return }
+       
+        guard let uiColor = dataSource.getSettings().buttonColors.randomElement() else { return }
+        let color = UIColor(red: uiColor[0], green: uiColor[1], blue: uiColor[2], alpha: uiColor[3])
         colorView.changeColorsAndTitle(color: color, title: title)
     }
 }
