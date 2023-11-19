@@ -149,7 +149,7 @@ class SettingsViewController: UIViewController {
             
             let checkmarkView = UIImageView(image: UIImage(systemName: "checkmark"))
             checkmarkView.tintColor = .white
-            checkmarkView.isHidden = !selectedColors.contains(color)
+            checkmarkView.isHidden = !selectedColors.contains(where: { $0.cgColor.components == color.cgColor.components })
             button.addSubview(checkmarkView)
             checkmarkView.translatesAutoresizingMaskIntoConstraints = false
             
