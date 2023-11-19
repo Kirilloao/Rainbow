@@ -15,7 +15,7 @@ struct Settings: Codable {
     var isSubstrate: Bool
     var isBackgroundNeed: Bool
     var backgroundColor: [CGFloat]
-//    var buttonColors: [CGFloat]
+    var buttonColors: [[CGFloat]]
 //    var fontSize: Int
 //    var wordsPosition: Int
     
