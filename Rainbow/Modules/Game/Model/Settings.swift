@@ -14,10 +14,9 @@ struct Settings: Codable {
     var speed: Int
     var isSubstrate: Bool
     var isBackgroundNeed: Bool
-//    var taskCheck: Bool
-//    var lettersColors: [CGFloat]
+    var backgroundColor: [CGFloat]
+//    var buttonColors: [CGFloat]
 //    var fontSize: Int
-//    var backgroundColor: Int
 //    var wordsPosition: Int
     
     

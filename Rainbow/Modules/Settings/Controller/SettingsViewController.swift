@@ -18,6 +18,7 @@ class SettingsViewController: UIViewController {
     private var isSubstrate = true
     private var lettersBackgroundEnabled = true
     private var fontSize = CGFloat(15)
+    private var bgColor = UIColor.grayBackgroundColor
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -36,7 +37,7 @@ class SettingsViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-        
+    
     private lazy var gameTimeView: SettingView = {
         let view = SettingView(labelText: "время игры")
         let slider = UISlider()
@@ -278,7 +279,16 @@ class SettingsViewController: UIViewController {
     }()
     
     @objc private func segmentedControlValueChanged(_ sender: UISegmentedControl) {
-        
+        switch sender.selectedSegmentIndex {
+        case 0:
+            bgColor = .grayBackgroundColor
+        case 1:
+            bgColor = .white
+        case 2:
+            bgColor = .black
+        default:
+            return
+        }
     }
     
     private lazy var wordsPosition: SettingView = {
@@ -316,14 +326,15 @@ class SettingsViewController: UIViewController {
         let time = gameTimeSliderValue
         let speedTime = speedTimeSliderValue
         let bg = lettersBackgroundEnabled
-        let settings = Settings(gameTime: gameTime, gameTimeValueSlider: time,speedTimeValueSlider: speedTime, speed: speed, isSubstrate: isSubstruct, isBackgroundNeed: bg)
+        let bgColor = bgColor.cgColor.components
+        let settings = Settings(gameTime: gameTime, gameTimeValueSlider: time,speedTimeValueSlider: speedTime, speed: speed, isSubstrate: isSubstruct, isBackgroundNeed: bg, backgroundColor: bgColor!)
         dataSource.saveSettings(settings)
         
         print(settings)
     }
     
     private func setupUI() {
-                
+        
         view.addSubviews(scrollView)
         scrollView.addSubviews(gameTimeView,speedTimeView,witchCheckView,letterColorsView,letterSizeView,letterBackgroundView,backgroundColorView,wordsPosition)
         
@@ -356,12 +367,13 @@ class SettingsViewController: UIViewController {
             
             wordsPosition.topAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: 14),
             wordsPosition.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            wordsPosition.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .grayBackgroundColor
+        view.backgroundColor = bgColor
         navigationItem.title = "Настройки"
         setupUI()
     }
@@ -388,6 +400,8 @@ class SettingsViewController: UIViewController {
         saveSettings()
     }
 }
+
+
 
 
 
