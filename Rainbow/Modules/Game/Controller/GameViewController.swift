@@ -57,13 +57,13 @@ final class GameViewController: UIViewController {
             self.totalTime = savedGame.time
             self.isSubstrate = savedGame.isSubstrate
             self.speedGame = savedGame.speedGame
-            self.colorView = GameView(isSubstrate: settings.isSubstrate)
+            self.colorView = GameView(isSubstrate: settings.isBackgroundNeed)
             self.initialTime = settings.gameTime
         } else {
             self.totalTime = dataSource.getSettings().gameTime
             self.speedGame = settings.speed
-            self.isSubstrate = settings.isSubstrate
-            self.colorView = GameView(isSubstrate: settings.isSubstrate)
+            self.isSubstrate = settings.isBackgroundNeed
+            self.colorView = GameView(isSubstrate: settings.isBackgroundNeed)
             self.initialTime = totalTime
         }
         dataSource.deleteSavedGames()
