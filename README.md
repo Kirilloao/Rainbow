@@ -27,7 +27,7 @@
 ## Screenshots
 <p align="center">
 <img src="https://github.com/Kirilloao/Rainbow/blob/develop/Rainbow/SupportingFiles/Assets.xcassets/Screenshots/MainVC.imageset/MainVC.png" width="180"/>
-<img src="https://github.com/Kirilloao/Rainbow/blob/develop/Rainbow/SupportingFiles/Assets.xcassets/Screenshots/GameVC.imageset/GameVC.png" width="180"/>
+<img src="https://github.com/Kirilloao/Rainbow/blob/develop/Rainbow/SupportingFiles/Assets.xcassets/Screenshots/Game_VC.imageset/Game_VC.png" width="180"/>
 <img src="https://github.com/Kirilloao/Rainbow/blob/develop/Rainbow/SupportingFiles/Assets.xcassets/Screenshots/ResultsVC.imageset/ResultsVC.png" width="180 /> 
 </p>
 
