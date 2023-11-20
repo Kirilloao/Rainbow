@@ -7,10 +7,14 @@
 
 import UIKit
 
+enum ButtonType {
+    case newgame, statistic, settings, rules, resume
+}
+
 final class MainView: UIView {
     
     // MARK: - Private UI Properties
-    private let image = UIImageView(image: "rainbowImage")
+    private let rainbowImageView = UIImageView(image: UIImage(named: "rainbowImage"))
     private let titleLabel = UILabel(
         text: "НЛП Игра",
         font: .systemFont(ofSize: 32)
@@ -38,8 +42,8 @@ final class MainView: UIView {
     private let rules = UIButton(image: "rules")
     
     // MARK: - Init
-    init() {
-        super.init(frame: .infinite)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupView()
         setupConstraints()
     }
@@ -49,24 +53,21 @@ final class MainView: UIView {
     }
     
     // MARK: - Public Methods
-    func newGameTarget(_ target: Any, action: Selector) {
-        newGame.addTarget(target, action: action, for: .touchUpInside)
-    }
     
-    func statTarget(_ target: Any, action: Selector) {
-        statistic.addTarget(target, action: action, for: .touchUpInside)
-    }
-    
-    func settingsTarget(_ target: Any, action: Selector) {
-        settings.addTarget(target, action: action, for: .touchUpInside)
-    }
-    
-    func rulesTarget(_ target: Any, action: Selector) {
-        rules.addTarget(target, action: action, for: .touchUpInside)
-    }
-    
-    func resumeTarget(_ target: Any, action: Selector) {
-        resume.addTarget(target, action: action, for: .touchUpInside)
+    func addTarget(to button: ButtonType, target: Any, action: Selector) {
+        switch button {
+            
+        case .newgame:
+            newGame.addTarget(target, action: action, for: .touchUpInside)
+        case .statistic:
+            statistic.addTarget(target, action: action, for: .touchUpInside)
+        case .settings:
+            settings.addTarget(target, action: action, for: .touchUpInside)
+        case .rules:
+            rules.addTarget(target, action: action, for: .touchUpInside)
+        case .resume:
+            resume.addTarget(target, action: action, for: .touchUpInside)
+        }
     }
     
     func toggleResumeButton(isEnabled: Bool) {
@@ -76,7 +77,7 @@ final class MainView: UIView {
     // MARK: - Private Methods
     private func setupView() {
         self.addSubviews(
-            image,
+            rainbowImageView,
             titleLabel,
             gameLabel,
             newGame, statistic,
@@ -89,11 +90,11 @@ final class MainView: UIView {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            image.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
-            image.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            rainbowImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
+            rainbowImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
-            titleLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 12),
-            titleLabel.centerXAnchor.constraint(equalTo: image.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: rainbowImageView.bottomAnchor, constant: 12),
+            titleLabel.centerXAnchor.constraint(equalTo: rainbowImageView.centerXAnchor),
             
             gameLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             gameLabel.centerXAnchor.constraint(equalTo: titleLabel.centerXAnchor),

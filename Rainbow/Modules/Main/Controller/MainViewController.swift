@@ -33,32 +33,34 @@ final class MainViewController: UIViewController {
     //Settings button tapped
     @objc private func settingsAction() {
         let vc = SettingsViewController(dataSource: appState)
-        navigationController?.pushViewController(vc, animated: true)
+        navigateToScreen(vc)
     }
     //Rules button tapped
     @objc private func rulesAction() {
-        let vc = RulesViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        navigateToScreen(RulesViewController())
     }
     //New game button tapped
     @objc private func newGameAction() {
         let vc = GameViewController(dataSource: appState)
-        navigationController?.pushViewController(vc, animated: true)
+        navigateToScreen(vc)
     }
     //Statistic button tapped
     @objc private func statisticAction() {
         let resultsModel = ResultsModel(dataSource: appState)
         let vc = ResultsViewController(model: resultsModel)
-        navigationController?.pushViewController(vc, animated: true)
+        navigateToScreen(vc)
     }
     
     @objc private func resumeGame() {
         let vc = GameViewController(dataSource: appState, resume: true)
-        navigationController?.pushViewController(vc, animated: true)
+        navigateToScreen(vc)
     }
-
     
     // MARK: - Private Methods
+    private func navigateToScreen(_ vc: UIViewController) {
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     private func setupView() {
         view.addSubviews(mainView)
     }
@@ -73,10 +75,10 @@ final class MainViewController: UIViewController {
     }
     
     private func addTargets() {
-        mainView.newGameTarget(self, action: #selector(newGameAction))
-        mainView.statTarget(self, action: #selector(statisticAction))
-        mainView.settingsTarget(self, action: #selector(settingsAction))
-        mainView.rulesTarget(self, action: #selector(rulesAction))
-        mainView.resumeTarget(self, action: #selector(resumeGame))
+        mainView.addTarget(to: .newgame, target: self, action: #selector(newGameAction))
+        mainView.addTarget(to: .statistic, target: self, action: #selector(statisticAction))
+        mainView.addTarget(to: .settings, target: self, action: #selector(settingsAction))
+        mainView.addTarget(to: .rules, target: self, action: #selector(rulesAction))
+        mainView.addTarget(to: .resume, target: self, action: #selector(resumeGame))
     }
 }

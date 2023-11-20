@@ -46,7 +46,6 @@ extension AppState: StatisticsDataSource {
         return games
     }
     
-    
     func removeGames() {
         games.removeAll()
         saveGames()

@@ -16,12 +16,10 @@ final class GameView: UIView {
     //MARK: - Private Properties
     private var isSubstrate = false
     
-    //MARK: - Life cycle
+    //MARK: - Init
     init(isSubstrate: Bool) {
         super.init(frame: .zero)
         self.isSubstrate = isSubstrate
-        
-        //Call functions
         setupView()
         constraints()
     }
@@ -53,13 +51,10 @@ final class GameView: UIView {
     
     //MARK: - Private methods
     private func setupView() {
-        //Setup view
         self.alpha = 0
         checkButton.layer.cornerRadius = 15
         self.layer.cornerRadius = 10
-        self.addSubviews(viewLabel) //checkButton)
-        
-        //Call functions
+        self.addSubviews(viewLabel)
         animatedView()
     }
     
@@ -95,11 +90,8 @@ final class GameView: UIView {
 //MARK: - Constraints
 extension GameView {
     
-    // Setup constraints
     private func constraints() {
-        
         NSLayoutConstraint.activate([
-            // View label constraints
             viewLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             viewLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             
