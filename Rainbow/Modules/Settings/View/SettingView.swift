@@ -7,13 +7,14 @@
 
 import UIKit
 
-
-class SettingView: UIView {
+final class SettingView: UIView {
     
+    // MARK: - Private UI Properties
     private var label = UILabel()
     private var control: UIControl?
     private var valueLabel = UILabel()
     
+    // MARK: - Init
     init(labelText: String) {
         label = UILabel()
         super.init(frame: .zero)
@@ -26,6 +27,7 @@ class SettingView: UIView {
         setupView()
     }
     
+    // MARK: - Private Methods
     private func setupView() {
         backgroundColor = .white
         layer.cornerRadius = 10
@@ -40,7 +42,7 @@ class SettingView: UIView {
         ])
     }
     
-    func addLabel(withText text: String) {
+    private func addLabel(withText text: String) {
         label.text = text
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 15)

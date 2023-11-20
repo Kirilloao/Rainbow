@@ -130,7 +130,6 @@ final class RulesView: UIView {
         return finalLabel
     }()
     
-    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - SettingsDataSource
 extension AppState: SettingsDataSource {
     func getSettings() -> Settings {
         if let data = defaults.loadObject(type: Settings.self, for: .settings)  {
@@ -24,6 +25,7 @@ extension AppState: SettingsDataSource {
     }
 }
 
+// MARK: - StatisticsDataSource
 extension AppState: StatisticsDataSource {
     var count: Int {
         games.count
@@ -51,10 +53,10 @@ extension AppState: StatisticsDataSource {
     }
 }
 
+// MARK: - GameState
 extension AppState: GameState {
     func saveGame(_ game: Save) {
         defaults.saveObject(object: game, for: .save)
-        
     }
     
     func getGame() -> Save? {

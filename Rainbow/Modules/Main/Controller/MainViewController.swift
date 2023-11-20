@@ -8,6 +8,8 @@
 import UIKit
 
 final class MainViewController: UIViewController {
+    
+    // MARK: - Private Properties
     private let appState = AppState()
     
     // MARK: - Private UI Properties
@@ -53,14 +55,12 @@ final class MainViewController: UIViewController {
     @objc private func resumeGame() {
         let vc = GameViewController(dataSource: appState, resume: true)
         navigationController?.pushViewController(vc, animated: true)
-        
     }
 
     
     // MARK: - Private Methods
     private func setupView() {
         view.addSubviews(mainView)
-        
     }
     
     private func setupConstraints() {
@@ -79,31 +79,4 @@ final class MainViewController: UIViewController {
         mainView.rulesTarget(self, action: #selector(rulesAction))
         mainView.resumeTarget(self, action: #selector(resumeGame))
     }
-}
-
-//MARK: - SwiftUI
-import SwiftUI
-struct Provider_MainViewController : PreviewProvider {
-    static var previews: some View {
-        ContainterView().edgesIgnoringSafeArea(.all)
-    }
-    
-    struct ContainterView: UIViewControllerRepresentable {
-        func makeUIViewController(context: Context) -> UIViewController {
-            return MainViewController()
-        }
-        
-        typealias UIViewControllerType = UIViewController
-        
-        
-        let viewController = MainViewController()
-        func makeUIViewController(context: UIViewControllerRepresentableContext<Provider_MainViewController.ContainterView>) -> MainViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: Provider_MainViewController.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<Provider_MainViewController.ContainterView>) {
-            
-        }
-    }
-    
 }

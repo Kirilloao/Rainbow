@@ -8,10 +8,14 @@
 import UIKit
 
 final class ResultsTableViewCell: UITableViewCell {
+    
+    // MARK: - Static Properties
     static let identifier = "ResultsTableViewCell"
     
+    // MARK: - Private Properties
     private var containerView = ResultsCardView()
     
+    // MARK: - Publc Methods
     func setupView(with model: ResultsCardModel) {
         containerView.setModel(with: model)
         
@@ -19,11 +23,11 @@ final class ResultsTableViewCell: UITableViewCell {
         setupConstraints()
     }
     
+    // MARK: - Private Methods
     private func setupContentView() {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(containerView)
         contentView.backgroundColor = .grayBackgroundColor
-        
     }
     
     private func setupConstraints() {

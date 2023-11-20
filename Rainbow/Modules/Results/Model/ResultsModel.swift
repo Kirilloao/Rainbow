@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - ResultsDataSource
 protocol ResultsDataSource {
     var title: String { get }
     var buttonTitle: String { get }
@@ -17,6 +18,7 @@ protocol ResultsDataSource {
     func removeStatistics()
 }
 
+// MARK: - ResultsModel
 final class ResultsModel: ResultsDataSource {
     private let dataSource: StatisticsDataSource
     private var statistics: [ResultsCardModel]

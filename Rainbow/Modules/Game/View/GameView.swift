@@ -7,19 +7,16 @@
 
 import UIKit
 
-class GameView: UIView {
+final class GameView: UIView {
     
-    //MARK: - UI Elements
-    
+    //MARK: - Private UI Elements
     private lazy var viewLabel = UILabel()
     private lazy var checkButton = UIButton()
     
-    //MARK: - Properties
-    
+    //MARK: - Private Properties
     private var isSubstrate = false
     
     //MARK: - Life cycle
-    
     init(isSubstrate: Bool) {
         super.init(frame: .zero)
         self.isSubstrate = isSubstrate
@@ -33,8 +30,7 @@ class GameView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Methods
-    
+    //MARK: - Public Methods
     func addTarget(target: Any, action: Selector) {
         checkButton.addTarget(target, action: action, for: .touchUpInside)
     }
@@ -56,7 +52,6 @@ class GameView: UIView {
     }
     
     //MARK: - Private methods
-    
     private func setupView() {
         //Setup view
         self.alpha = 0
@@ -97,8 +92,7 @@ class GameView: UIView {
     }
 }
 
-//MARK: - Extension
-
+//MARK: - Constraints
 extension GameView {
     
     // Setup constraints
@@ -110,10 +104,10 @@ extension GameView {
             viewLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             
             //Check button constaints
-//            checkButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-//            checkButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-//            checkButton.widthAnchor.constraint(equalToConstant: 30),
-//            checkButton.heightAnchor.constraint(equalToConstant: 30)
+            //            checkButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            //            checkButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            //            checkButton.widthAnchor.constraint(equalToConstant: 30),
+            //            checkButton.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 }

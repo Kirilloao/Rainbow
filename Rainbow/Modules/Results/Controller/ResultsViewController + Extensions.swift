@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - UITableViewDataSource
 extension ResultsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         model.count
@@ -26,6 +27,7 @@ extension ResultsViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension ResultsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100

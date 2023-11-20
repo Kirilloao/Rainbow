@@ -64,9 +64,11 @@ final class MainView: UIView {
     func rulesTarget(_ target: Any, action: Selector) {
         rules.addTarget(target, action: action, for: .touchUpInside)
     }
+    
     func resumeTarget(_ target: Any, action: Selector) {
         resume.addTarget(target, action: action, for: .touchUpInside)
     }
+    
     func toggleResumeButton(isEnabled: Bool) {
         resume.isEnabled = isEnabled
     }

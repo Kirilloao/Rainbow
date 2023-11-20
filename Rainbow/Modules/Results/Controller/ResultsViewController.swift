@@ -8,14 +8,22 @@
 import UIKit
 
 final class ResultsViewController: UIViewController {
+    
+    // MARK: - Private UI Properties
     private let tableView = ResultsTableView()
     private let cleanButton: UIButton!
     
+    // MARK: - Public Properties
     let model: ResultsDataSource
     
+    // MARK: - Init
     init(model: ResultsDataSource) {
         self.model = model
-        self.cleanButton = UIButton(title: model.buttonTitle, backgroundColor: .redGameColor, cornerRadius: 10)
+        self.cleanButton = UIButton(
+            title: model.buttonTitle,
+            backgroundColor: .redGameColor,
+            cornerRadius: 10)
+        
         super.init(nibName: nil, bundle: nil)
         
         setupButton()
@@ -25,6 +33,7 @@ final class ResultsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,10 +43,17 @@ final class ResultsViewController: UIViewController {
         setupButtonConstraints()
     }
     
+    // MARK: - Private Actions
+    @objc private func cleanAction() {
+        model.removeStatistics()
+        tableView.reloadData()
+        cleanButton.isEnabled = false
+    }
+    
+    // MARK: - Private Methods
     private func setupTableView() {
         tableView.backgroundColor = .grayBackgroundColor
         tableView.separatorStyle = .none
-        
         
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -46,16 +62,23 @@ final class ResultsViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
-        tableView.register(ResultsTableViewCell.self, forCellReuseIdentifier: ResultsTableViewCell.identifier)
+        tableView.register(
+            ResultsTableViewCell.self,
+            forCellReuseIdentifier: ResultsTableViewCell.identifier
+        )
         tableView.dataSource = self
         tableView.delegate = self
-      }
+    }
     
     private func setupButton() {
         cleanButton.titleLabel?.font = .systemFont(ofSize: 20)
         cleanButton.dropShadow()
         cleanButton.isEnabled = !model.isEmpty
-        cleanButton.addTarget(self, action: #selector(cleanAction), for: .touchUpInside)
+        cleanButton.addTarget(
+            self,
+            action: #selector(cleanAction),
+            for: .touchUpInside
+        )
     }
     
     private func setupButtonConstraints() {
@@ -65,11 +88,5 @@ final class ResultsViewController: UIViewController {
         cleanButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -51).isActive = true
         cleanButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -51).isActive = true
         cleanButton.heightAnchor.constraint(equalToConstant: 63).isActive = true
-    }
-    
-    @objc private func cleanAction() {
-        model.removeStatistics()
-        tableView.reloadData()
-        cleanButton.isEnabled = false
     }
 }

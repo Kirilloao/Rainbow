@@ -8,9 +8,11 @@
 import UIKit
 
 final class ResultsCardView: UIView {
+    
+    // MARK: - Private Properties
     private var model: ResultsCardModel!
     
-    // MARK: - private UI properties
+    // MARK: - Private UI Properties
     private lazy var gameLabel: UILabel = UILabel(
         text: model.gameLabelText,
         font: .systemFont(ofSize: 20),
@@ -67,7 +69,7 @@ final class ResultsCardView: UIView {
     }()
     
     
-    // MARK: - initializers
+    // MARK: - Init
     init() {
         self.model = .init(gameId: 0, seconds: 0, speedRate: 0, rightCount: 0, totalCount: 0)
         super.init(frame: CGRect())
@@ -80,7 +82,7 @@ final class ResultsCardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - view setup
+    // MARK: - Public Methods
     func setModel(with model: ResultsCardModel) {
         self.model = model
         gameLabel.text = model.gameLabelText
@@ -89,7 +91,7 @@ final class ResultsCardView: UIView {
         speedRateLabel.text = model.speedRateLabelText
     }
     
-    // MARK: - private methods
+    // MARK: - Private Methods
     private func setupView() {
         self.backgroundColor = .white
         self.dropShadow()

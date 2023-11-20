@@ -7,19 +7,9 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+final class SettingsViewController: UIViewController {
     
-    private let dataSource: SettingsDataSource
-    private var gameTimeValue: Float = 2
-    private var speedTimeValue = 5
-    private var gameTimeSliderValue: Float = 2
-    private var speedTimeSliderValue: Float = 5
-    private var selectedColors: [UIColor] = []
-    private var isSubstrate = true
-    private var lettersBackgroundEnabled = true
-    private var fontSize = CGFloat(15)
-    private var bgColor = UIColor.grayBackgroundColor
-    
+    // MARK: - Private UI Properties
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +38,11 @@ class SettingsViewController: UIViewController {
         
         self.timeValueLabel.text = "\(Int(self.gameTimeValue))"
         
-        slider.addTarget(self, action: #selector(gameTimeSliderValueChanged(_:)), for: .valueChanged)
+        slider.addTarget(
+            self,
+            action: #selector(gameTimeSliderValueChanged(_:)),
+            for: .valueChanged
+        )
         
         view.addSubviews(slider, self.timeValueLabel)
         
@@ -57,24 +51,16 @@ class SettingsViewController: UIViewController {
             self.timeValueLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             self.timeValueLabel.widthAnchor.constraint(equalToConstant: 36),
             
-            slider.trailingAnchor.constraint(equalTo: self.timeValueLabel.leadingAnchor, constant: -8),
+            slider.trailingAnchor.constraint(
+                equalTo: self.timeValueLabel.leadingAnchor,
+                constant: -8
+            ),
             slider.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             slider.widthAnchor.constraint(equalToConstant: 110)
         ])
         
         return view
     }()
-    
-    @objc private func gameTimeSliderValueChanged(_ sender: UISlider) {
-//        let value = Int(sender.value)
-        self.gameTimeValue = sender.value
-//        gameTimeValue = Float(value)
-        updateTimeLabel()
-    }
-    
-    private func updateTimeLabel() {
-        self.timeValueLabel.text = "\(Int(gameTimeValue))"
-    }
     
     private lazy var speedTimeView: SettingView = {
         let view = SettingView(labelText: "скорость смены заданий, сек")
@@ -84,7 +70,11 @@ class SettingsViewController: UIViewController {
         slider.tintColor = .orange
         slider.value = self.speedTimeSliderValue
         
-        slider.addTarget(self, action: #selector(speedTimeSliderValueChanged(_:)), for: .valueChanged)
+        slider.addTarget(
+            self,
+            action: #selector(speedTimeSliderValueChanged(_:)),
+            for: .valueChanged
+        )
         
         self.speedValueLabel.text = "\(speedTimeValue)"
         view.addSubviews(slider,self.speedValueLabel)
@@ -101,22 +91,15 @@ class SettingsViewController: UIViewController {
         return view
     }()
     
-    @objc private func speedTimeSliderValueChanged(_ sender: UISlider) {
-        let value = Int(sender.value)
-        self.speedTimeSliderValue = sender.value
-        speedTimeValue = value
-        updateSpeedLabel()
-    }
-    
-    private func updateSpeedLabel() {
-        self.speedValueLabel.text = "\(speedTimeValue)"
-    }
-    
     private lazy var witchCheckView: SettingView = {
         let view = SettingView(labelText: "игра с проверкой заданий")
         let control = UISwitch()
         control.isOn = isSubstrate
-        control.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
+        control.addTarget(
+            self,
+            action: #selector(switchValueChanged(_:)),
+            for: .valueChanged
+        )
         
         view.addSubviews(control)
         
@@ -127,11 +110,6 @@ class SettingsViewController: UIViewController {
         ])
         return view
     }()
-    
-    @objc private func switchValueChanged(_ sender: UISwitch) {
-        isSubstrate = sender.isOn
-        print("Switch value changed: \(isSubstrate)")
-    }
     
     private lazy var buttonStackView: UIStackView = {
         
@@ -166,7 +144,11 @@ class SettingsViewController: UIViewController {
                 heightConstraint,
             ])
             
-            button.addTarget(self, action: #selector(colorButtonTapped(_:)), for: .touchUpInside)
+            button.addTarget(
+                self,
+                action: #selector(colorButtonTapped(_:)),
+                for: .touchUpInside
+            )
             
             if index % 6 == 0 {
                 rowStackView = UIStackView()
@@ -176,33 +158,20 @@ class SettingsViewController: UIViewController {
                 
                 stackView.addArrangedSubview(rowStackView!)
             }
-            
             rowStackView?.addArrangedSubview(button)
-            
         }
         
         return stackView
     }()
     
-    
     private lazy var stepperLabel: UILabel = {
-        let stepperLabel = UILabel(text: "Aa",font: .systemFont(ofSize: fontSize), color: .black)
-        stepperLabel.text = "Aa"
+        let stepperLabel = UILabel(
+            text: "Aa",
+            font: .systemFont(ofSize: fontSize),
+            color: .black
+        )
         return stepperLabel
     }()
-    
-    @objc private func colorButtonTapped(_ sender: UIButton) {
-        sender.subviews.forEach { view in
-            if let checkmarkView = view as? UIImageView {
-                checkmarkView.isHidden = !checkmarkView.isHidden
-                if let index = selectedColors.firstIndex(where: { $0.cgColor.components == sender.backgroundColor?.cgColor.components }) {
-                    selectedColors.remove(at: index)
-                } else if let color = sender.backgroundColor {
-                    selectedColors.append(color)
-                }
-            }
-        }
-    }
     
     private lazy var letterColorsView: SettingView = {
         let view = SettingView(labelText: "цвета букв")
@@ -222,7 +191,11 @@ class SettingsViewController: UIViewController {
         stepper.minimumValue = 15
         stepper.maximumValue = 25
         stepper.stepValue = 1
-        stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
+        stepper.addTarget(
+            self,
+            action: #selector(stepperValueChanged(_:)),
+            for: .valueChanged
+        )
         
         view.addSubviews(stepper,stepperLabel)
         NSLayoutConstraint.activate([
@@ -238,32 +211,6 @@ class SettingsViewController: UIViewController {
         return view
     }()
     
-    @objc private func stepperValueChanged(_ sender: UIStepper) {
-        fontSize = CGFloat(sender.value)
-        stepperLabel.font = .systemFont(ofSize: fontSize)
-    }
-    
-    private lazy var letterBackgroundView: SettingView = {
-        let view = SettingView(labelText: "подложка для букв")
-        let control = UISwitch()
-        control.isOn = lettersBackgroundEnabled
-        control.addTarget(self, action: #selector(letterBackgroundValueChanged(_:)), for: .valueChanged)
-        
-        view.addSubviews(control)
-        
-        NSLayoutConstraint.activate([
-            control.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-            control.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            control.widthAnchor.constraint(equalToConstant: 57)
-        ])
-        return view
-    }()
-    
-    @objc private func letterBackgroundValueChanged(_ sender: UISwitch) {
-        lettersBackgroundEnabled = sender.isOn
-        print("Switch value changed: \(lettersBackgroundEnabled)")
-    }
-    
     private lazy var backgroundColorView: SettingView = {
         let view = SettingView(labelText: "")
         let label = UILabel(text: "цвет фона",font: .systemFont(ofSize: 15))
@@ -271,7 +218,11 @@ class SettingsViewController: UIViewController {
         
         let segmentedControl = UISegmentedControl(items: ["Серый", "Белый", "Черный"])
         segmentedControl.selectedSegmentIndex = indexForbackgroundColor
-        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
+        segmentedControl.addTarget(
+            self,
+            action: #selector(segmentedControlValueChanged(_:)),
+            for: .valueChanged
+        )
         
         view.addSubviews(segmentedControl,label)
         
@@ -288,6 +239,97 @@ class SettingsViewController: UIViewController {
         return view
     }()
     
+    private lazy var letterBackgroundView: SettingView = {
+        let view = SettingView(labelText: "подложка для букв")
+        let control = UISwitch()
+        control.isOn = lettersBackgroundEnabled
+        control.addTarget(
+            self,
+            action: #selector(letterBackgroundValueChanged(_:)),
+            for: .valueChanged
+        )
+        
+        view.addSubviews(control)
+        
+        NSLayoutConstraint.activate([
+            control.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            control.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            control.widthAnchor.constraint(equalToConstant: 57)
+        ])
+        return view
+    }()
+    
+    private lazy var wordsPosition: SettingView = {
+        let view = SettingView(labelText: "")
+        let label = UILabel(
+            text: "расположение слова на экране",
+            font: .systemFont(ofSize: 15)
+        )
+        label.numberOfLines = 1
+        
+        let segmentedControl = UISegmentedControl(items: ["Случайное","По центру"])
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.addTarget(
+            self,
+            action: #selector(wordsPositionValueChanged(_:)),
+            for: .valueChanged
+        )
+        
+        view.addSubviews(segmentedControl,label)
+        
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 8),
+            
+            segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+            segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            segmentedControl.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 8),
+            segmentedControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8)
+        ])
+        
+        return view
+    }()
+    
+    // MARK: - Life Cycle Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .grayBackgroundColor
+        navigationItem.title = "Настройки"
+        setupUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        saveSettings()
+    }
+    
+    // MARK: - Init
+    init(dataSource: SettingsDataSource) {
+        self.dataSource = dataSource
+        let settings = dataSource.getSettings()
+        self.gameTimeValue = Float(settings.gameTime / 60)
+        self.gameTimeSliderValue = settings.gameTimeValueSlider
+        self.speedTimeSliderValue = settings.speedTimeValueSlider
+        self.speedTimeValue = settings.speed
+        self.isSubstrate = settings.isSubstrate
+        self.lettersBackgroundEnabled = settings.isBackgroundNeed
+        self.bgColor = UIColor(
+            red: settings.backgroundColor[0],
+            green: settings.backgroundColor[1],
+            blue: settings.backgroundColor[2],
+            alpha: settings.backgroundColor[3]
+        )
+        self.selectedColors = settings.buttonColors.map({ color in
+            UIColor(red: color[0], green: color[1], blue: color[2], alpha: color[3])
+        })
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Private Properties
     private var indexForbackgroundColor: Int {
         switch bgColor.cgColor.components {
         case UIColor.grayBackgroundColor.cgColor.components:
@@ -299,6 +341,61 @@ class SettingsViewController: UIViewController {
         default:
             return 0
         }
+    }
+    
+    // MARK: - Private Properties
+    private let dataSource: SettingsDataSource
+    private var gameTimeValue: Float = 2
+    private var speedTimeValue = 5
+    private var gameTimeSliderValue: Float = 2
+    private var speedTimeSliderValue: Float = 5
+    private var selectedColors: [UIColor] = []
+    private var isSubstrate = true
+    private var lettersBackgroundEnabled = true
+    private var fontSize = CGFloat(15)
+    private var bgColor = UIColor.grayBackgroundColor
+    
+    // MARK: - Private Actions
+    @objc private func gameTimeSliderValueChanged(_ sender: UISlider) {
+        //        let value = Int(sender.value)
+        self.gameTimeValue = sender.value
+        //        gameTimeValue = Float(value)
+        updateTimeLabel()
+    }
+    
+    @objc private func speedTimeSliderValueChanged(_ sender: UISlider) {
+        let value = Int(sender.value)
+        self.speedTimeSliderValue = sender.value
+        speedTimeValue = value
+        updateSpeedLabel()
+    }
+    
+    @objc private func switchValueChanged(_ sender: UISwitch) {
+        isSubstrate = sender.isOn
+        print("Switch value changed: \(isSubstrate)")
+    }
+    
+    @objc private func colorButtonTapped(_ sender: UIButton) {
+        sender.subviews.forEach { view in
+            if let checkmarkView = view as? UIImageView {
+                checkmarkView.isHidden = !checkmarkView.isHidden
+                if let index = selectedColors.firstIndex(where: { $0.cgColor.components == sender.backgroundColor?.cgColor.components }) {
+                    selectedColors.remove(at: index)
+                } else if let color = sender.backgroundColor {
+                    selectedColors.append(color)
+                }
+            }
+        }
+    }
+    
+    @objc private func stepperValueChanged(_ sender: UIStepper) {
+        fontSize = CGFloat(sender.value)
+        stepperLabel.font = .systemFont(ofSize: fontSize)
+    }
+    
+    @objc private func letterBackgroundValueChanged(_ sender: UISwitch) {
+        lettersBackgroundEnabled = sender.isOn
+        print("Switch value changed: \(lettersBackgroundEnabled)")
     }
     
     @objc private func segmentedControlValueChanged(_ sender: UISegmentedControl) {
@@ -314,35 +411,19 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    private lazy var wordsPosition: SettingView = {
-        let view = SettingView(labelText: "")
-        let label = UILabel(text: "расположение слова на экране",font: .systemFont(ofSize: 15))
-        label.numberOfLines = 1
-        
-        let segmentedControl = UISegmentedControl(items: ["Случайное","По центру"])
-        segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.addTarget(self, action: #selector(wordsPositionValueChanged(_:)), for: .valueChanged)
-        
-        view.addSubviews(segmentedControl,label)
-        
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
-            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 8),
-            
-            segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
-            segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-            segmentedControl.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 8),
-            segmentedControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8)
-        ])
-        
-        return view
-    }()
-    
     @objc private func wordsPositionValueChanged(_ sender: UISegmentedControl) {
-        
     }
     
-    func saveSettings() {
+    // MARK: - Private Methods
+    private func updateTimeLabel() {
+        self.timeValueLabel.text = "\(Int(gameTimeValue))"
+    }
+    
+    private func updateSpeedLabel() {
+        self.speedValueLabel.text = "\(speedTimeValue)"
+    }
+    
+    private func saveSettings() {
         let gameTime = Int(gameTimeValue) * 60
         let speed = speedTimeValue
         let isSubstruct = isSubstrate
@@ -351,16 +432,36 @@ class SettingsViewController: UIViewController {
         let bg = lettersBackgroundEnabled
         let bgColor = bgColor.cgColor.components
         let buttonColors: [[CGFloat]] = selectedColors.compactMap { $0.cgColor.components }
-        let settings = Settings(gameTime: gameTime, gameTimeValueSlider: time,speedTimeValueSlider: speedTime, speed: speed, isSubstrate: isSubstruct, isBackgroundNeed: bg, backgroundColor: bgColor!, buttonColors: buttonColors, fontSize: fontSize)
+        let settings = Settings(
+            gameTime: gameTime,
+            gameTimeValueSlider: time,
+            speedTimeValueSlider: speedTime,
+            speed: speed,
+            isSubstrate: isSubstruct,
+            isBackgroundNeed: bg,
+            backgroundColor: bgColor!,
+            buttonColors: buttonColors,
+            fontSize: fontSize
+        )
         dataSource.saveSettings(settings)
-        
-        print(settings)
     }
-    
+}
+
+// MARK: - Setup UI
+extension SettingsViewController {
     private func setupUI() {
-        
         view.addSubviews(scrollView)
-        scrollView.addSubviews(gameTimeView,speedTimeView,witchCheckView,letterColorsView,letterSizeView,letterBackgroundView,backgroundColorView,wordsPosition)
+        
+        scrollView.addSubviews(
+            gameTimeView,
+            speedTimeView,
+            witchCheckView,
+            letterColorsView,
+            letterSizeView,
+            letterBackgroundView,
+            backgroundColorView,
+            wordsPosition
+        )
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -393,38 +494,6 @@ class SettingsViewController: UIViewController {
             wordsPosition.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             wordsPosition.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .grayBackgroundColor
-        navigationItem.title = "Настройки"
-        setupUI()
-    }
-    
-    init(dataSource: SettingsDataSource) {
-        self.dataSource = dataSource
-        let settings = dataSource.getSettings()
-        self.gameTimeValue = Float(settings.gameTime / 60)
-        self.gameTimeSliderValue = settings.gameTimeValueSlider
-        self.speedTimeSliderValue = settings.speedTimeValueSlider
-        self.speedTimeValue = settings.speed
-        self.isSubstrate = settings.isSubstrate
-        self.lettersBackgroundEnabled = settings.isBackgroundNeed
-        self.bgColor = UIColor(red: settings.backgroundColor[0], green: settings.backgroundColor[1], blue: settings.backgroundColor[2], alpha: settings.backgroundColor[3])
-        self.selectedColors = settings.buttonColors.map({ color in
-            UIColor(red: color[0], green: color[1], blue: color[2], alpha: color[3])
-        })
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        saveSettings()
     }
 }
 

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - ResultsCardModel
 struct ResultsCardModel: Codable {
     let gameId: Int
     let seconds: Int

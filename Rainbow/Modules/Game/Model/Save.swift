@@ -15,5 +15,4 @@ struct Save: Codable {
     var speedGame: Int
     var time: Int
     var title: String
-    
 }
