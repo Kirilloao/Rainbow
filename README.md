@@ -4,7 +4,7 @@
 
 
 
-## Tecnical Stack:
+## Technical Stack:
 
 * UIKit
 * MVC
